@@ -1,7 +1,8 @@
 import { User } from "@modules/accounts/infra/typeorm/entities/User";
 import { SpecialistStatusEnum } from "@modules/specialists/enums/SpecialistStatusEnum";
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid"
+import { ProductSpecialist } from "./ProductSpecialist";
 
 @Entity("specialists")
 class Specialist {
@@ -30,6 +31,10 @@ class Specialist {
 
     @Column()
     linkedinUrl: string;
+
+    @OneToMany(() => ProductSpecialist, productSpecialist => productSpecialist.specialist)
+    productSpecialist: ProductSpecialist[];
+
 
     constructor(
         name: string,

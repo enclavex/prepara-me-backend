@@ -1,6 +1,7 @@
 import { ProductBestSellerEnum } from "@modules/products/enums/ProductBestSellerEnum";
 import { ProductStatusEnum } from "@modules/products/enums/ProductStatusEnum";
 import { ProductTypeEnum } from "@modules/products/enums/ProductTypesEnum";
+import { ProductSpecialist } from "@modules/specialists/infra/typeorm/entities/ProductSpecialist";
 import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
@@ -42,6 +43,9 @@ class Product {
 
     @OneToMany(() => ProductContent, (productContent) => productContent.product)
     productContent: ProductContent[];
+
+    @OneToMany(() => ProductSpecialist, productSpecialist => productSpecialist.product)
+    productSpecialist: ProductSpecialist[]
 
     constructor(
         name: string,

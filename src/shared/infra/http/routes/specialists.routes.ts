@@ -1,4 +1,4 @@
-import { CreateSpecialistController } from "@modules/specialists/useCases/createEspecialist/CreateSpecialistController";
+import { CreateSpecialistController } from "@modules/specialists/useCases/createSpecialist/CreateSpecialistController";
 import { Router } from "express";
 import { ensureAdmin } from "../middlewares/ensureAdmin";
 import { ensuredAuthenticated } from "../middlewares/ensureAuthenticated";
