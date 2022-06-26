@@ -25,7 +25,7 @@ class CreateProductSpecialistUseCase {
         specialistId
     }: IRequest): Promise<ProductSpecialist[]> {
         const specialist = await this.specialistRepository.findById(specialistId);
-
+        
         const productsSpecialist = products.map(async (productId) => {
             const product = await this.productsRepository.findById(productId);
 
