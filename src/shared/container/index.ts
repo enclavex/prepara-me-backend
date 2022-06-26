@@ -8,6 +8,8 @@ import { IProductContentsRepository } from "@modules/products/repositories/IProd
 import { IProductsRepository } from "@modules/products/repositories/IProductsRepository";
 import { container } from "tsyringe";
 import "./providers";
+import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpecialistsRepository";
+import { SpecialistRepository } from "@modules/specialists/infra/typeorm/repositories/SpecialistRepository";
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
@@ -28,3 +30,8 @@ container.registerSingleton<IProductContentsRepository>(
     "ProductContentsRepository",
     ProductContentsRepository
 );
+
+container.registerSingleton<ISpecialistsRepository>(
+    "SpecialistRepository",
+    SpecialistRepository
+)

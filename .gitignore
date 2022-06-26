@@ -2,7 +2,8 @@
 node_modules
 /dist
 src/infra/typeorm/seed/admin.ts
-
+.env
+ormconfig.json
 
 # local env files
 .env.local
