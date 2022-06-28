@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/48</span>
+                <span class='fraction'>48/48</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/48</span>
+                <span class='fraction'>48/48</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -110,108 +110,108 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { IProductsRepository } from "@modules/products/repositories/IProductsRepository"</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { ProductSpecialist } from "@modules/specialists/infra/typeorm/entities/ProductSpecialist"</span>
-<span class="cstat-no" title="statement not covered" >import { IProductSpecialistRepository } from "@modules/specialists/repositories/IProductSpecialistRepository"</span>
-<span class="cstat-no" title="statement not covered" >import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpecialistsRepository"</span>
-<span class="cstat-no" title="statement not covered" >import { inject, injectable } from "tsyringe"</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface IRequest {</span>
-<span class="cstat-no" title="statement not covered" >    products: string[],</span>
-<span class="cstat-no" title="statement not covered" >    specialistId: string</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >@injectable()</span>
-<span class="cstat-no" title="statement not covered" >class CreateProductSpecialistUseCase {</span>
-<span class="cstat-no" title="statement not covered" >    constructor(</span>
-<span class="cstat-no" title="statement not covered" >        @inject("ProductSpecialistRepository")</span>
-<span class="cstat-no" title="statement not covered" >        private productSpecialistRepository: IProductSpecialistRepository,</span>
-<span class="cstat-no" title="statement not covered" >        @inject("ProductsRepository")</span>
-<span class="cstat-no" title="statement not covered" >        private productsRepository: IProductsRepository,</span>
-<span class="cstat-no" title="statement not covered" >        @inject("SpecialistRepository")</span>
-<span class="cstat-no" title="statement not covered" >        private specialistRepository: ISpecialistsRepository</span>
-<span class="cstat-no" title="statement not covered" >    ) { }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    async execute({</span>
-<span class="cstat-no" title="statement not covered" >        products,</span>
-<span class="cstat-no" title="statement not covered" >        specialistId</span>
-<span class="cstat-no" title="statement not covered" >    }: IRequest): Promise&lt;ProductSpecialist[]&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const specialist = await this.specialistRepository.findById(specialistId);</span>
-<span class="cstat-no" title="statement not covered" >        </span>
-<span class="cstat-no" title="statement not covered" >        const productsSpecialist = products.map(async (productId) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            const product = await this.productsRepository.findById(productId);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            const productSpecialist = await this.productSpecialistRepository.create({</span>
-<span class="cstat-no" title="statement not covered" >                product,</span>
-<span class="cstat-no" title="statement not covered" >                specialist</span>
-<span class="cstat-no" title="statement not covered" >            })</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            return productSpecialist</span>
-<span class="cstat-no" title="statement not covered" >        })</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const productsSpecialistResolved = Promise.all(productsSpecialist).then((productsSpecialist) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            return productsSpecialist</span>
-<span class="cstat-no" title="statement not covered" >        })</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        return productsSpecialistResolved</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export { CreateProductSpecialistUseCase }</span></pre></td></tr></table></pre>
+<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { IProductsRepository } from "@modules/products/repositories/IProductsRepository"
+import { ProductSpecialist } from "@modules/specialists/infra/typeorm/entities/ProductSpecialist"
+import { IProductSpecialistRepository } from "@modules/specialists/repositories/IProductSpecialistRepository"
+import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpecialistsRepository"
+import { inject, injectable } from "tsyringe"
+&nbsp;
+interface IRequest {
+    products: string[],
+    specialistId: string
+}
+&nbsp;
+@injectable()
+class CreateProductSpecialistUseCase {
+    constructor(
+        @inject("ProductSpecialistRepository")
+        private productSpecialistRepository: IProductSpecialistRepository,
+        @inject("ProductsRepository")
+        private productsRepository: IProductsRepository,
+        @inject("SpecialistRepository")
+        private specialistRepository: ISpecialistsRepository
+    ) { }
+&nbsp;
+    async execute({
+        products,
+        specialistId
+    }: IRequest): Promise&lt;ProductSpecialist[]&gt; {
+        const specialist = await this.specialistRepository.findById(specialistId);
+        
+        const productsSpecialist = products.map(async (productId) =&gt; {
+            const product = await this.productsRepository.findById(productId);
+&nbsp;
+            const productSpecialist = await this.productSpecialistRepository.create({
+                product,
+                specialist
+            })
+&nbsp;
+            return productSpecialist
+        })
+&nbsp;
+        const productsSpecialistResolved = Promise.all(productsSpecialist).then((productsSpecialist) =&gt; {
+            return productsSpecialist
+        })
+&nbsp;
+        return productsSpecialistResolved
+    }
+}
+&nbsp;
+export { CreateProductSpecialistUseCase }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Jun 27 2022 20:40:57 GMT-0300 (Horário Padrão de Brasília)
+                at Mon Jun 27 2022 22:27:16 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

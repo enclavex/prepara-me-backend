@@ -3,20 +3,33 @@ import { ISpecialistScheduleAvailableRepository } from "@modules/specialists/rep
 import { SpecialistScheduleAvailable } from "../../entities/SpecialistScheduleAvailable";
 
 class SpecialistScheduleAvailableRepositoryInMemory implements ISpecialistScheduleAvailableRepository {
-    specialistScheduleAvailable: SpecialistScheduleAvailable[] = []
+    specialistScheduleAvailables: SpecialistScheduleAvailable[] = []
 
     async create({
         dateSchedule,
         specialistId,
-        status
+        status,
+        userId
     }: ICreateSpecialistScheduleAvailableDTO): Promise<SpecialistScheduleAvailable> {
-        const specialistScheduleAvailable   = new SpecialistScheduleAvailable(
+        const specialistScheduleAvailable = new SpecialistScheduleAvailable(
             dateSchedule,
             specialistId,
             status
         )
 
-        this.specialistScheduleAvailable.push(specialistScheduleAvailable)
+        if (userId) {
+            Object.assign(specialistScheduleAvailable, { userId })
+        }
+
+        this.specialistScheduleAvailables.push(specialistScheduleAvailable)
+
+        return specialistScheduleAvailable
+    }
+
+    async findById(id: string): Promise<SpecialistScheduleAvailable> {
+        const specialistScheduleAvailable = this.specialistScheduleAvailables.find((specialistScheduleAvailable) => {
+            return specialistScheduleAvailable.id === id
+        })
 
         return specialistScheduleAvailable
     }

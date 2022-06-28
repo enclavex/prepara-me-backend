@@ -1,8 +1,6 @@
 import { ICreateSpecialistScheduleAvailableDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleAvailableDTO"
 import { SpecialistScheduleAvailableStatusEnum } from "@modules/specialists/enums/SpecialistScheduleAvailableStatusEnum"
-import { SpecialistScheduleAvailable } from "@modules/specialists/infra/typeorm/entities/SpecialistScheduleAvailable"
 import { SpecialistScheduleAvailableRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/SpecialistScheduleAvailableRepositoryInMemory"
-import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider"
 import { AppError } from "@shared/errors/AppError"
 import { CreateSpecialistScheduleAvailableUseCase } from "./CreateSpecialistScheduleAvailableUseCase"
 

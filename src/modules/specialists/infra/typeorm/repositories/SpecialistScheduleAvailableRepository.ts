@@ -13,15 +13,28 @@ class SpecialistScheduleAvailableRepository implements ISpecialistScheduleAvaila
     async create({
         dateSchedule,
         specialistId,
-        status
+        status,
+        userId,
+        id
     }: ICreateSpecialistScheduleAvailableDTO): Promise<SpecialistScheduleAvailable> {
         const specialistScheduleAvailable = this.repository.create({
             dateSchedule,
             specialistId,
-            status
+            status,
+            id
         })
 
+        if (userId) {
+            Object.assign(specialistScheduleAvailable, { userId })
+        }
+
         await this.repository.save(specialistScheduleAvailable);
+
+        return specialistScheduleAvailable
+    }
+
+    async findById(id: string): Promise<SpecialistScheduleAvailable> {
+        const specialistScheduleAvailable = this.repository.findOne(id)
 
         return specialistScheduleAvailable
     }
