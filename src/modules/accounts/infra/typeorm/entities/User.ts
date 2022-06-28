@@ -1,5 +1,6 @@
+import { SpecialistScheduleAvailable } from "@modules/specialists/infra/typeorm/entities/SpecialistScheduleAvailable";
 import { Expose } from "class-transformer";
-import { Entity, PrimaryColumn, Column, CreateDateColumn } from "typeorm";
+import { Entity, PrimaryColumn, Column, CreateDateColumn, OneToMany } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 @Entity("users")
@@ -33,6 +34,9 @@ class User {
 
     @CreateDateColumn()
     created_at: Date;
+
+    @OneToMany(() => SpecialistScheduleAvailable, specialistScheduleAvailable => specialistScheduleAvailable.specialist)
+    specialistScheduleAvailable: SpecialistScheduleAvailable[];
 
     @Expose({ name: "avatarUrl" })
     avatarUrl(): string {

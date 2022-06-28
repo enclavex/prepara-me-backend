@@ -3,6 +3,7 @@ import { SpecialistStatusEnum } from "@modules/specialists/enums/SpecialistStatu
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid"
 import { ProductSpecialist } from "./ProductSpecialist";
+import { SpecialistScheduleAvailable } from "./SpecialistScheduleAvailable";
 
 @Entity("specialists")
 class Specialist {
@@ -34,6 +35,9 @@ class Specialist {
 
     @OneToMany(() => ProductSpecialist, productSpecialist => productSpecialist.specialist)
     productSpecialist: ProductSpecialist[];
+
+    @OneToMany(() => SpecialistScheduleAvailable, specialistScheduleAvailable => specialistScheduleAvailable.specialist)
+    specialistScheduleAvailable: SpecialistScheduleAvailable[];
 
 
     constructor(

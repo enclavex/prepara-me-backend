@@ -12,6 +12,8 @@ import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpeci
 import { SpecialistRepository } from "@modules/specialists/infra/typeorm/repositories/SpecialistRepository";
 import { IProductSpecialistRepository } from "@modules/specialists/repositories/IProductSpecialistRepository";
 import { ProductSpecialistRepository } from "@modules/specialists/infra/typeorm/repositories/ProductSpecialistRepository";
+import { ISpecialistScheduleAvailableRepository } from "@modules/specialists/repositories/ISpecialistScheduleAvailableRepository";
+import { SpecialistScheduleAvailableRepository } from "@modules/specialists/infra/typeorm/repositories/SpecialistScheduleAvailableRepository";
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
@@ -36,6 +38,11 @@ container.registerSingleton<IProductContentsRepository>(
 container.registerSingleton<ISpecialistsRepository>(
     "SpecialistRepository",
     SpecialistRepository
+)
+
+container.registerSingleton<ISpecialistScheduleAvailableRepository>(
+    "SpecialistScheduleAvailableRepository",
+    SpecialistScheduleAvailableRepository
 )
 
 container.registerSingleton<IProductSpecialistRepository>(
