@@ -1,6 +1,8 @@
 import { CreateProductSpecialistController } from "@modules/specialists/useCases/createProductSpecialist/CreateProductSpecialistController";
 import { CreateSpecialistController } from "@modules/specialists/useCases/createSpecialist/CreateSpecialistController";
 import { CreateSpecialistScheduleAvailableController } from "@modules/specialists/useCases/createSpecialistScheduleAvailable/CreateSpecialistScheduleAvailableController";
+import { ListSpecialistAvailableController } from "@modules/specialists/useCases/listSpecialistAvailable/ListSpecialistAvailableController";
+import { ListSpecialistsByProductController } from "@modules/specialists/useCases/listSpecialistsByProduct/ListSpecialistsByProductController";
 import { UpdateSpecialistScheduleAvailableController } from "@modules/specialists/useCases/updateSpecialistScheduleAvailable/UpdateSpecialistScheduleAvailableController";
 import { Router } from "express";
 import { ensureAdmin } from "../middlewares/ensureAdmin";
@@ -12,6 +14,14 @@ const createSpecialistController = new CreateSpecialistController()
 const createProductSpecialistController = new CreateProductSpecialistController()
 const createSpecialistScheduleAvailableController = new CreateSpecialistScheduleAvailableController()
 const updateSpecialistScheduleAvailableController = new UpdateSpecialistScheduleAvailableController()
+const listSpecialistAvailableController = new ListSpecialistAvailableController()
+const listSpecialistByProductController = new ListSpecialistsByProductController()
+
+specialistsRoutes.get("/",
+listSpecialistAvailableController.handle)
+
+specialistsRoutes.get("/:productId",
+listSpecialistByProductController.handle)
 
 specialistsRoutes.post("/",
     ensuredAuthenticated,

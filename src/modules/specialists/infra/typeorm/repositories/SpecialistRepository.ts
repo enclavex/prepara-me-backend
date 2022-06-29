@@ -39,9 +39,38 @@ class SpecialistRepository implements ISpecialistsRepository {
         return specialist
     }
 
+    async findByIds(
+        ids: string[],
+        dateBegin: Date,
+        dateEnd: Date
+    ): Promise<Specialist[]> {
+        const specialistsQuery = this.repository
+            .createQueryBuilder("s")
+
+        if (dateBegin && dateEnd) {
+            specialistsQuery.leftJoinAndSelect(
+                "s.specialistScheduleAvailable",
+                "ssa",
+                "ssa.dateSchedule between :dateBegin and :dateEnd",
+                {
+                    dateBegin,
+                    dateEnd
+                })
+        }
+
+        specialistsQuery.andWhere('s.id IN (:...ids)')
+            .setParameter('ids', [...ids])
+            .andWhere("s.status = :status", { status: SpecialistStatusEnum.ACTIVE })
+
+        const specialists = await specialistsQuery.getMany();
+
+        return specialists
+    }
+
     async findAvailable(): Promise<Specialist[]> {
         const specialistsQuery = this.repository
             .createQueryBuilder("e")
+            .leftJoinAndSelect("e.specialistScheduleAvailable", "specialistScheduleAvailable")
             .where("e.status = :status", { status: SpecialistStatusEnum.ACTIVE })
 
         const specialists = await specialistsQuery.getMany();

@@ -1,6 +1,7 @@
 import { ICreateProductSpecialistDTO } from "@modules/specialists/dtos/ICreateProductSpecialistDTO";
 import { IProductSpecialistRepository } from "@modules/specialists/repositories/IProductSpecialistRepository";
 import { ProductSpecialist } from "../../entities/ProductSpecialist";
+import { Specialist } from "../../entities/Specialist";
 
 class ProductSpecialistRepositoryInMemory implements IProductSpecialistRepository {
     productsSpecialist: ProductSpecialist[] = []
@@ -19,6 +20,13 @@ class ProductSpecialistRepositoryInMemory implements IProductSpecialistRepositor
         return productSpecialist
     }
 
+    async listSpecialistsByProduct(productId: string): Promise<string[]> {
+        return this.productsSpecialist.filter((productsSpecialist) => {
+            return productsSpecialist.productId === productId
+        }).map((productsSpecialist) => {
+            return productsSpecialist.specialistId
+        })
+    }
 }
 
 export { ProductSpecialistRepositoryInMemory }

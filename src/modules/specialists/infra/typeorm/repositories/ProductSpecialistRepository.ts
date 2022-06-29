@@ -26,6 +26,19 @@ class ProductSpecialistRepository implements IProductSpecialistRepository {
         return productSpecialist
     }
 
+    async listSpecialistsByProduct(productId: string): Promise<string[]> {
+        const listSpecialistsQuery = this.repository
+            .createQueryBuilder("ps")
+            .where("ps.productId = :productId", { productId })
+
+        const specialists = await listSpecialistsQuery.getMany().then((productSpecialists) => {
+            return productSpecialists.map((productSpecialist) => {
+                return productSpecialist.specialistId
+            })
+        })
+
+        return specialists
+    }
 }
 
 export { ProductSpecialistRepository }

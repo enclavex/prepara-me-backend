@@ -30,6 +30,12 @@ class SpecialistRepositoryInMemory implements ISpecialistsRepository {
         return this.specialists.find((specialist) => specialist.id === id);
     }
 
+    async findByIds(ids: string[]): Promise<Specialist[]> {
+        return this.specialists.filter((specialist) => {
+            return ids.includes(specialist.id)
+        });
+    }
+
     async findAvailable(): Promise<Specialist[]> {
         return this.specialists.filter((specialist) => {
             return (
@@ -37,7 +43,7 @@ class SpecialistRepositoryInMemory implements ISpecialistsRepository {
             );
         });
     }
-
 }
+
 
 export { SpecialistRepositoryInMemory }

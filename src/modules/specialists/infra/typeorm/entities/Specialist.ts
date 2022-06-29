@@ -39,7 +39,6 @@ class Specialist {
     @OneToMany(() => SpecialistScheduleAvailable, specialistScheduleAvailable => specialistScheduleAvailable.specialist)
     specialistScheduleAvailable: SpecialistScheduleAvailable[];
 
-
     constructor(
         name: string,
         bio: string,
