@@ -38,6 +38,18 @@ class SpecialistScheduleAvailableRepository implements ISpecialistScheduleAvaila
 
         return specialistScheduleAvailable
     }
+
+    async findBySpecialistIdAndDate(specialistId: string, dateBegin: Date, dateEnd: Date): Promise<SpecialistScheduleAvailable[]> {
+        console.log(dateBegin, dateEnd)
+        const specialistsScheduleAvailableQuery = this.repository
+            .createQueryBuilder("ssa")
+            .where("ssa.specialistId = :specialistId", { specialistId: specialistId })
+            .andWhere("ssa.dateSchedule between :dateBegin and :dateEnd", { dateBegin: dateBegin, dateEnd: dateEnd })
+
+        const specialistsScheduleAvailables = await specialistsScheduleAvailableQuery.getMany();
+
+        return specialistsScheduleAvailables
+    }
 }
 
 export { SpecialistScheduleAvailableRepository }

@@ -33,6 +33,16 @@ class SpecialistScheduleAvailableRepositoryInMemory implements ISpecialistSchedu
 
         return specialistScheduleAvailable
     }
+
+    async findBySpecialistIdAndDate(specialistId: string, dateBegin: Date, dateEnd: Date): Promise<SpecialistScheduleAvailable[]> {
+        const specialistScheduleAvailable = this.specialistScheduleAvailables.filter((specialistScheduleAvailable) => {
+            return specialistScheduleAvailable.specialistId === specialistId && 
+                specialistScheduleAvailable.dateSchedule >= dateBegin && 
+                specialistScheduleAvailable.dateSchedule <= dateEnd
+        })
+
+        return specialistScheduleAvailable
+    }
 }
 
 export { SpecialistScheduleAvailableRepositoryInMemory }
