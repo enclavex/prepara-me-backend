@@ -17,12 +17,10 @@ const app = express();
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");
-    res.header("Access-Control-Allow-Headers", [
-        "Content-Type",
-        "reauthorization",
-        "authorization",
-    ]);
+    res.header("Access-Control-Allow-Headers", '*');
+
     app.use(cors());
+    
     next();
 });
 

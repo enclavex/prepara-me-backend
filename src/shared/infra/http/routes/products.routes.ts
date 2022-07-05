@@ -3,6 +3,7 @@ import { CreateProductContentController } from "@modules/products/useCases/creat
 import { ListProductAvailableController } from "@modules/products/useCases/listProductAvailable/ListProductAvailableController";
 import { ListProductAvailableBestSellerController } from "@modules/products/useCases/listProductAvailableBestSeller/ListProductAvailableBestSellerController";
 import { Router } from "express";
+
 import { ensuredAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const productsRoutes = Router();
@@ -26,3 +27,4 @@ productsRoutes.get(
 );
 
 export { productsRoutes };
+
