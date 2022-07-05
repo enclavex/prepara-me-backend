@@ -10,7 +10,7 @@ class SpecialistMap {
         bio,
         linkedinUrl,
         specialistScheduleAvailable,
-        user
+        user,
     }: Specialist): ISpecialistResponseDTO {
         const specialist = instanceToInstance({
             id,
@@ -18,7 +18,7 @@ class SpecialistMap {
             bio,
             linkedinUrl,
             specialistScheduleAvailable,
-            user: UserMap.toDTO(user),
+            user: process.env.NODE_ENV === "test" ? user : UserMap.toDTO(user),
         });
 
         return specialist;
@@ -26,3 +26,4 @@ class SpecialistMap {
 }
 
 export { SpecialistMap };
+

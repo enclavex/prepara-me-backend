@@ -72,7 +72,7 @@ class SpecialistRepository implements ISpecialistsRepository {
         const specialists = await specialistsQuery.getMany();
 
         const specialistsUpdated = specialists.map((specialist) => {
-            return SpecialistMap.toDTO(specialist)
+            return SpecialistMap.toDTO(specialist);
         });
 
         return specialistsUpdated;
@@ -96,3 +96,4 @@ class SpecialistRepository implements ISpecialistsRepository {
 }
 
 export { SpecialistRepository };
+
