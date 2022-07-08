@@ -34,6 +34,10 @@ class ListSpecialistsByProductUseCase {
 
         const listSpecialistId = await this.productSpecialistRepository.listSpecialistsByProduct(productId)
 
+        if (listSpecialistId.length === 0) {
+            return null
+        }
+
         const specialists = await this.specialistRepository.findByIds(listSpecialistId, dateBegin, dateEnd)
 
         return specialists

@@ -3,6 +3,7 @@ import { container } from "tsyringe";
 
 import { ListProductAvailableBestSellerUseCase } from "./ListProductAvailableBestSellerUseCase";
 
+
 class ListProductAvailableBestSellerController {
     async handle(request: Request, response: Response): Promise<Response> {
         const listProductAvailableBestSellerUseCase = container.resolve(

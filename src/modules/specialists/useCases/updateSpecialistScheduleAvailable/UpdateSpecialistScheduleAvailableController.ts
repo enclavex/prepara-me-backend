@@ -1,21 +1,35 @@
-import { Request, Response } from "express"
-import { container } from "tsyringe"
-import { UpdateSpecialistScheduleAvailableUseCase } from "./UpdateSpecialistScheduleAvailableUseCase"
+import { AppError } from "@shared/errors/AppError";
+import { Request, Response } from "express";
+import { container } from "tsyringe";
+import { UpdateSpecialistScheduleAvailableUseCase } from "./UpdateSpecialistScheduleAvailableUseCase";
 
 class UpdateSpecialistScheduleAvailableController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { specialistScheduleAvailableId } = request.params
-        const userId = request.user.id
+        const { specialistScheduleAvailableId } = request.params;
+        const userId = request.user.id;
 
-        const updateSpecialistScheduleAvailableUseCase = container.resolve(UpdateSpecialistScheduleAvailableUseCase)
+        if (!specialistScheduleAvailableId) {
+            throw new AppError("Specialist Schedule ID not found.");
+        }
         
-        const specialistScheduleAvailable = updateSpecialistScheduleAvailableUseCase.execute({
-            specialistScheduleAvailableId,
-            userId
-        })
+        if (!userId) {
+            throw new AppError("User ID not found.");
+        }
 
-        return response.status(200).json(specialistScheduleAvailable)
+        console.log(specialistScheduleAvailableId, userId);
+
+        const updateSpecialistScheduleAvailableUseCase = container.resolve(
+            UpdateSpecialistScheduleAvailableUseCase
+        );
+
+        const specialistScheduleAvailable =
+            updateSpecialistScheduleAvailableUseCase.execute({
+                specialistScheduleAvailableId,
+                userId,
+            });
+
+        return response.status(200).json(specialistScheduleAvailable);
     }
 }
 
-export { UpdateSpecialistScheduleAvailableController }
+export { UpdateSpecialistScheduleAvailableController };

@@ -18,7 +18,8 @@ const app = express();
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");
     res.header("Access-Control-Allow-Headers", '*');
-
+    res.header("Access-Control-Allow-Methods", '*');
+    
     app.use(cors());
     
     next();
@@ -26,7 +27,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile)); 
 
 app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`));
 

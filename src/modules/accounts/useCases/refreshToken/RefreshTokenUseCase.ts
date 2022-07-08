@@ -6,9 +6,14 @@ import { inject, injectable } from "tsyringe";
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { AppError } from "@shared/errors/AppError";
 
-interface IPayload {
+interface IRequest {
     sub: string;
     email: string;
+}
+
+interface ITokenResponse {
+    token: string;
+    refresh_token: string;
 }
 
 @injectable()
@@ -20,8 +25,11 @@ class RefreshTokenUseCase {
         private dayjsDateProvider: IDateProvider
     ) {}
 
-    async execute(token: string): Promise<string> {
-        const { sub } = verify(token, auth.secret_refresh_token) as IPayload;
+    async execute(token: string): Promise<ITokenResponse> {
+        const { sub } = verify(
+            token,
+            auth.secret_refresh_token
+        ) as IRequest;
 
         const user_id = sub;
 
@@ -52,8 +60,17 @@ class RefreshTokenUseCase {
             user_id: sub,
         });
 
-        return refresh_token;
+        const newToken = sign({}, auth.secret_token, {
+            subject: sub,
+            expiresIn: auth.expires_in_token,
+        });
+
+        return {
+            refresh_token,
+            token: newToken,
+        };
     }
 }
 
 export { RefreshTokenUseCase };
+

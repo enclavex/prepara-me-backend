@@ -23,11 +23,9 @@ productsRoutes.post(
     createProductContentController.handle
 );
 productsRoutes.get("/", listProductAvailableController.handle);
+productsRoutes.get("/bestSellers", listProductAvailableBestSellerController.handle);
+
 productsRoutes.get("/:productId", getProductByIdController.handle);
-productsRoutes.get(
-    "/bestSellers",
-    listProductAvailableBestSellerController.handle
-);
 
 export { productsRoutes };
 

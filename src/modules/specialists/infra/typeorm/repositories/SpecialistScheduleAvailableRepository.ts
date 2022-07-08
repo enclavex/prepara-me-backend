@@ -40,7 +40,6 @@ class SpecialistScheduleAvailableRepository implements ISpecialistScheduleAvaila
     }
 
     async findBySpecialistIdAndDate(specialistId: string, dateBegin: Date, dateEnd: Date): Promise<SpecialistScheduleAvailable[]> {
-        console.log(dateBegin, dateEnd)
         const specialistsScheduleAvailableQuery = this.repository
             .createQueryBuilder("ssa")
             .where("ssa.specialistId = :specialistId", { specialistId: specialistId })
