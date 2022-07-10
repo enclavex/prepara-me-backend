@@ -15,6 +15,7 @@ class ResetPasswordUserController {
             refresh_token: String(refresh_token),
             password,
         });
+        
         return response.send();
     }
 }
