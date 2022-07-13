@@ -4,6 +4,7 @@ import { UserTokensRepositoryInMemory } from "@modules/accounts/repositories/in-
 
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { AppError } from "@shared/errors/AppError";
+import { TokenExpiredError } from "jsonwebtoken";
 
 import { AuthenticateUserUseCase } from "../authenticateUser/AuthenticateUserUseCase";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
@@ -60,6 +61,6 @@ describe("Refresh Token", () => {
             await refreshTokenUseCase.execute(
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTQ4OTA4MzcsImV4cCI6MTY1NzQ4MjgzNywic3ViIjoiZGE3MTE4MGYtNzQ3MC00YWFkLWJjYzMtYjZkYzQxZmM4YmIxIn0.xnwuFT8nODs-IkodrCuvFw3yC6FQagmG9pygGYQNarE"
             );
-        }).rejects.toBeInstanceOf(AppError);
+        }).rejects.toBeInstanceOf(TokenExpiredError);
     });
 });

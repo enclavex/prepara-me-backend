@@ -6,6 +6,7 @@ import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 import { ProductContent } from "./ProductContent";
+import { SubscriptionPlanProduct } from "./SubscriptionPlanProduct";
 
 @Entity("products")
 class Product {
@@ -46,6 +47,9 @@ class Product {
 
     @OneToMany(() => ProductSpecialist, productSpecialist => productSpecialist.product)
     productSpecialist: ProductSpecialist[]
+
+    @OneToMany(() => SubscriptionPlanProduct, (subscriptionPlanProduct) => subscriptionPlanProduct.product)
+    subscriptionPlanProduct: SubscriptionPlanProduct[];
 
     constructor(
         name: string,

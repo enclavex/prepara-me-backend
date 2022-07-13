@@ -16,8 +16,6 @@ class UpdateSpecialistScheduleAvailableController {
             throw new AppError("User ID not found.");
         }
 
-        console.log(specialistScheduleAvailableId, userId);
-
         const updateSpecialistScheduleAvailableUseCase = container.resolve(
             UpdateSpecialistScheduleAvailableUseCase
         );
