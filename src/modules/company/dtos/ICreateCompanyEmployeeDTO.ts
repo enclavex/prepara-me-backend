@@ -3,6 +3,7 @@ interface ICreateCompanyEmployeeDTO {
     companyId: string;
     documentId: string;
     userId: string;
+    subscribeToken: string;
     id?: string;
 }
 

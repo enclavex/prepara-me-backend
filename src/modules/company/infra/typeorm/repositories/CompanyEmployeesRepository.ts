@@ -14,12 +14,14 @@ class CompanyEmployeesRepository implements ICompanyEmployees {
         companyId,
         documentId,
         name,
+        subscribeToken,
         userId,
     }: ICreateCompanyEmployeeDTO): Promise<CompanyEmployee> {
         const companyEmployee = this.repository.create({
             companyId,
             documentId,
             name,
+            subscribeToken,
             userId,
         });
 

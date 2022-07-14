@@ -11,6 +11,9 @@ class CompanyEmployee {
     @Column()
     name: string;
 
+    @Column()
+    subscribeToken: string;
+
     @ManyToOne(() => Company)
     @JoinColumn({ name: "companyId" })
     company: Company;
@@ -30,6 +33,7 @@ class CompanyEmployee {
 
     constructor(
         name: string,
+        subscribeToken: string,
         companyId: string,
         documentId: string,
         userId: string
@@ -39,6 +43,7 @@ class CompanyEmployee {
         }
 
         this.name = name;
+        this.subscribeToken = subscribeToken;
         this.companyId = companyId;
         this.documentId = documentId;
         this.userId = userId;

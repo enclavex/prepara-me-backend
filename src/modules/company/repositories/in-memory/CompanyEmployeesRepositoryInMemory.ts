@@ -10,12 +10,14 @@ class CompanyEmployeesRepositoryInMemory implements ICompanyEmployees {
         documentId,
         name,
         userId,
+        subscribeToken
     }: ICreateCompanyEmployeeDTO): Promise<CompanyEmployee> {
         const companyEmployee = new CompanyEmployee(
             name,
+            subscribeToken,
             companyId,
             documentId,
-            userId
+            userId,
         );
 
         this.companyEmployees.push(companyEmployee);
