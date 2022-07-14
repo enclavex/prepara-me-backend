@@ -3,7 +3,7 @@ import { SubscriptionPlanTypeEnum } from "../enums/SubscriptionPlanTypeEnum";
 
 interface ICreateSubscriptionPlanDTO {
     name: string;
-    prince: Number;
+    price: Number;
     status: SubscriptionPlanStatusEnum;
     type: SubscriptionPlanTypeEnum;
     id?: string;

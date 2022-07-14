@@ -25,12 +25,12 @@ class SubscriptionPlanProduct {
     productId: string;
 
     @Column()
-    availableQyuantity: Number;
+    availableQuantity: Number;
 
     constructor(
         subscriptionPlanId: string,
         productId: string,
-        availableQyuantity: Number
+        availableQuantity: Number
     ){
         if (!this.id) {
             this.id = uuidV4();
@@ -38,7 +38,7 @@ class SubscriptionPlanProduct {
 
         this.subscriptionPlanId = subscriptionPlanId;
         this.productId = productId;
-        this.availableQyuantity = availableQyuantity;
+        this.availableQuantity = availableQuantity;
     }
 }
 
