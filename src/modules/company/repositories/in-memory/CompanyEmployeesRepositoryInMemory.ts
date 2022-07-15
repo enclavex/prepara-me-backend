@@ -1,8 +1,8 @@
 import { ICreateCompanyEmployeeDTO } from "@modules/company/dtos/ICreateCompanyEmployeeDTO";
 import { CompanyEmployee } from "@modules/company/infra/typeorm/entities/CompanyEmployee";
-import { ICompanyEmployees } from "../ICompanyEmployees";
+import { ICompanyEmployeesRepository } from "../ICompanyEmployeesRepository";
 
-class CompanyEmployeesRepositoryInMemory implements ICompanyEmployees {
+class CompanyEmployeesRepositoryInMemory implements ICompanyEmployeesRepository {
     companyEmployees: CompanyEmployee[] = [];
 
     async create({

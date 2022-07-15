@@ -14,6 +14,18 @@ import { IProductSpecialistRepository } from "@modules/specialists/repositories/
 import { ProductSpecialistRepository } from "@modules/specialists/infra/typeorm/repositories/ProductSpecialistRepository";
 import { ISpecialistScheduleAvailableRepository } from "@modules/specialists/repositories/ISpecialistScheduleAvailableRepository";
 import { SpecialistScheduleAvailableRepository } from "@modules/specialists/infra/typeorm/repositories/SpecialistScheduleAvailableRepository";
+import { ICompaniesRepository } from "@modules/company/repositories/ICompaniesRepository";
+import { CompaniesRepository } from "@modules/company/infra/typeorm/repositories/CompaniesRepository";
+import { ICompanyEmployeesRepository } from "@modules/company/repositories/ICompanyEmployeesRepository";
+import { CompanyEmployeesRepository } from "@modules/company/infra/typeorm/repositories/CompanyEmployeesRepository";
+import { SubscriptionPlansRepository } from "@modules/products/infra/typeorm/repositories/SubscriptionPlansRepository";
+import { ISubscriptionPlansRepository } from "@modules/products/repositories/ISubscriptionPlansRepository";
+import { ISubscriptionPlanProductsRepository } from "@modules/products/repositories/ISubscriptionPlanProductsRepository";
+import { SubscriptionPlanProductsRepository } from "@modules/products/infra/typeorm/repositories/SubscriptionPlanProductsRepository";
+import { ICompanySubscriptionPlansRepository } from "@modules/company/repositories/ICompanySubscriptionPlansRepository";
+import { CompanySubscriptionPlansRepository } from "@modules/company/infra/typeorm/repositories/CompanySubscriptionPlansRepository";
+import { IUserProductsAvailableRepository } from "@modules/accounts/repositories/IUserProductsAvailableRepository";
+import { UserProductsAvailableRepository } from "@modules/accounts/infra/typeorm/repositories/UserProductsAvailableRepository";
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
@@ -23,6 +35,11 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IUserTokensRepository>(
     "UserTokensRepository",
     UserTokensRepository
+);
+
+container.registerSingleton<IUserProductsAvailableRepository>(
+    "UserProductsAvailableRepository",
+    UserProductsAvailableRepository
 );
 
 container.registerSingleton<IProductsRepository>(
@@ -38,14 +55,39 @@ container.registerSingleton<IProductContentsRepository>(
 container.registerSingleton<ISpecialistsRepository>(
     "SpecialistRepository",
     SpecialistRepository
-)
+);
 
 container.registerSingleton<ISpecialistScheduleAvailableRepository>(
     "SpecialistScheduleAvailableRepository",
     SpecialistScheduleAvailableRepository
-)
+);
 
 container.registerSingleton<IProductSpecialistRepository>(
     "ProductSpecialistRepository",
     ProductSpecialistRepository
-)
+);
+
+container.registerSingleton<ICompaniesRepository>(
+    "CompaniesRepository",
+    CompaniesRepository
+);
+
+container.registerSingleton<ICompanyEmployeesRepository>(
+    "CompanyEmployeesRepository",
+    CompanyEmployeesRepository
+);
+
+container.registerSingleton<ICompanySubscriptionPlansRepository>(
+    "CompanySubscriptionPlansRepository",
+    CompanySubscriptionPlansRepository
+);
+
+container.registerSingleton<ISubscriptionPlansRepository>(
+    "SubscriptionPlansRepository",
+    SubscriptionPlansRepository
+);
+
+container.registerSingleton<ISubscriptionPlanProductsRepository>(
+    "SubscriptionPlanProductsRepository",
+    SubscriptionPlanProductsRepository
+);

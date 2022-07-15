@@ -1,9 +1,9 @@
 import { ICreateCompanySubscriptionPlanDTO } from "@modules/company/dtos/ICreateCompanySubscriptionPlanDTO";
 import { CompanySubscriptionPlan } from "@modules/company/infra/typeorm/entities/CompanySubscriptionPlan";
-import { ICompanySubscriptionPlans } from "../ICompanySubscriptionPlans";
+import { ICompanySubscriptionPlansRepository } from "../ICompanySubscriptionPlansRepository";
 
 class CompanySubscriptionPlansRepositoryInMemory
-    implements ICompanySubscriptionPlans
+    implements ICompanySubscriptionPlansRepository
 {
     companySubscriptionPlans: CompanySubscriptionPlan[] = [];
 
