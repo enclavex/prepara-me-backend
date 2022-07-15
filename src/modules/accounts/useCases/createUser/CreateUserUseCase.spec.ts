@@ -1,4 +1,5 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 
 import { AppError } from "@shared/errors/AppError";
@@ -21,28 +22,13 @@ describe("Create User", () => {
             email: "user@test.com",
             password: "1234",
             documentId: "00000000000",
-            type: "C",
+            type: UserTypeEnum.USER,
         };
 
         const result = await createUserUseCase.execute(user);
 
         expect(result).toHaveProperty("id");
         expect(result.password).not.toBe("1234");
-    });
-
-    it("should not be able to create a user with wrong type", async () => {
-        expect(async () => {
-            const user: ICreateUserDTO = {
-                name: "User Test",
-                username: "User",
-                email: "user@test.com",
-                password: "1234",
-                documentId: "00000000000",
-                type: "X",
-            };
-
-            await createUserUseCase.execute(user);
-        }).rejects.toBeInstanceOf(AppError);
     });
 
     it("should not be able to create a user with no documentId", async () => {
@@ -53,7 +39,7 @@ describe("Create User", () => {
                 email: "user@test.com",
                 password: "1234",
                 documentId: "",
-                type: "C",
+                type: UserTypeEnum.USER,
             };
 
             await createUserUseCase.execute(user);
@@ -68,7 +54,7 @@ describe("Create User", () => {
                 email: "user@test.com",
                 password: "1234",
                 documentId: "000000",
-                type: "C",
+                type: UserTypeEnum.USER,
             };
 
             await createUserUseCase.execute(user);
@@ -83,7 +69,7 @@ describe("Create User", () => {
                 email: "",
                 password: "1234",
                 documentId: "000000",
-                type: "C",
+                type: UserTypeEnum.USER,
             };
 
             await createUserUseCase.execute(user);
@@ -98,7 +84,7 @@ describe("Create User", () => {
                 email: "user@test.com",
                 password: "",
                 documentId: "000000",
-                type: "C",
+                type: UserTypeEnum.USER,
             };
 
             await createUserUseCase.execute(user);

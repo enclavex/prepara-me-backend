@@ -1,3 +1,5 @@
+import { UserTypeEnum } from "../enums/UserTypeEnum";
+
 interface IUserResponseDTO {
     email: string;
     name: string;
@@ -6,7 +8,7 @@ interface IUserResponseDTO {
     avatar: string;
     active: boolean;
     documentId: string;
-    type: string;
+    type: UserTypeEnum;
     avatarUrl(): string;
 }
 

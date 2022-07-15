@@ -1,4 +1,5 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 import { UserTokensRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserTokensRepositoryInMemory";
 
@@ -41,7 +42,7 @@ describe("Reset Password", () => {
             email: "user@test.com",
             password: "1234",
             documentId: "00000000000",
-            type: "C",
+            type: UserTypeEnum.USER,
         };
 
         const { email } = await createUserUseCase.execute(user);

@@ -5,6 +5,7 @@ import { hash } from "bcryptjs";
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "@shared/errors/AppError";
+import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 
 @injectable()
 class CreateUserUseCase {
@@ -29,9 +30,8 @@ class CreateUserUseCase {
 
         const passwordHash = await hash(password, 8);
 
-        // Validar pelo enum mais tarde
-        if (type !== "A" && type !== "C" && type !== "E" && type !== "N") {
-            throw new AppError("User type not!");
+        if (!Object.values(UserTypeEnum).includes(type)) {
+            throw new AppError("Type entered wrong");
         }
 
         if (!documentId) {

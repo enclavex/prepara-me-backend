@@ -1,3 +1,4 @@
+import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { SpecialistScheduleAvailable } from "@modules/specialists/infra/typeorm/entities/SpecialistScheduleAvailable";
 import { Expose } from "class-transformer";
 import { Entity, PrimaryColumn, Column, CreateDateColumn, OneToMany } from "typeorm";
@@ -23,9 +24,13 @@ class User {
     @Column()
     documentId: string;
 
-    @Column()
-    type: string;
-
+    @Column({
+        type: "enum",
+        enum: UserTypeEnum,
+        default: UserTypeEnum.USER,
+    })
+    type: UserTypeEnum;
+    
     @Column()
     active: boolean;
 
@@ -56,7 +61,7 @@ class User {
         email: string,
         password: string,
         documentId: string,
-        type: string,
+        type: UserTypeEnum,
         active: boolean
     ) {
         if (!this.id) {

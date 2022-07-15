@@ -1,4 +1,5 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 import { CreateUserUseCase } from "@modules/accounts/useCases/createUser/CreateUserUseCase";
 import { ICreateProductDTO } from "@modules/products/dtos/ICreateProductDTO";
@@ -55,7 +56,7 @@ describe("List Specialists", () => {
             email: "teste@teste.com",
             name: "teste",
             password: "123",
-            type: "E",
+            type: UserTypeEnum.USER,
             username: "teste",
         };
 
