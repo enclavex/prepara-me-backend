@@ -66,6 +66,14 @@ class SubscriptionPlansRepositoryInMemory
 
         return subscriptionPlansMaped;
     }
+
+    async remove(id): Promise<void> {
+        this.subscriptionPlans = this.subscriptionPlans.filter(
+            (subscriptionPlan) => {
+                return id !== subscriptionPlan.id;
+            }
+        );
+    }
 }
 
 export { SubscriptionPlansRepositoryInMemory };

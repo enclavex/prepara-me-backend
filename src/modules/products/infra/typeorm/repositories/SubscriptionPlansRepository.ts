@@ -72,7 +72,10 @@ class SubscriptionPlansRepository implements ISubscriptionPlansRepository {
 
         return subscriptionPlansMaped;
     }
+
+    async remove(id: string): Promise<void> {
+        this.repository.delete(id);
+    }
 }
 
 export { SubscriptionPlansRepository };
-
