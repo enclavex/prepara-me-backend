@@ -1,5 +1,6 @@
 import { ICreateSubscriptionPlanDTO } from "@modules/products/dtos/ICreateSubscriptionPlanDTO";
-import { SubscriptionPlanStatusEnum } from "@modules/products/enums/SubscriptionPlanStatusEnum";
+import { IResponseSubscriptionPlanDTO } from "@modules/products/dtos/IResponseSubscriptionPlnaDTO";
+import { SubscriptionPlanMap } from "@modules/products/mapper/SubscriptionPlanMap";
 import { ISubscriptionPlansRepository } from "@modules/products/repositories/ISubscriptionPlansRepository";
 import { getRepository, Repository } from "typeorm";
 import { SubscriptionPlan } from "../entities/SubscriptionPlan";
@@ -34,14 +35,42 @@ class SubscriptionPlansRepository implements ISubscriptionPlansRepository {
         return subscriptionPlan;
     }
 
-    async findAvailables(): Promise<SubscriptionPlan[]> {
-        const subscriptionPlansQuery = this.repository
-            .createQueryBuilder("sp")
-            .where("p.status = :status", { status: SubscriptionPlanStatusEnum.ACTIVE });
+    async find({
+        name,
+        status,
+        type,
+    }): Promise<IResponseSubscriptionPlanDTO[]> {
+        const subscriptionPlansQuery = this.repository.createQueryBuilder("sp");
+
+        if (status) {
+            subscriptionPlansQuery.andWhere("sp.status = :status", {
+                status: status,
+            });
+        }
+
+        if (type) {
+            subscriptionPlansQuery.andWhere("sp.type = :type", {
+                type: type,
+            });
+        }
+
+        if (name) {
+            name = `%${name}%`;
+
+            subscriptionPlansQuery.andWhere("sp.name like :name", {
+                name: name,
+            });
+        }
 
         const subscriptionPlans = await subscriptionPlansQuery.getMany();
 
-        return subscriptionPlans;
+        const subscriptionPlansMaped = subscriptionPlans.map(
+            (subscriptionPlan) => {
+                return SubscriptionPlanMap.toDTO(subscriptionPlan);
+            }
+        );
+
+        return subscriptionPlansMaped;
     }
 }
 

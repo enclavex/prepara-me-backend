@@ -2,6 +2,7 @@ import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/Us
 import { NextFunction, Request, Response } from "express";
 
 import { AppError } from "@shared/errors/AppError";
+import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 
 export async function ensureAdmin(
     request: Request,
@@ -14,7 +15,7 @@ export async function ensureAdmin(
 
     const user = await usersRepository.findById(id);
 
-    if (user.type !== "A") {
+    if (user.type !== UserTypeEnum.ADMIN) {
         throw new AppError("User is not admin");
     }
 

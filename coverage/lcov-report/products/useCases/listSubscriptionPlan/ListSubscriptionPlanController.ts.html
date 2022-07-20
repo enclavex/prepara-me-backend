@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for specialists/useCases/createSpecialistScheduleAvailable/CreateSpecialistScheduleAvailableController.ts</title>
+    <title>Code coverage report for products/useCases/listSubscriptionPlan/ListSubscriptionPlanController.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">specialists/useCases/createSpecialistScheduleAvailable</a> CreateSpecialistScheduleAvailableController.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">products/useCases/listSubscriptionPlan</a> ListSubscriptionPlanController.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/26</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/26</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
@@ -86,9 +86,7 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -111,34 +109,30 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { Request, Response } from "express"</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { container } from "tsyringe"</span>
-<span class="cstat-no" title="statement not covered" >import { CreateSpecialistScheduleAvailableUseCase } from "./CreateSpecialistScheduleAvailableUseCase"</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { Request, Response } from "express";</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { container } from "tsyringe";</span>
+<span class="cstat-no" title="statement not covered" >import { ListSubscriptionPlanUseCase } from "./ListSubscriptionPlanUseCase";</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >class CreateSpecialistScheduleAvailableController {</span>
+<span class="cstat-no" title="statement not covered" >class ListSubscriptionPlanController {</span>
 <span class="cstat-no" title="statement not covered" >    async handle(request: Request, response: Response): Promise&lt;Response&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const {</span>
-<span class="cstat-no" title="statement not covered" >            dateSchedule,</span>
-<span class="cstat-no" title="statement not covered" >            status</span>
-<span class="cstat-no" title="statement not covered" >        } = request.body</span>
+<span class="cstat-no" title="statement not covered" >        const { name, status, type } = request.query;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const { specialistId } = request.params</span>
+<span class="cstat-no" title="statement not covered" >        const listSubscriptionPlanUseCase = container.resolve(</span>
+<span class="cstat-no" title="statement not covered" >            ListSubscriptionPlanUseCase</span>
+<span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const createSpecialistScheduleAvailableUseCase = container.resolve(CreateSpecialistScheduleAvailableUseCase)</span>
+<span class="cstat-no" title="statement not covered" >        const listSubscriptionPlans = await listSubscriptionPlanUseCase.execute(</span>
+<span class="cstat-no" title="statement not covered" >            name,</span>
+<span class="cstat-no" title="statement not covered" >            status,</span>
+<span class="cstat-no" title="statement not covered" >            type</span>
+<span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const specialistScheduleAvailable = await createSpecialistScheduleAvailableUseCase.execute({</span>
-<span class="cstat-no" title="statement not covered" >            dateSchedule,</span>
-<span class="cstat-no" title="statement not covered" >            specialistId,</span>
-<span class="cstat-no" title="statement not covered" >            status</span>
-<span class="cstat-no" title="statement not covered" >        })</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        return response.status(201).json(specialistScheduleAvailable)</span>
+<span class="cstat-no" title="statement not covered" >        return response.status(200).send(listSubscriptionPlans);</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export { CreateSpecialistScheduleAvailableController }</span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >export { ListSubscriptionPlanController };</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
