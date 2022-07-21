@@ -4,7 +4,7 @@ import { CreateSubscriptionPlanUseCase } from "./CreateSubscriptionPlanUseCase";
 
 class CreateSubscriptionPlanController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { name, price, status, type } = request.body;
+        const { name, price, status, type, id } = request.body;
 
         const createSubscriptionPlanUseCase = container.resolve(
             CreateSubscriptionPlanUseCase
@@ -16,6 +16,7 @@ class CreateSubscriptionPlanController {
                 price,
                 status,
                 type,
+                id
             });
 
         return response.status(201).send(createSubscriptionPlan);

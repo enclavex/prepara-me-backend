@@ -17,12 +17,14 @@ class SubscriptionPlansRepository implements ISubscriptionPlansRepository {
         price,
         status,
         type,
+        id
     }: ICreateSubscriptionPlanDTO): Promise<SubscriptionPlan> {
         const subscriptionPlan = this.repository.create({
             name,
             price,
             status,
             type,
+            id
         });
 
         await this.repository.save(subscriptionPlan);

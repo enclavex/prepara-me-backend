@@ -18,6 +18,7 @@ class CreateSubscriptionPlanUseCase {
         price,
         status,
         type,
+        id,
     }: ICreateSubscriptionPlanDTO): Promise<SubscriptionPlan> {
         if (!name) {
             throw new AppError("Name can't be null");
@@ -36,6 +37,7 @@ class CreateSubscriptionPlanUseCase {
             price,
             status,
             type,
+            id
         });
 
         return subscriptionPlan;

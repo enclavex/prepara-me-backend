@@ -17,4 +17,3 @@ class GetProductByIdUseCase {
 }
 
 export { GetProductByIdUseCase };
-

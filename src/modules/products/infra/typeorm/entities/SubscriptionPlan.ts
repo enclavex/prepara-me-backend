@@ -29,14 +29,18 @@ class SubscriptionPlan {
     })
     type: SubscriptionPlanTypeEnum;
 
-    @OneToMany(() => SubscriptionPlanProduct, (subscriptionPlanProduct) => subscriptionPlanProduct.product)
+    @OneToMany(
+        () => SubscriptionPlanProduct,
+        (subscriptionPlanProduct) => subscriptionPlanProduct.product
+    )
     subscriptionPlanProduct: SubscriptionPlanProduct[];
 
     constructor(
         name: string,
         price: Number,
         status: SubscriptionPlanStatusEnum,
-        type: SubscriptionPlanTypeEnum
+        type: SubscriptionPlanTypeEnum,
+        id: string
     ) {
         if (!this.id) {
             this.id = uuidV4();
@@ -46,7 +50,12 @@ class SubscriptionPlan {
         this.price = price;
         this.status = status;
         this.type = type;
+
+        if (id) {
+            this.id = id;
+        }
     }
 }
 
 export { SubscriptionPlan };
+

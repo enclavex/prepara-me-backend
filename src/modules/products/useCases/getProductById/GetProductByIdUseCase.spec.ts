@@ -8,12 +8,12 @@ import { GetProductByIdUseCase } from "./GetProductByIdUseCase";
 
 let productsRepositoryInMemory: ProductsRepositoryInMemory;
 let createProductUseCase: CreateProductUseCase;
-let getProductByIdController: GetProductByIdUseCase;
+let getProductByIdUseCase: GetProductByIdUseCase;
 
 describe("get product", () => {
     beforeEach(() => {
         productsRepositoryInMemory = new ProductsRepositoryInMemory();
-        getProductByIdController = new GetProductByIdUseCase(
+        getProductByIdUseCase = new GetProductByIdUseCase(
             productsRepositoryInMemory
         );
         createProductUseCase = new CreateProductUseCase(
@@ -33,7 +33,7 @@ describe("get product", () => {
 
         const productCreated = await createProductUseCase.execute(product1);
 
-        const result = await getProductByIdController.execute(
+        const result = await getProductByIdUseCase.execute(
             productCreated.id
         );
 

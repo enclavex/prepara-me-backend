@@ -32,6 +32,35 @@ describe("Create Subscription Plan", () => {
         expect(result).toHaveProperty("id");
     });
 
+    it("shold be able to update a subscription plan", async () => {
+        const subscriptionPlan: ICreateSubscriptionPlanDTO = {
+            name: "Subscription Plan Test",
+            price: 100,
+            status: SubscriptionPlanStatusEnum.ACTIVE,
+            type: SubscriptionPlanTypeEnum.COMPANY,
+        };
+
+        const resultCreated = await createSubscriptionPlanUseCase.execute(
+            subscriptionPlan
+        );
+
+        expect(resultCreated).toHaveProperty("id");
+
+        const subscriptionPlanUpdated: ICreateSubscriptionPlanDTO = {
+            name: "Subscription Plan Test Updated",
+            price: subscriptionPlan.price,
+            status: subscriptionPlan.status,
+            type: subscriptionPlan.type,
+        };
+
+        const resultUpdated = await createSubscriptionPlanUseCase.execute(
+            subscriptionPlanUpdated
+        );
+
+        expect(resultUpdated.name).toBe("Subscription Plan Test Updated");
+        expect(resultUpdated.id).toBe(resultCreated.id);
+    });
+
     it("should not be able to create a subscription plan without a name", async () => {
         expect(async () => {
             const subscriptionPlan: ICreateSubscriptionPlanDTO = {

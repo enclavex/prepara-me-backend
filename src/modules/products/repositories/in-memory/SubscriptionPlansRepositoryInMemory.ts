@@ -14,12 +14,14 @@ class SubscriptionPlansRepositoryInMemory
         price,
         status,
         type,
+        id,
     }: ICreateSubscriptionPlanDTO): Promise<SubscriptionPlan> {
         const subscriptionPlan = new SubscriptionPlan(
             name,
             price,
             status,
-            type
+            type,
+            id
         );
 
         this.subscriptionPlans.push(subscriptionPlan);
