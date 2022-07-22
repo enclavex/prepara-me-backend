@@ -11,12 +11,13 @@ class CreateCompanyUseCase {
         private companiesRepository: ICompaniesRepository
     ) {}
 
-    async execute({ name }: ICreateCompanyDTO): Promise<Company> {
+    async execute({ id, name }: ICreateCompanyDTO): Promise<Company> {
         if (!name) {
             throw new AppError("Name can't be null");
         }
 
         const company = await this.companiesRepository.create({
+            id,
             name,
         });
 

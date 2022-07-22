@@ -5,8 +5,8 @@ import { ICompaniesRepository } from "../ICompaniesRepository";
 class CompaniesRepositoryInMemory implements ICompaniesRepository {
     companies: Company[] = [];
 
-    async create({ name }: ICreateCompanyDTO): Promise<Company> {
-        const company = new Company(name);
+    async create({ name, id }: ICreateCompanyDTO): Promise<Company> {
+        const company = new Company(name, id);
 
         this.companies.push(company);
 
@@ -17,9 +17,18 @@ class CompaniesRepositoryInMemory implements ICompaniesRepository {
         return this.companies.find((company) => company.id === id);
     }
 
-    async find(): Promise<Company[]> {
-        return this.companies;
+    async find({ name }): Promise<Company[]> {
+        let companies = this.companies;
+
+        if (name) {
+            companies = companies.filter((company) => {
+                return company.name.includes(name);
+            });
+        }
+
+        return companies;
     }
 }
 
 export { CompaniesRepositoryInMemory };
+

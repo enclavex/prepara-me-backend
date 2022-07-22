@@ -48,9 +48,10 @@ describe("Create Subscription Plan", () => {
 
         const subscriptionPlanUpdated: ICreateSubscriptionPlanDTO = {
             name: "Subscription Plan Test Updated",
-            price: subscriptionPlan.price,
-            status: subscriptionPlan.status,
-            type: subscriptionPlan.type,
+            price: resultCreated.price,
+            status: resultCreated.status,
+            type: resultCreated.type,
+            id: resultCreated.id
         };
 
         const resultUpdated = await createSubscriptionPlanUseCase.execute(

@@ -9,13 +9,18 @@ class Company {
     @Column()
     name: string;
 
-    constructor(name: string) {
+    constructor(name: string, id: string) {
         if (!this.id) {
             this.id = uuidV4();
         }
 
+        if (id) {
+            this.id = id;
+        }
+        
         this.name = name;
     }
 }
 
 export { Company };
+

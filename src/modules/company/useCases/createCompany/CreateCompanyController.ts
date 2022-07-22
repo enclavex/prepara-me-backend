@@ -4,11 +4,11 @@ import { CreateCompanyUseCase } from "./CreateCompanyUseCase";
 
 class CreateCompanyController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { name } = request.body;
-
+        const { id, name } = request.body;
+        
         const createCompanyUseCase = container.resolve(CreateCompanyUseCase);
 
-        const company = await createCompanyUseCase.execute({ name });
+        const company = await createCompanyUseCase.execute({ id, name });
 
         return response.status(201).send(company);
     }

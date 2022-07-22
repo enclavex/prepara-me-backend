@@ -10,9 +10,10 @@ class CompaniesRepository implements ICompaniesRepository {
         this.repository = getRepository(Company);
     }
 
-    async create({ name }: ICreateCompanyDTO): Promise<Company> {
+    async create({ name, id }: ICreateCompanyDTO): Promise<Company> {
         const company = this.repository.create({
             name,
+            id,
         });
 
         await this.repository.save(company);
@@ -26,8 +27,18 @@ class CompaniesRepository implements ICompaniesRepository {
         return company;
     }
 
-    async find(): Promise<Company[]> {
-        const companies = await this.repository.find();
+    async find({ name }): Promise<Company[]> {
+        const companiesQuery = this.repository.createQueryBuilder("c");
+
+        if (name) {
+            name = `%${name}%`;
+
+            companiesQuery.andWhere("c.name like :name", {
+                name: name,
+            });
+        }
+
+        const companies = await companiesQuery.getMany();
 
         return companies;
     }
