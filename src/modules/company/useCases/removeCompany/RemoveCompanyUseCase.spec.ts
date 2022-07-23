@@ -24,20 +24,20 @@ describe("Remove Companies", () => {
         );
     });
 
-    it("should be able to delete a comapny", async () => {
-        const Company1: ICreateCompanyDTO = {
+    it("should be able to delete a company", async () => {
+        const company1: ICreateCompanyDTO = {
             name: "Company One",
         };
 
-        await createCompanyUseCase.execute(Company1);
+        await createCompanyUseCase.execute(company1);
 
-        const Company2: ICreateCompanyDTO = {
+        const company2: ICreateCompanyDTO = {
             name: "Company Two",
         };
 
-        const CompanyCreated = await createCompanyUseCase.execute(Company2);
+        const companyCreated = await createCompanyUseCase.execute(company2);
 
-        await removeCompanyUseCase.execute(CompanyCreated.id);
+        await removeCompanyUseCase.execute(companyCreated.id);
 
         const result = await listCompanyUseCase.execute("");
 

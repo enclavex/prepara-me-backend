@@ -3,7 +3,7 @@ import { SubscriptionPlan } from "../infra/typeorm/entities/SubscriptionPlan";
 
 import { SubscriptionPlanStatusEnum } from "@modules/products/enums/SubscriptionPlanStatusEnum";
 import { SubscriptionPlanTypeEnum } from "@modules/products/enums/SubscriptionPlanTypeEnum";
-import { IResponseSubscriptionPlanDTO } from "../dtos/IResponseSubscriptionPlnaDTO";
+import { IResponseSubscriptionPlanDTO } from "../dtos/IResponseSubscriptionPlanDTO";
 
 interface IRequestFind {
     name?: string;

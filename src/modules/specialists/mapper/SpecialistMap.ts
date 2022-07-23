@@ -13,7 +13,7 @@ class SpecialistMap {
         status,
         user,
     }: Specialist): ISpecialistResponseDTO {
-        const statusMaped = status === "ACTIVE" ? "Ativo" : "Inativo";
+        const statusMapped = status === "ACTIVE" ? "Ativo" : "Inativo";
 
         const specialist = instanceToInstance({
             id,
@@ -21,7 +21,7 @@ class SpecialistMap {
             bio,
             linkedinUrl,
             specialistScheduleAvailable,
-            status: { label: statusMaped, value: status },
+            status: { label: statusMapped, value: status },
             user: process.env.NODE_ENV === "test" ? user : UserMap.toDTO(user),
         });
 

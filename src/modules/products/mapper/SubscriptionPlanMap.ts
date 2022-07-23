@@ -1,5 +1,5 @@
 import { instanceToInstance } from "class-transformer";
-import { IResponseSubscriptionPlanDTO } from "../dtos/IResponseSubscriptionPlnaDTO";
+import { IResponseSubscriptionPlanDTO } from "../dtos/IResponseSubscriptionPlanDTO";
 import { SubscriptionPlan } from "../infra/typeorm/entities/SubscriptionPlan";
 
 class SubscriptionPlanMap {

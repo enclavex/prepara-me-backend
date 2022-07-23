@@ -1,5 +1,5 @@
 import { ICreateSubscriptionPlanDTO } from "@modules/products/dtos/ICreateSubscriptionPlanDTO";
-import { IResponseSubscriptionPlanDTO } from "@modules/products/dtos/IResponseSubscriptionPlnaDTO";
+import { IResponseSubscriptionPlanDTO } from "@modules/products/dtos/IResponseSubscriptionPlanDTO";
 import { SubscriptionPlanMap } from "@modules/products/mapper/SubscriptionPlanMap";
 import { ISubscriptionPlansRepository } from "@modules/products/repositories/ISubscriptionPlansRepository";
 import { getRepository, Repository } from "typeorm";

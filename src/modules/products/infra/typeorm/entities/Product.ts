@@ -57,8 +57,13 @@ class Product {
         price: number,
         status: ProductStatusEnum,
         type: ProductTypeEnum,
-        bestSeller: ProductBestSellerEnum
+        bestSeller: ProductBestSellerEnum,
+        id: string
     ) {
+        if (id) {
+            this.id = id
+        }
+        
         if (!this.id) {
             this.id = uuidV4();
         }
