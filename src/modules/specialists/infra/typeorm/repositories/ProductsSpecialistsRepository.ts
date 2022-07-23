@@ -1,9 +1,9 @@
 import { ICreateProductSpecialistDTO } from "@modules/specialists/dtos/ICreateProductSpecialistDTO";
 import { getRepository, Repository } from "typeorm";
-import { IProductSpecialistRepository } from "../../../repositories/IProductSpecialistRepository";
+import { IProductsSpecialistsRepository } from "../../../repositories/IProductsSpecialistsRepository";
 import { ProductSpecialist } from "../entities/ProductSpecialist";
 
-class ProductSpecialistRepository implements IProductSpecialistRepository {
+class ProductsSpecialistsRepository implements IProductsSpecialistsRepository {
     private repository: Repository<ProductSpecialist>;
 
     constructor() {
@@ -43,4 +43,4 @@ class ProductSpecialistRepository implements IProductSpecialistRepository {
     }
 }
 
-export { ProductSpecialistRepository };
+export { ProductsSpecialistsRepository };

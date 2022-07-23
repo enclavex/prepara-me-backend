@@ -47,7 +47,12 @@ describe("Remove Subscription Plans", () => {
 
         await removeSubscriptionPlanUseCase.execute(subscriptionPlanCreated.id);
 
-        const result = await listSubscriptionPlanUseCase.execute("", "", "");
+        const result = await listSubscriptionPlanUseCase.execute({
+            name: "",
+            status: "",
+            type: "",
+            id: ""
+        });
 
         expect(result).toHaveLength(1);
     });

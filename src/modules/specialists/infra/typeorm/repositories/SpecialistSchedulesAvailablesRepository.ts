@@ -1,9 +1,9 @@
 import { ICreateSpecialistScheduleAvailableDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleAvailableDTO";
-import { ISpecialistScheduleAvailableRepository } from "@modules/specialists/repositories/ISpecialistScheduleAvailableRepository";
+import { ISpecialistSchedulesAvailablesRepository } from "@modules/specialists/repositories/ISpecialistSchedulesAvailablesRepository";
 import { getRepository, Repository } from "typeorm";
 import { SpecialistScheduleAvailable } from "../entities/SpecialistScheduleAvailable";
 
-class SpecialistScheduleAvailableRepository implements ISpecialistScheduleAvailableRepository {
+class SpecialistSchedulesAvailablesRepository implements ISpecialistSchedulesAvailablesRepository {
     private repository: Repository<SpecialistScheduleAvailable>
 
     constructor() {
@@ -51,4 +51,4 @@ class SpecialistScheduleAvailableRepository implements ISpecialistScheduleAvaila
     }
 }
 
-export { SpecialistScheduleAvailableRepository }
+export { SpecialistSchedulesAvailablesRepository }

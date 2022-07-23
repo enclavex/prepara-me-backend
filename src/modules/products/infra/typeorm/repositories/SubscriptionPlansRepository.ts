@@ -17,14 +17,14 @@ class SubscriptionPlansRepository implements ISubscriptionPlansRepository {
         price,
         status,
         type,
-        id
+        id,
     }: ICreateSubscriptionPlanDTO): Promise<SubscriptionPlan> {
         const subscriptionPlan = this.repository.create({
             name,
             price,
             status,
             type,
-            id
+            id,
         });
 
         await this.repository.save(subscriptionPlan);
@@ -41,27 +41,34 @@ class SubscriptionPlansRepository implements ISubscriptionPlansRepository {
         name,
         status,
         type,
+        id,
     }): Promise<IResponseSubscriptionPlanDTO[]> {
         const subscriptionPlansQuery = this.repository.createQueryBuilder("sp");
 
-        if (status) {
-            subscriptionPlansQuery.andWhere("sp.status = :status", {
-                status: status,
+        if (id) {
+            subscriptionPlansQuery.andWhere("sp.id = :id", {
+                id: id,
             });
-        }
+        } else {
+            if (status) {
+                subscriptionPlansQuery.andWhere("sp.status = :status", {
+                    status: status,
+                });
+            }
 
-        if (type) {
-            subscriptionPlansQuery.andWhere("sp.type = :type", {
-                type: type,
-            });
-        }
+            if (type) {
+                subscriptionPlansQuery.andWhere("sp.type = :type", {
+                    type: type,
+                });
+            }
 
-        if (name) {
-            name = `%${name}%`;
+            if (name) {
+                name = `%${name}%`;
 
-            subscriptionPlansQuery.andWhere("sp.name like :name", {
-                name: name,
-            });
+                subscriptionPlansQuery.andWhere("sp.name like :name", {
+                    name: name,
+                });
+            }
         }
 
         const subscriptionPlans = await subscriptionPlansQuery.getMany();
@@ -81,3 +88,4 @@ class SubscriptionPlansRepository implements ISubscriptionPlansRepository {
 }
 
 export { SubscriptionPlansRepository };
+

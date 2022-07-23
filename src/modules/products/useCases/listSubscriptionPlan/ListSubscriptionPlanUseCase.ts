@@ -11,10 +11,12 @@ class ListSubscriptionPlanUseCase {
         private subscriptionPlansRepository: ISubscriptionPlansRepository
     ) {}
 
-    async execute(
+    async execute({
         name,
         status,
-        type
+        type,
+        id
+    }
     ) {
         if (
             status &&
@@ -26,10 +28,12 @@ class ListSubscriptionPlanUseCase {
         if (type && !Object.values(SubscriptionPlanTypeEnum).includes(type)) {
             throw new AppError("Type entered wrong");
         }
+
         const subscriptionPlans = this.subscriptionPlansRepository.find({
             name,
             status,
             type,
+            id
         });
 
         return subscriptionPlans;

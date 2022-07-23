@@ -1,9 +1,8 @@
 import { ICreateProductSpecialistDTO } from "@modules/specialists/dtos/ICreateProductSpecialistDTO";
-import { IProductSpecialistRepository } from "@modules/specialists/repositories/IProductSpecialistRepository";
+import { IProductsSpecialistsRepository } from "@modules/specialists/repositories/IProductsSpecialistsRepository";
 import { ProductSpecialist } from "../../entities/ProductSpecialist";
-import { Specialist } from "../../entities/Specialist";
 
-class ProductSpecialistRepositoryInMemory implements IProductSpecialistRepository {
+class ProductSpecialistRepositoryInMemory implements IProductsSpecialistsRepository {
     productsSpecialist: ProductSpecialist[] = []
 
     async create({

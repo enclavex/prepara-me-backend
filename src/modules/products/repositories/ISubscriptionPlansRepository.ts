@@ -9,6 +9,7 @@ interface IRequestFind {
     name?: string;
     status?: SubscriptionPlanStatusEnum;
     type?: SubscriptionPlanTypeEnum;
+    id?: string;
 }
 
 interface ISubscriptionPlansRepository {

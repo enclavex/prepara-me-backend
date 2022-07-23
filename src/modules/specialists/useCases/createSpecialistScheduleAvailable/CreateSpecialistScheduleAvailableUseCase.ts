@@ -1,7 +1,7 @@
 import { ICreateSpecialistScheduleAvailableDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleAvailableDTO";
 import { SpecialistScheduleAvailableStatusEnum } from "@modules/specialists/enums/SpecialistScheduleAvailableStatusEnum";
 import { SpecialistScheduleAvailable } from "@modules/specialists/infra/typeorm/entities/SpecialistScheduleAvailable";
-import { ISpecialistScheduleAvailableRepository } from "@modules/specialists/repositories/ISpecialistScheduleAvailableRepository";
+import { ISpecialistSchedulesAvailablesRepository } from "@modules/specialists/repositories/ISpecialistSchedulesAvailablesRepository";
 import { AppError } from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 
@@ -9,7 +9,7 @@ import { inject, injectable } from "tsyringe";
 class CreateSpecialistScheduleAvailableUseCase {
     constructor(
         @inject("SpecialistScheduleAvailableRepository")
-        private specialistScheduleAvailableRepository: ISpecialistScheduleAvailableRepository
+        private specialistScheduleAvailableRepository: ISpecialistSchedulesAvailablesRepository
     ) { }
 
     async execute({

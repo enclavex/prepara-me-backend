@@ -1,8 +1,8 @@
 import { ICreateSpecialistScheduleAvailableDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleAvailableDTO";
-import { ISpecialistScheduleAvailableRepository } from "@modules/specialists/repositories/ISpecialistScheduleAvailableRepository";
+import { ISpecialistSchedulesAvailablesRepository } from "@modules/specialists/repositories/ISpecialistSchedulesAvailablesRepository";
 import { SpecialistScheduleAvailable } from "../../entities/SpecialistScheduleAvailable";
 
-class SpecialistScheduleAvailableRepositoryInMemory implements ISpecialistScheduleAvailableRepository {
+class SpecialistScheduleAvailableRepositoryInMemory implements ISpecialistSchedulesAvailablesRepository {
     specialistScheduleAvailables: SpecialistScheduleAvailable[] = []
 
     async create({

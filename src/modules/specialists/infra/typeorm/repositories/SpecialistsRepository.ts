@@ -1,4 +1,3 @@
-import { UserMap } from "@modules/accounts/mapper/UserMap";
 import { ICreateSpecialistDTO } from "@modules/specialists/dtos/ICreateSpecialistDTO";
 import { ISpecialistResponseDTO } from "@modules/specialists/dtos/ISpecialistResponseDTO";
 import { SpecialistStatusEnum } from "@modules/specialists/enums/SpecialistStatusEnum";
@@ -7,7 +6,7 @@ import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpeci
 import { getRepository, Repository } from "typeorm";
 import { Specialist } from "../entities/Specialist";
 
-class SpecialistRepository implements ISpecialistsRepository {
+class SpecialistsRepository implements ISpecialistsRepository {
     private repository: Repository<Specialist>;
 
     constructor() {
@@ -132,5 +131,5 @@ class SpecialistRepository implements ISpecialistsRepository {
     }
 }
 
-export { SpecialistRepository };
+export { SpecialistsRepository };
 

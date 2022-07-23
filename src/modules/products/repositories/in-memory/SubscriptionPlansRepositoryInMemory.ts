@@ -39,25 +39,38 @@ class SubscriptionPlansRepositoryInMemory
         name,
         status,
         type,
+        id,
     }): Promise<IResponseSubscriptionPlanDTO[]> {
         let subscriptionPlans = this.subscriptionPlans;
 
-        if (status) {
+        if (id) {
             subscriptionPlans = subscriptionPlans.filter((subscriptionPlan) => {
-                return subscriptionPlan.status === status;
+                return subscriptionPlan.id === id;
             });
-        }
+        } else {
+            if (status) {
+                subscriptionPlans = subscriptionPlans.filter(
+                    (subscriptionPlan) => {
+                        return subscriptionPlan.status === status;
+                    }
+                );
+            }
 
-        if (type) {
-            subscriptionPlans = subscriptionPlans.filter((subscriptionPlan) => {
-                return subscriptionPlan.type === type;
-            });
-        }
+            if (type) {
+                subscriptionPlans = subscriptionPlans.filter(
+                    (subscriptionPlan) => {
+                        return subscriptionPlan.type === type;
+                    }
+                );
+            }
 
-        if (name) {
-            subscriptionPlans = subscriptionPlans.filter((subscriptionPlan) => {
-                return subscriptionPlan.name.includes(name);
-            });
+            if (name) {
+                subscriptionPlans = subscriptionPlans.filter(
+                    (subscriptionPlan) => {
+                        return subscriptionPlan.name.includes(name);
+                    }
+                );
+            }
         }
 
         const subscriptionPlansMaped = subscriptionPlans.map(

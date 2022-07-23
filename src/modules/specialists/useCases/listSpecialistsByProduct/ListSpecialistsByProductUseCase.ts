@@ -1,4 +1,4 @@
-import { IProductSpecialistRepository } from "@modules/specialists/repositories/IProductSpecialistRepository";
+import { IProductsSpecialistsRepository } from "@modules/specialists/repositories/IProductsSpecialistsRepository";
 import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpecialistsRepository";
 import { inject, injectable } from "tsyringe";
 
@@ -12,7 +12,7 @@ interface IRequest {
 class ListSpecialistsByProductUseCase {
     constructor(
         @inject("ProductSpecialistRepository")
-        private productSpecialistRepository: IProductSpecialistRepository,
+        private productSpecialistRepository: IProductsSpecialistsRepository,
         @inject("SpecialistRepository")
         private specialistRepository: ISpecialistsRepository
     ) { }

@@ -1,6 +1,5 @@
-import { ISpecialistScheduleAvailableRepository } from "@modules/specialists/repositories/ISpecialistScheduleAvailableRepository";
+import { ISpecialistSchedulesAvailablesRepository } from "@modules/specialists/repositories/ISpecialistSchedulesAvailablesRepository";
 import { inject, injectable } from "tsyringe";
-import { textChangeRangeIsUnchanged } from "typescript";
 
 interface IRequest {
     specialistId: string,
@@ -12,7 +11,7 @@ interface IRequest {
 class ListScheduleSpecialistByDateUseCase {
     constructor(
         @inject("SpecialistScheduleAvailableRepository")
-        private specialistScheduleAvailableRepository: ISpecialistScheduleAvailableRepository
+        private specialistScheduleAvailableRepository: ISpecialistSchedulesAvailablesRepository
     ) { }
 
     async execute({

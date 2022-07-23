@@ -1,6 +1,6 @@
 import { IProductsRepository } from "@modules/products/repositories/IProductsRepository"
 import { ProductSpecialist } from "@modules/specialists/infra/typeorm/entities/ProductSpecialist"
-import { IProductSpecialistRepository } from "@modules/specialists/repositories/IProductSpecialistRepository"
+import { IProductsSpecialistsRepository } from "@modules/specialists/repositories/IProductsSpecialistsRepository"
 import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpecialistsRepository"
 import { inject, injectable } from "tsyringe"
 
@@ -13,7 +13,7 @@ interface IRequest {
 class CreateProductSpecialistUseCase {
     constructor(
         @inject("ProductSpecialistRepository")
-        private productSpecialistRepository: IProductSpecialistRepository,
+        private productSpecialistRepository: IProductsSpecialistsRepository,
         @inject("ProductsRepository")
         private productsRepository: IProductsRepository,
         @inject("SpecialistRepository")

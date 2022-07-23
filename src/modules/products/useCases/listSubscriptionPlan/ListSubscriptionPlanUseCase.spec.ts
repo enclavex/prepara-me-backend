@@ -40,7 +40,12 @@ describe("List Subscription Plans", () => {
 
         await createSubscriptionPlanUseCase.execute(subscriptionPlan2);
 
-        const result = await listSubscriptionPlanUseCase.execute("", "", "");
+        const result = await listSubscriptionPlanUseCase.execute({
+            name: "",
+            status: "",
+            type: "",
+            id: ""
+        });
 
         expect(result).toHaveLength(2);
     });
@@ -64,7 +69,12 @@ describe("List Subscription Plans", () => {
 
         await createSubscriptionPlanUseCase.execute(subscriptionPlan2);
 
-        const result = await listSubscriptionPlanUseCase.execute("One", "", "");
+        const result = await listSubscriptionPlanUseCase.execute({
+            name: "One",
+            status: "",
+            type: "",
+            id: ""
+        });
 
         expect(result).toHaveLength(1);
     });
@@ -88,11 +98,12 @@ describe("List Subscription Plans", () => {
 
         await createSubscriptionPlanUseCase.execute(subscriptionPlan2);
 
-        const result = await listSubscriptionPlanUseCase.execute(
-            "",
-            SubscriptionPlanStatusEnum.ACTIVE,
-            ""
-        );
+        const result = await listSubscriptionPlanUseCase.execute({
+            name: "",
+            status: SubscriptionPlanStatusEnum.ACTIVE,
+            type: "",
+            id: ""
+        });
 
         expect(result).toHaveLength(1);
     });
@@ -116,11 +127,41 @@ describe("List Subscription Plans", () => {
 
         await createSubscriptionPlanUseCase.execute(subscriptionPlan2);
 
-        const result = await listSubscriptionPlanUseCase.execute(
-            "",
-            "",
-            SubscriptionPlanTypeEnum.COMPANY
-        );
+        const result = await listSubscriptionPlanUseCase.execute({
+            name: "",
+            status: "",
+            type: SubscriptionPlanTypeEnum.COMPANY,
+            id: ""
+        });
+
+        expect(result).toHaveLength(1);
+    });
+
+    it("should be able to list plan filtered by id", async () => {
+        const subscriptionPlan1: ICreateSubscriptionPlanDTO = {
+            name: "Plan One",
+            price: 100,
+            status: SubscriptionPlanStatusEnum.INACTIVE,
+            type: SubscriptionPlanTypeEnum.SITE,
+        };
+
+        await createSubscriptionPlanUseCase.execute(subscriptionPlan1);
+
+        const subscriptionPlan2: ICreateSubscriptionPlanDTO = {
+            name: "Plan Two",
+            price: 100,
+            status: SubscriptionPlanStatusEnum.ACTIVE,
+            type: SubscriptionPlanTypeEnum.COMPANY,
+        };
+
+        const subscriptionPlanCreated = await createSubscriptionPlanUseCase.execute(subscriptionPlan2);
+
+        const result = await listSubscriptionPlanUseCase.execute({
+            name: "",
+            status: "",
+            type: "",
+            id: subscriptionPlanCreated.id
+        });
 
         expect(result).toHaveLength(1);
     });

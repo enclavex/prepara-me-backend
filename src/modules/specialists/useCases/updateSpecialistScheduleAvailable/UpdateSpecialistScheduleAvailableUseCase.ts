@@ -1,5 +1,5 @@
 import { SpecialistScheduleAvailableStatusEnum } from "@modules/specialists/enums/SpecialistScheduleAvailableStatusEnum";
-import { ISpecialistScheduleAvailableRepository } from "@modules/specialists/repositories/ISpecialistScheduleAvailableRepository";
+import { ISpecialistSchedulesAvailablesRepository } from "@modules/specialists/repositories/ISpecialistSchedulesAvailablesRepository";
 import { AppError } from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 
@@ -7,7 +7,7 @@ import { inject, injectable } from "tsyringe";
 class UpdateSpecialistScheduleAvailableUseCase {
     constructor(
         @inject("SpecialistScheduleAvailableRepository")
-        private specialistScheduleAvailableRepository: ISpecialistScheduleAvailableRepository 
+        private specialistScheduleAvailableRepository: ISpecialistSchedulesAvailablesRepository
     ) {}
 
     async execute({
