@@ -9,7 +9,7 @@ let listCompanyUseCase: ListCompanyUseCase;
 let createCompanyUseCase: CreateCompanyUseCase;
 let removeCompanyUseCase: RemoveCompanyUseCase;
 
-describe("Remove Subscription Plans", () => {
+describe("Remove Companies", () => {
     beforeEach(() => {
         companiesRepositoryInMemory =
             new CompaniesRepositoryInMemory();
@@ -24,7 +24,7 @@ describe("Remove Subscription Plans", () => {
         );
     });
 
-    it("should be able to delete a subscription plans", async () => {
+    it("should be able to delete a comapny", async () => {
         const Company1: ICreateCompanyDTO = {
             name: "Company One",
         };

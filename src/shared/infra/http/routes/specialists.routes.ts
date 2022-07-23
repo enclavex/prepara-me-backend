@@ -3,6 +3,7 @@ import { CreateSpecialistController } from "@modules/specialists/useCases/create
 import { CreateSpecialistScheduleAvailableController } from "@modules/specialists/useCases/createSpecialistScheduleAvailable/CreateSpecialistScheduleAvailableController";
 import { ListScheduleSpecialistByDateController } from "@modules/specialists/useCases/listScheduleSpecialistByDate/ListScheduleSpecialistByDateController";
 import { ListSpecialistController } from "@modules/specialists/useCases/listSpecialist/ListSpecialistController";
+import { RemoveSpecialistController } from "@modules/specialists/useCases/removeSpecialist/RemoveSpecialistController";
 import { ListSpecialistsByProductController } from "@modules/specialists/useCases/listSpecialistsByProduct/ListSpecialistsByProductController";
 import { UpdateSpecialistScheduleAvailableController } from "@modules/specialists/useCases/updateSpecialistScheduleAvailable/UpdateSpecialistScheduleAvailableController";
 import { Router } from "express";
@@ -11,43 +12,66 @@ import { ensuredAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const specialistsRoutes = Router();
 
-const createSpecialistController = new CreateSpecialistController()
-const createProductSpecialistController = new CreateProductSpecialistController()
-const createSpecialistScheduleAvailableController = new CreateSpecialistScheduleAvailableController()
-const updateSpecialistScheduleAvailableController = new UpdateSpecialistScheduleAvailableController()
-const listSpecialistController = new ListSpecialistController()
-const listSpecialistByProductController = new ListSpecialistsByProductController()
-const listScheduleSpecialistByDateController = new ListScheduleSpecialistByDateController()
+const createSpecialistController = new CreateSpecialistController();
+const createProductSpecialistController =
+    new CreateProductSpecialistController();
+const createSpecialistScheduleAvailableController =
+    new CreateSpecialistScheduleAvailableController();
+const updateSpecialistScheduleAvailableController =
+    new UpdateSpecialistScheduleAvailableController();
+const listSpecialistController = new ListSpecialistController();
+const removeSpecialistController = new RemoveSpecialistController();
+const listSpecialistByProductController =
+    new ListSpecialistsByProductController();
+const listScheduleSpecialistByDateController =
+    new ListScheduleSpecialistByDateController();
 
-specialistsRoutes.get("/",
-listSpecialistController.handle)
+specialistsRoutes.get("/", listSpecialistController.handle);
 
-specialistsRoutes.get("/:id",
-listSpecialistController.handle)
+specialistsRoutes.get("/:id", listSpecialistController.handle);
 
-specialistsRoutes.get("/products/:productId",
-listSpecialistByProductController.handle)
-
-specialistsRoutes.get("/scheduleSpecialistAvailable/:specialistId",
-listScheduleSpecialistByDateController.handle)
-
-specialistsRoutes.post("/",
+specialistsRoutes.delete(
+    "/:id",
     ensuredAuthenticated,
     ensureAdmin,
-    createSpecialistController.handle)
+    removeSpecialistController.handle
+);
 
-specialistsRoutes.post("/product/:specialistId",
+specialistsRoutes.get(
+    "/products/:productId",
+    listSpecialistByProductController.handle
+);
+
+specialistsRoutes.get(
+    "/scheduleSpecialistAvailable/:specialistId",
+    listScheduleSpecialistByDateController.handle
+);
+
+specialistsRoutes.post(
+    "/",
     ensuredAuthenticated,
     ensureAdmin,
-    createProductSpecialistController.handle)
+    createSpecialistController.handle
+);
 
-specialistsRoutes.post("/dateSchedule/:specialistId",
+specialistsRoutes.post(
+    "/product/:specialistId",
     ensuredAuthenticated,
     ensureAdmin,
-    createSpecialistScheduleAvailableController.handle)
+    createProductSpecialistController.handle
+);
 
-specialistsRoutes.put("/dateSchedule/:specialistScheduleAvailableId",
+specialistsRoutes.post(
+    "/dateSchedule/:specialistId",
     ensuredAuthenticated,
-    updateSpecialistScheduleAvailableController.handle)
+    ensureAdmin,
+    createSpecialistScheduleAvailableController.handle
+);
 
-export { specialistsRoutes }
+specialistsRoutes.put(
+    "/dateSchedule/:specialistScheduleAvailableId",
+    ensuredAuthenticated,
+    updateSpecialistScheduleAvailableController.handle
+);
+
+export { specialistsRoutes };

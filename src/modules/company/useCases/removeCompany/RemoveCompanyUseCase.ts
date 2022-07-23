@@ -1,5 +1,4 @@
 import { ICompaniesRepository } from "@modules/company/repositories/ICompaniesRepository";
-import { ICompanyEmployeesRepository } from "@modules/company/repositories/ICompanyEmployeesRepository";
 import { inject, injectable } from "tsyringe";
 
 @injectable()

@@ -78,7 +78,12 @@ class SpecialistRepository implements ISpecialistsRepository {
         return specialistsMapped;
     }
 
-    async find({ name, status, userId, id }): Promise<ISpecialistResponseDTO[]> {
+    async find({
+        name,
+        status,
+        userId,
+        id,
+    }): Promise<ISpecialistResponseDTO[]> {
         const specialistsQuery = this.repository
             .createQueryBuilder("e")
             .leftJoinAndSelect("e.user", "user")
@@ -120,6 +125,10 @@ class SpecialistRepository implements ISpecialistsRepository {
         });
 
         return specialistsMapped;
+    }
+
+    async remove(id: string): Promise<void> {
+        this.repository.delete(id);
     }
 }
 

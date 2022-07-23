@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for company/useCases/removeCompany/RemoveCompanyController.ts</title>
+    <title>Code coverage report for specialists/useCases/removeSpecialist/RemoveSpecialistController.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">company/useCases/removeCompany</a> RemoveCompanyController.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">specialists/useCases/removeSpecialist</a> RemoveSpecialistController.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -105,23 +105,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { Request, Response } from "express";</span></span></span>
 <span class="cstat-no" title="statement not covered" >import { container } from "tsyringe";</span>
-<span class="cstat-no" title="statement not covered" >import { RemoveCompanyUseCase } from "./RemoveCompanyUseCase";</span>
+<span class="cstat-no" title="statement not covered" >import { RemoveSpecialistUseCase } from "./RemoveSpecialistUseCase";</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >class RemoveCompanyController {</span>
+<span class="cstat-no" title="statement not covered" >class RemoveSpecialistController {</span>
 <span class="cstat-no" title="statement not covered" >    async handle(request: Request, response: Response): Promise&lt;Response&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        const { id } = request.params;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const removeCompanyUseCase = container.resolve(</span>
-<span class="cstat-no" title="statement not covered" >            RemoveCompanyUseCase</span>
+<span class="cstat-no" title="statement not covered" >        const removeSpecialistUseCase = container.resolve(</span>
+<span class="cstat-no" title="statement not covered" >            RemoveSpecialistUseCase</span>
 <span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        await removeCompanyUseCase.execute(id);</span>
+<span class="cstat-no" title="statement not covered" >        await removeSpecialistUseCase.execute(id);</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >        return response.status(200).send();</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export { RemoveCompanyController };</span>
+<span class="cstat-no" title="statement not covered" >export { RemoveSpecialistController };</span>
 &nbsp;
 &nbsp;</pre></td></tr></table></pre>
 

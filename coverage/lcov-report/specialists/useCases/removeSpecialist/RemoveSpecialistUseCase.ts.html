@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for products/useCases/listProductAvailableBestSeller/ListProductAvailableBestSellerUseCase.ts</title>
+    <title>Code coverage report for specialists/useCases/removeSpecialist/RemoveSpecialistUseCase.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">products/useCases/listProductAvailableBestSeller</a> ListProductAvailableBestSellerUseCase.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">specialists/useCases/removeSpecialist</a> RemoveSpecialistUseCase.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -80,10 +80,7 @@
 <a name='L15'></a><a href='#L15'>15</a>
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a>
-<a name='L18'></a><a href='#L18'>18</a>
-<a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -99,30 +96,24 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Product } from "@modules/products/infra/typeorm/entities/Product";
-import { IProductsRepository } from "@modules/products/repositories/IProductsRepository";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpecialistsRepository";
 import { inject, injectable } from "tsyringe";
 &nbsp;
 @injectable()
-class ListProductAvailableBestSellerUseCase {
+class RemoveSpecialistUseCase {
     constructor(
-        @inject("ProductsRepository")
-        private productRepository: IProductsRepository
+        @inject("SpecialistsRepository")
+        private specialistsRepository: ISpecialistsRepository
     ) {}
 &nbsp;
-    async execute(): Promise&lt;Product[]&gt; {
-        const products =
-            await this.productRepository.findAvailableBestSellers();
-&nbsp;
-        return products;
+    async execute(id) {
+        await this.specialistsRepository.remove(id);
     }
 }
 &nbsp;
-export { ListProductAvailableBestSellerUseCase };
+export { RemoveSpecialistUseCase };
+&nbsp;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

@@ -21,6 +21,8 @@ interface ISpecialistsRepository {
         dateEnd?: Date
     ): Promise<ISpecialistResponseDTO[]>;
     find(data: IRequestFind): Promise<ISpecialistResponseDTO[]>;
+    remove(id: string): Promise<void>;
 }
 
 export { ISpecialistsRepository };
+

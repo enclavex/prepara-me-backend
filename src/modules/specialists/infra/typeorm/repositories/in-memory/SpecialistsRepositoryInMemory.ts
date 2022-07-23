@@ -44,7 +44,12 @@ class SpecialistRepositoryInMemory implements ISpecialistsRepository {
             });
     }
 
-    async find({ name, status, userId, id }): Promise<ISpecialistResponseDTO[]> {
+    async find({
+        name,
+        status,
+        userId,
+        id,
+    }): Promise<ISpecialistResponseDTO[]> {
         let specialists = this.specialists;
 
         if (id) {
@@ -75,6 +80,13 @@ class SpecialistRepositoryInMemory implements ISpecialistsRepository {
             return SpecialistMap.toDTO(specialist);
         });
     }
+
+    async remove(id: string) {
+        this.specialists = this.specialists.filter((specialist) => {
+            return id !== specialist.id;
+        });
+    }
 }
 
 export { SpecialistRepositoryInMemory };
+
