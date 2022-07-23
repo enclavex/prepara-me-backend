@@ -6,7 +6,7 @@ import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpeci
 import { Specialist } from "../../entities/Specialist";
 
 class SpecialistRepositoryInMemory implements ISpecialistsRepository {
-    specialists: Specialist[] = []
+    specialists: Specialist[] = [];
 
     async create({
         name,
@@ -14,18 +14,20 @@ class SpecialistRepositoryInMemory implements ISpecialistsRepository {
         status,
         linkedinUrl,
         userId,
+        id,
     }: ICreateSpecialistDTO): Promise<Specialist> {
         const specialist = new Specialist(
             name,
             bio,
             status,
+            userId,
             linkedinUrl,
-            userId
-        )
+            id
+        );
 
-        this.specialists.push(specialist)
+        this.specialists.push(specialist);
 
-        return specialist
+        return specialist;
     }
 
     async findById(id: string): Promise<Specialist> {
@@ -33,21 +35,46 @@ class SpecialistRepositoryInMemory implements ISpecialistsRepository {
     }
 
     async findByIds(ids: string[]): Promise<ISpecialistResponseDTO[]> {
-        return this.specialists.filter((specialist) => {
-            return ids.includes(specialist.id)
-        }).map((specialist) => {
-            return SpecialistMap.toDTO(specialist)
-        });
+        return this.specialists
+            .filter((specialist) => {
+                return ids.includes(specialist.id);
+            })
+            .map((specialist) => {
+                return SpecialistMap.toDTO(specialist);
+            });
     }
 
-    async findAvailable(): Promise<Specialist[]> {
-        return this.specialists.filter((specialist) => {
-            return (
-                specialist.status === SpecialistStatusEnum.ACTIVE
-            );
+    async find({ name, status, userId, id }): Promise<ISpecialistResponseDTO[]> {
+        let specialists = this.specialists;
+
+        if (id) {
+            specialists = specialists.filter((specialist) => {
+                return specialist.id === id;
+            });
+        } else {
+            if (status) {
+                specialists = specialists.filter((specialist) => {
+                    return specialist.status === status;
+                });
+            }
+
+            if (userId) {
+                specialists = specialists.filter((specialist) => {
+                    return specialist.userId === userId;
+                });
+            }
+
+            if (name) {
+                specialists = specialists.filter((specialist) => {
+                    return specialist.name.includes(name);
+                });
+            }
+        }
+
+        return specialists.map((specialist) => {
+            return SpecialistMap.toDTO(specialist);
         });
     }
 }
 
-
-export { SpecialistRepositoryInMemory }
+export { SpecialistRepositoryInMemory };

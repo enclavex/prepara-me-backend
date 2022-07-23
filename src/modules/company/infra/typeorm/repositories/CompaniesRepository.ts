@@ -42,6 +42,10 @@ class CompaniesRepository implements ICompaniesRepository {
 
         return companies;
     }
+
+    async remove(id: string): Promise<void> {
+        this.repository.delete(id);
+    }
 }
 
 export { CompaniesRepository };

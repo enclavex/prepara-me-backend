@@ -1,3 +1,4 @@
+import { UserStatusEnum } from "../enums/UserStatusEnum";
 import { UserTypeEnum } from "../enums/UserTypeEnum";
 
 interface ICreateUserDTO {
@@ -7,6 +8,7 @@ interface ICreateUserDTO {
     password: string;
     documentId: string;
     type: UserTypeEnum;
+    active: UserStatusEnum;
     id?: string;
     avatar?: string;
 }

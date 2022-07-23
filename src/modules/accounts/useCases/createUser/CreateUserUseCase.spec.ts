@@ -1,4 +1,5 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 
@@ -22,6 +23,7 @@ describe("Create User", () => {
             email: "user@test.com",
             password: "1234",
             documentId: "00000000000",
+            active: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
         };
 
@@ -39,6 +41,7 @@ describe("Create User", () => {
                 email: "user@test.com",
                 password: "1234",
                 documentId: "",
+                active: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
             };
 
@@ -54,6 +57,7 @@ describe("Create User", () => {
                 email: "user@test.com",
                 password: "1234",
                 documentId: "000000",
+                active: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
             };
 
@@ -69,6 +73,7 @@ describe("Create User", () => {
                 email: "",
                 password: "1234",
                 documentId: "000000",
+                active: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
             };
 
@@ -84,6 +89,7 @@ describe("Create User", () => {
                 email: "user@test.com",
                 password: "",
                 documentId: "000000",
+                active: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
             };
 

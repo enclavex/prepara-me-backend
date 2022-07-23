@@ -1,19 +1,26 @@
 import { ICreateSpecialistDTO } from "../dtos/ICreateSpecialistDTO";
 import { ISpecialistResponseDTO } from "../dtos/ISpecialistResponseDTO";
+import { SpecialistStatusEnum } from "../enums/SpecialistStatusEnum";
 import { Specialist } from "../infra/typeorm/entities/Specialist";
 
+interface IRequestFind {
+    dateBegin?: Date;
+    dateEnd?: Date;
+    name?: string;
+    userId?: string;
+    status?: SpecialistStatusEnum;
+    id?: string;
+}
+
 interface ISpecialistsRepository {
-    create(data: ICreateSpecialistDTO): Promise<Specialist>
-    findById(id: string): Promise<Specialist>
+    create(data: ICreateSpecialistDTO): Promise<Specialist>;
+    findById(id: string): Promise<Specialist>;
     findByIds(
         ids: string[],
         dateBegin?: Date,
         dateEnd?: Date
-    ): Promise<ISpecialistResponseDTO[]>
-    findAvailable(
-        dateBegin?: Date,
-        dateEnd?: Date
-    ): Promise<Specialist[]>;
+    ): Promise<ISpecialistResponseDTO[]>;
+    find(data: IRequestFind): Promise<ISpecialistResponseDTO[]>;
 }
 
-export { ISpecialistsRepository }
+export { ISpecialistsRepository };

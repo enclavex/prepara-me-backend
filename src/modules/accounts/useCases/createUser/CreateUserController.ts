@@ -1,3 +1,4 @@
+import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
@@ -17,6 +18,7 @@ class CreateUserController {
             password,
             documentId,
             type,
+            active: UserStatusEnum.ACTIVE,
         });
 
         return response.status(201).send();
@@ -24,3 +26,4 @@ class CreateUserController {
 }
 
 export { CreateUserController };
+

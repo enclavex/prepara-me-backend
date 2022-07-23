@@ -4,7 +4,7 @@ import { CreateSpecialistUseCase } from "./CreateSpecialistUseCase"
 
 class CreateSpecialistController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { name, bio, userId, status, linkedinUrl } = request.body
+        const { name, bio, userId, status, linkedinUrl, id } = request.body
 
         const createSpecialistUseCase = container.resolve(CreateSpecialistUseCase)
 
@@ -13,7 +13,8 @@ class CreateSpecialistController {
             bio,
             userId,
             status,
-            linkedinUrl
+            linkedinUrl,
+            id
         })
 
         return response.status(201).json(specialist)

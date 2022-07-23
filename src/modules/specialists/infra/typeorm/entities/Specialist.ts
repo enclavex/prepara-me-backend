@@ -1,7 +1,14 @@
 import { User } from "@modules/accounts/infra/typeorm/entities/User";
 import { SpecialistStatusEnum } from "@modules/specialists/enums/SpecialistStatusEnum";
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
-import { v4 as uuidV4 } from "uuid"
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    OneToMany,
+    OneToOne,
+    PrimaryColumn,
+} from "typeorm";
+import { v4 as uuidV4 } from "uuid";
 import { ProductSpecialist } from "./ProductSpecialist";
 import { SpecialistScheduleAvailable } from "./SpecialistScheduleAvailable";
 
@@ -28,15 +35,21 @@ class Specialist {
 
     @OneToOne(() => User)
     @JoinColumn()
-    user: User
+    user: User;
 
     @Column()
     linkedinUrl: string;
 
-    @OneToMany(() => ProductSpecialist, productSpecialist => productSpecialist.specialist)
+    @OneToMany(
+        () => ProductSpecialist,
+        (productSpecialist) => productSpecialist.specialist
+    )
     productSpecialist: ProductSpecialist[];
 
-    @OneToMany(() => SpecialistScheduleAvailable, specialistScheduleAvailable => specialistScheduleAvailable.specialist)
+    @OneToMany(
+        () => SpecialistScheduleAvailable,
+        (specialistScheduleAvailable) => specialistScheduleAvailable.specialist
+    )
     specialistScheduleAvailable: SpecialistScheduleAvailable[];
 
     constructor(
@@ -44,17 +57,23 @@ class Specialist {
         bio: string,
         status: SpecialistStatusEnum,
         userId: string,
-        linkedinUrl: string) {
+        linkedinUrl: string,
+        id: string
+    ) {
         if (!this.id) {
             this.id = uuidV4();
         }
 
-        this.name = name
-        this.bio = bio
-        this.status = status
-        this.userId = userId
-        this.linkedinUrl = linkedinUrl
+        if (id) {
+            this.id = id;
+        }
+
+        this.name = name;
+        this.bio = bio;
+        this.status = status;
+        this.userId = userId;
+        this.linkedinUrl = linkedinUrl;
     }
 }
 
-export { Specialist }
+export { Specialist };

@@ -17,7 +17,8 @@ class CreateSpecialistUseCase {
         bio,
         status,
         linkedinUrl,
-        userId
+        userId,
+        id
     }: ICreateSpecialistDTO): Promise<Specialist> {
         if (!name) {
             throw new AppError("Name can't be null");
@@ -40,7 +41,8 @@ class CreateSpecialistUseCase {
             bio,
             status,
             userId,
-            linkedinUrl
+            linkedinUrl,
+            id
         })
 
         return specialist

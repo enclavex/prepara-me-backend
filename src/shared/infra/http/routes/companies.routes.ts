@@ -6,11 +6,13 @@ import { CreateCompanyEmployeeController } from "@modules/company/useCases/creat
 import { CreateCompanySubscriptionPlanController } from "@modules/company/useCases/createCompanySubscriptionPlan/CreateCompanySubscriptionPlanController";
 import { ListCompanyController } from "@modules/company/useCases/listCompany/ListCompanyController";
 import { GetCompanyByIdController } from "@modules/company/useCases/getCompanyById/GetCompanyByIdController";
+import { RemoveCompanyController } from "@modules/company/useCases/removeCompany/RemoveCompanyController";
 
 const companiesRoutes = Router();
 
 const createCompanyController = new CreateCompanyController();
 const listCompanyController = new ListCompanyController();
+const removeCompanyControllerController = new RemoveCompanyController();
 const getCompanyByIdController = new GetCompanyByIdController();
 const createCompanyEmployeeController = new CreateCompanyEmployeeController();
 const createCompanySubscriptionPlanController = new CreateCompanySubscriptionPlanController();
@@ -34,6 +36,13 @@ companiesRoutes.get(
     ensuredAuthenticated,
     ensureAdmin,
     getCompanyByIdController.handle
+);
+
+companiesRoutes.delete(
+    "/:id",
+    ensuredAuthenticated,
+    ensureAdmin,
+    removeCompanyControllerController.handle
 );
 
 companiesRoutes.post(

@@ -2,7 +2,7 @@ import { CreateProductSpecialistController } from "@modules/specialists/useCases
 import { CreateSpecialistController } from "@modules/specialists/useCases/createSpecialist/CreateSpecialistController";
 import { CreateSpecialistScheduleAvailableController } from "@modules/specialists/useCases/createSpecialistScheduleAvailable/CreateSpecialistScheduleAvailableController";
 import { ListScheduleSpecialistByDateController } from "@modules/specialists/useCases/listScheduleSpecialistByDate/ListScheduleSpecialistByDateController";
-import { ListSpecialistAvailableController } from "@modules/specialists/useCases/listSpecialistAvailable/ListSpecialistAvailableController";
+import { ListSpecialistController } from "@modules/specialists/useCases/listSpecialist/ListSpecialistController";
 import { ListSpecialistsByProductController } from "@modules/specialists/useCases/listSpecialistsByProduct/ListSpecialistsByProductController";
 import { UpdateSpecialistScheduleAvailableController } from "@modules/specialists/useCases/updateSpecialistScheduleAvailable/UpdateSpecialistScheduleAvailableController";
 import { Router } from "express";
@@ -15,14 +15,17 @@ const createSpecialistController = new CreateSpecialistController()
 const createProductSpecialistController = new CreateProductSpecialistController()
 const createSpecialistScheduleAvailableController = new CreateSpecialistScheduleAvailableController()
 const updateSpecialistScheduleAvailableController = new UpdateSpecialistScheduleAvailableController()
-const listSpecialistAvailableController = new ListSpecialistAvailableController()
+const listSpecialistController = new ListSpecialistController()
 const listSpecialistByProductController = new ListSpecialistsByProductController()
 const listScheduleSpecialistByDateController = new ListScheduleSpecialistByDateController()
 
 specialistsRoutes.get("/",
-listSpecialistAvailableController.handle)
+listSpecialistController.handle)
 
-specialistsRoutes.get("/:productId",
+specialistsRoutes.get("/:id",
+listSpecialistController.handle)
+
+specialistsRoutes.get("/products/:productId",
 listSpecialistByProductController.handle)
 
 specialistsRoutes.get("/scheduleSpecialistAvailable/:specialistId",

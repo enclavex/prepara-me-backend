@@ -71,27 +71,55 @@ class SpecialistRepository implements ISpecialistsRepository {
 
         const specialists = await specialistsQuery.getMany();
 
-        const specialistsUpdated = specialists.map((specialist) => {
+        const specialistsMapped = specialists.map((specialist) => {
             return SpecialistMap.toDTO(specialist);
         });
 
-        return specialistsUpdated;
+        return specialistsMapped;
     }
 
-    async findAvailable(): Promise<Specialist[]> {
+    async find({ name, status, userId, id }): Promise<ISpecialistResponseDTO[]> {
         const specialistsQuery = this.repository
             .createQueryBuilder("e")
+            .leftJoinAndSelect("e.user", "user")
             .leftJoinAndSelect(
                 "e.specialistScheduleAvailable",
                 "specialistScheduleAvailable"
-            )
-            .where("e.status = :status", {
-                status: SpecialistStatusEnum.ACTIVE,
+            );
+
+        if (id) {
+            specialistsQuery.andWhere("e.id = :id", {
+                id: id,
             });
+        } else {
+            if (name) {
+                name = `%${name}%`;
+
+                specialistsQuery.andWhere("e.name like :name", {
+                    name: name,
+                });
+            }
+
+            if (status) {
+                specialistsQuery.andWhere("e.status = :status", {
+                    status: status,
+                });
+            }
+
+            if (userId) {
+                specialistsQuery.andWhere("e.userId = :userId", {
+                    userId: userId,
+                });
+            }
+        }
 
         const specialists = await specialistsQuery.getMany();
 
-        return specialists;
+        const specialistsMapped = specialists.map((specialist) => {
+            return SpecialistMap.toDTO(specialist);
+        });
+
+        return specialistsMapped;
     }
 }
 

@@ -21,6 +21,7 @@ class CreateUserUseCase {
         password,
         documentId,
         type,
+        active
     }: ICreateUserDTO): Promise<User> {
         const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
@@ -57,6 +58,7 @@ class CreateUserUseCase {
             password: passwordHash,
             documentId,
             type,
+            active
         });
 
         return user;

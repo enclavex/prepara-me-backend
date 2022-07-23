@@ -3,10 +3,11 @@ import { SpecialistScheduleAvailable } from "../infra/typeorm/entities/Specialis
 
 interface ISpecialistResponseDTO {
     id: string;
-    bio: string;
     name: string;
+    bio: string;
     linkedinUrl: string;
     specialistScheduleAvailable: SpecialistScheduleAvailable[];
+    status,
     user: IUserResponseDTO
 }
 

@@ -9,6 +9,7 @@ interface ICompaniesRepository {
     create(data: ICreateCompanyDTO): Promise<Company>;
     findById(id: string): Promise<Company>;
     find(data: IRequestFind): Promise<Company[]>;
+    remove(id: string);
 }
 
 export { ICompaniesRepository };

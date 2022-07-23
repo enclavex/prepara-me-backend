@@ -1,3 +1,4 @@
+import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 import { UserTokensRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserTokensRepositoryInMemory";
@@ -37,6 +38,7 @@ describe("Send Forgot Mail", () => {
             email: "guilherme.teste@teste.com",
             password: "1234",
             documentId: "08113754989",
+            active: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
         });
 
@@ -59,6 +61,7 @@ describe("Send Forgot Mail", () => {
             email: "guilherme.teste@teste.com",
             password: "1234",
             documentId: "08113754989",
+            active: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
         });
 

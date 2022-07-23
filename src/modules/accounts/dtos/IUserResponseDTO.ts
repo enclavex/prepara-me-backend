@@ -1,3 +1,4 @@
+import { UserStatusEnum } from "../enums/UserStatusEnum";
 import { UserTypeEnum } from "../enums/UserTypeEnum";
 
 interface IUserResponseDTO {
@@ -6,7 +7,7 @@ interface IUserResponseDTO {
     username: string;
     id: string;
     avatar: string;
-    active: boolean;
+    active: UserStatusEnum;
     documentId: string;
     type: UserTypeEnum;
     avatarUrl(): string;

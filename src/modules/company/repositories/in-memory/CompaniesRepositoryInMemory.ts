@@ -28,6 +28,12 @@ class CompaniesRepositoryInMemory implements ICompaniesRepository {
 
         return companies;
     }
+
+    async remove(id: string) {
+        this.companies = this.companies.filter((company) => {
+            return id !== company.id;
+        });
+    }
 }
 
 export { CompaniesRepositoryInMemory };

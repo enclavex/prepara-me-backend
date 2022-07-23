@@ -1,3 +1,4 @@
+import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { SpecialistScheduleAvailable } from "@modules/specialists/infra/typeorm/entities/SpecialistScheduleAvailable";
 import { Expose } from "class-transformer";
@@ -31,8 +32,12 @@ class User {
     })
     type: UserTypeEnum;
     
-    @Column()
-    active: boolean;
+    @Column({
+        type: "enum",
+        enum: UserStatusEnum,
+        default: UserStatusEnum.ACTIVE,
+    })
+    active: UserStatusEnum;
 
     @Column()
     avatar: string;
@@ -62,12 +67,17 @@ class User {
         password: string,
         documentId: string,
         type: UserTypeEnum,
-        active: boolean
+        active: UserStatusEnum,
+        id: string
     ) {
+        if (id) {
+            this.id = id
+        }
+
         if (!this.id) {
             this.id = uuidV4();
         }
-
+        
         this.name = name;
         this.username = username;
         this.email = email;
