@@ -11,14 +11,14 @@ import { ProductsRepositoryInMemory } from "@modules/products/repositories/in-me
 import { CreateProductUseCase } from "@modules/products/useCases/createProduct/CreateProductUseCase";
 import { ICreateSpecialistDTO } from "@modules/specialists/dtos/ICreateSpecialistDTO";
 import { SpecialistStatusEnum } from "@modules/specialists/enums/SpecialistStatusEnum";
-import { ProductSpecialistRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/ProductSpecialistRepositoryInMemory";
-import { SpecialistRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/SpecialistsRepositoryInMemory";
+import { ProductsSpecialistsRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/ProductsSpecialistsRepositoryInMemory";
+import { SpecialistsRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/SpecialistsRepositoryInMemory";
 import { CreateProductSpecialistUseCase } from "../createProductSpecialist/CreateProductSpecialistUseCase";
 import { CreateSpecialistUseCase } from "../createSpecialist/CreateSpecialistUseCase";
 import { ListSpecialistsByProductUseCase } from "./ListSpecialistsByProductUseCase";
 
-let specialistsRepositoryInMemory: SpecialistRepositoryInMemory;
-let productSpecialistRepositoryInMemory: ProductSpecialistRepositoryInMemory;
+let specialistsRepositoryInMemory: SpecialistsRepositoryInMemory;
+let productsSpecialistsRepositoryInMemory: ProductsSpecialistsRepositoryInMemory;
 let productRepositoryInMemory: ProductsRepositoryInMemory;
 let listSpecialistsByProductUseCase: ListSpecialistsByProductUseCase;
 let createSpecialistUseCase: CreateSpecialistUseCase;
@@ -28,16 +28,16 @@ let createUserUseCase: CreateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 describe("List Specialists", () => {
     beforeAll(() => {
-        specialistsRepositoryInMemory = new SpecialistRepositoryInMemory();
-        productSpecialistRepositoryInMemory =
-            new ProductSpecialistRepositoryInMemory();
+        specialistsRepositoryInMemory = new SpecialistsRepositoryInMemory();
+        productsSpecialistsRepositoryInMemory =
+            new ProductsSpecialistsRepositoryInMemory();
         productRepositoryInMemory = new ProductsRepositoryInMemory();
         usersRepositoryInMemory = new UsersRepositoryInMemory();
         createSpecialistUseCase = new CreateSpecialistUseCase(
             specialistsRepositoryInMemory
         );
         createProductSpecialistUseCase = new CreateProductSpecialistUseCase(
-            productSpecialistRepositoryInMemory,
+            productsSpecialistsRepositoryInMemory,
             productRepositoryInMemory,
             specialistsRepositoryInMemory
         );
@@ -45,7 +45,7 @@ describe("List Specialists", () => {
             productRepositoryInMemory
         );
         listSpecialistsByProductUseCase = new ListSpecialistsByProductUseCase(
-            productSpecialistRepositoryInMemory,
+            productsSpecialistsRepositoryInMemory,
             specialistsRepositoryInMemory
         );
         createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);

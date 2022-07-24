@@ -1,18 +1,18 @@
 import { ICreateSpecialistDTO } from "@modules/specialists/dtos/ICreateSpecialistDTO";
 import { SpecialistStatusEnum } from "@modules/specialists/enums/SpecialistStatusEnum";
-import { SpecialistRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/SpecialistsRepositoryInMemory";
+import { SpecialistsRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/SpecialistsRepositoryInMemory";
 import { CreateSpecialistUseCase } from "../createSpecialist/CreateSpecialistUseCase";
 import { ListSpecialistUseCase } from "../listSpecialist/ListSpecialistUseCase";
 import { RemoveSpecialistUseCase } from "./RemoveSpecialistUseCase";
 
-let specialistsRepositoryInMemory: SpecialistRepositoryInMemory;
+let specialistsRepositoryInMemory: SpecialistsRepositoryInMemory;
 let listSpecialistUseCase: ListSpecialistUseCase;
 let createSpecialistUseCase: CreateSpecialistUseCase;
 let removeSpecialistUseCase: RemoveSpecialistUseCase;
 
 describe("Remove Specialists", () => {
     beforeEach(() => {
-        specialistsRepositoryInMemory = new SpecialistRepositoryInMemory();
+        specialistsRepositoryInMemory = new SpecialistsRepositoryInMemory();
         listSpecialistUseCase = new ListSpecialistUseCase(
             specialistsRepositoryInMemory
         );

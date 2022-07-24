@@ -5,12 +5,12 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 class ListSpecialistUseCase {
     constructor(
-        @inject("SpecialistRepository")
-        private specialistRepository: ISpecialistsRepository
+        @inject("SpecialistsRepository")
+        private specialistsRepository: ISpecialistsRepository
     ) {}
 
     async execute({ status, name, userId, id }): Promise<ISpecialistResponseDTO[]> {
-        const specialists = await this.specialistRepository.find({
+        const specialists = await this.specialistsRepository.find({
             status,
             name,
             userId,

@@ -7,10 +7,11 @@ class ListSubscriptionPlanController {
         const { name, status, type } = request.query;
         const { id } = request.params;
 
+        
         const listSubscriptionPlanUseCase = container.resolve(
             ListSubscriptionPlanUseCase
-        );
-
+            );
+            
         const listSubscriptionPlans = await listSubscriptionPlanUseCase.execute(
             { name, status, type, id }
         );

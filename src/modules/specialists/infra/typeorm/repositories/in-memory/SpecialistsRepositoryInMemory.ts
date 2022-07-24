@@ -1,11 +1,10 @@
 import { ICreateSpecialistDTO } from "@modules/specialists/dtos/ICreateSpecialistDTO";
 import { ISpecialistResponseDTO } from "@modules/specialists/dtos/ISpecialistResponseDTO";
-import { SpecialistStatusEnum } from "@modules/specialists/enums/SpecialistStatusEnum";
 import { SpecialistMap } from "@modules/specialists/mapper/SpecialistMap";
 import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpecialistsRepository";
 import { Specialist } from "../../entities/Specialist";
 
-class SpecialistRepositoryInMemory implements ISpecialistsRepository {
+class SpecialistsRepositoryInMemory implements ISpecialistsRepository {
     specialists: Specialist[] = [];
 
     async create({
@@ -88,5 +87,5 @@ class SpecialistRepositoryInMemory implements ISpecialistsRepository {
     }
 }
 
-export { SpecialistRepositoryInMemory };
+export { SpecialistsRepositoryInMemory };
 

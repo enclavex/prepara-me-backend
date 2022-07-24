@@ -4,12 +4,12 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 class RemoveSpecialistUseCase {
     constructor(
-        @inject("SpecialistRepository")
-        private specialistRepository: ISpecialistsRepository
+        @inject("SpecialistsRepository")
+        private specialistsRepository: ISpecialistsRepository
     ) {}
 
     async execute(id) {
-        await this.specialistRepository.remove(id);
+        await this.specialistsRepository.remove(id);
     }
 }
 

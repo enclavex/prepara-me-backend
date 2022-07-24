@@ -2,7 +2,7 @@ import { ICreateProductSpecialistDTO } from "@modules/specialists/dtos/ICreatePr
 import { IProductsSpecialistsRepository } from "@modules/specialists/repositories/IProductsSpecialistsRepository";
 import { ProductSpecialist } from "../../entities/ProductSpecialist";
 
-class ProductSpecialistRepositoryInMemory implements IProductsSpecialistsRepository {
+class ProductsSpecialistsRepositoryInMemory implements IProductsSpecialistsRepository {
     productsSpecialist: ProductSpecialist[] = []
 
     async create({
@@ -28,4 +28,4 @@ class ProductSpecialistRepositoryInMemory implements IProductsSpecialistsReposit
     }
 }
 
-export { ProductSpecialistRepositoryInMemory }
+export { ProductsSpecialistsRepositoryInMemory }

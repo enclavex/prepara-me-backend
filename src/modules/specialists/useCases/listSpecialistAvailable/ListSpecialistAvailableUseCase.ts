@@ -5,12 +5,12 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 class ListSpecialistAvailableUseCase {
     constructor(
-        @inject("SpecialistRepository")
-        private specialistRepository: ISpecialistsRepository
+        @inject("SpecialistsRepository")
+        private specialistsRepository: ISpecialistsRepository
     ) {}
 
     async execute() {
-        const specialists = await this.specialistRepository.find({
+        const specialists = await this.specialistsRepository.find({
             status: SpecialistStatusEnum.ACTIVE,
         });
 

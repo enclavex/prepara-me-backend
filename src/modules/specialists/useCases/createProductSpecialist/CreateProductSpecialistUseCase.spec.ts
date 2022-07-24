@@ -3,30 +3,30 @@ import { ProductStatusEnum } from "@modules/products/enums/ProductStatusEnum";
 import { ProductTypeEnum } from "@modules/products/enums/ProductTypesEnum";
 import { ProductsRepositoryInMemory } from "@modules/products/repositories/in-memory/ProductsRepositoryInMemory";
 import { SpecialistStatusEnum } from "@modules/specialists/enums/SpecialistStatusEnum";
-import { ProductSpecialistRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/ProductSpecialistRepositoryInMemory";
-import { SpecialistRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/SpecialistsRepositoryInMemory";
+import { ProductsSpecialistsRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/ProductsSpecialistsRepositoryInMemory";
+import { SpecialistsRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/SpecialistsRepositoryInMemory";
 import { CreateProductSpecialistUseCase } from "./CreateProductSpecialistUseCase";
 
-let productSpecialistRepositoryInMemory: ProductSpecialistRepositoryInMemory
+let productsSpecialistsRepositoryInMemory: ProductsSpecialistsRepositoryInMemory
 let productsRepositoryInMemory: ProductsRepositoryInMemory
-let specialistRepositoryInMemory: SpecialistRepositoryInMemory
+let specialistsRepositoryInMemory: SpecialistsRepositoryInMemory
 let createProductSpecialistUseCase: CreateProductSpecialistUseCase
 
 describe("Create Product Specialists", () => {
     beforeEach(() => {
-        productSpecialistRepositoryInMemory = new ProductSpecialistRepositoryInMemory()
-        specialistRepositoryInMemory = new SpecialistRepositoryInMemory()
+        productsSpecialistsRepositoryInMemory = new ProductsSpecialistsRepositoryInMemory()
+        specialistsRepositoryInMemory = new SpecialistsRepositoryInMemory()
         productsRepositoryInMemory = new ProductsRepositoryInMemory()
 
         createProductSpecialistUseCase = new CreateProductSpecialistUseCase(
-            productSpecialistRepositoryInMemory,
+            productsSpecialistsRepositoryInMemory,
             productsRepositoryInMemory,
-            specialistRepositoryInMemory
+            specialistsRepositoryInMemory
         )
     })
 
     it("should be able to create a new product specialist", async () => {
-        const specialist = await specialistRepositoryInMemory.create({
+        const specialist = await specialistsRepositoryInMemory.create({
             name: "Specialist Test",
             bio: "Biography",
             status: SpecialistStatusEnum.ACTIVE,

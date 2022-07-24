@@ -11,9 +11,9 @@ interface IRequest {
 @injectable()
 class ListSpecialistsByProductUseCase {
     constructor(
-        @inject("ProductSpecialistRepository")
-        private productSpecialistRepository: IProductsSpecialistsRepository,
-        @inject("SpecialistRepository")
+        @inject("ProductsSpecialistsRepository")
+        private productsSpecialistsRepository: IProductsSpecialistsRepository,
+        @inject("SpecialistsRepository")
         private specialistRepository: ISpecialistsRepository
     ) { }
 
@@ -32,7 +32,7 @@ class ListSpecialistsByProductUseCase {
             dateEnd.setHours(23, 59, 59)
         }
 
-        const listSpecialistId = await this.productSpecialistRepository.listSpecialistsByProduct(productId)
+        const listSpecialistId = await this.productsSpecialistsRepository.listSpecialistsByProduct(productId)
 
         if (listSpecialistId.length === 0) {
             return null

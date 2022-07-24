@@ -8,9 +8,9 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 class CreateSpecialistUseCase {
     constructor(
-        @inject("SpecialistRepository")
-        private specialistRepository: ISpecialistsRepository
-    ) { }
+        @inject("SpecialistsRepository")
+        private specialistsRepository: ISpecialistsRepository
+    ) {}
 
     async execute({
         name,
@@ -18,7 +18,7 @@ class CreateSpecialistUseCase {
         status,
         linkedinUrl,
         userId,
-        id
+        id,
     }: ICreateSpecialistDTO): Promise<Specialist> {
         if (!name) {
             throw new AppError("Name can't be null");
@@ -36,17 +36,17 @@ class CreateSpecialistUseCase {
             throw new AppError("User can't be null");
         }
 
-        const specialist = await this.specialistRepository.create({
+        const specialist = await this.specialistsRepository.create({
             name,
             bio,
             status,
             userId,
             linkedinUrl,
-            id
-        })
+            id,
+        });
 
-        return specialist
+        return specialist;
     }
 }
 
-export { CreateSpecialistUseCase }
+export { CreateSpecialistUseCase };
