@@ -15,11 +15,12 @@ class SubscriptionPlanProduct {
     )
     subscriptionPlan: SubscriptionPlan;
 
+    @ManyToOne(() => Product, (product) => product.subscriptionPlanProduct)
+    product: Product;
+    
     @Column()
     subscriptionPlanId: string;
 
-    @ManyToOne(() => Product, (product) => product.subscriptionPlanProduct)
-    product: Product;
 
     @Column()
     productId: string;

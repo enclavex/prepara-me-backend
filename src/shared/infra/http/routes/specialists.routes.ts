@@ -9,6 +9,7 @@ import { UpdateSpecialistScheduleAvailableController } from "@modules/specialist
 import { Router } from "express";
 import { ensureAdmin } from "../middlewares/ensureAdmin";
 import { ensuredAuthenticated } from "../middlewares/ensureAuthenticated";
+import { RemoveProductSpecialistController } from "@modules/specialists/useCases/removeProductSpecialist/RemoveProductSpecialistController";
 
 const specialistsRoutes = Router();
 
@@ -25,6 +26,7 @@ const listSpecialistByProductController =
     new ListSpecialistsByProductController();
 const listScheduleSpecialistByDateController =
     new ListScheduleSpecialistByDateController();
+const removeProductSpecialistController = new RemoveProductSpecialistController();
 
 specialistsRoutes.get("/", listSpecialistController.handle);
 
@@ -55,10 +57,17 @@ specialistsRoutes.post(
 );
 
 specialistsRoutes.post(
-    "/product/:specialistId",
+    "/:id/products",
     ensuredAuthenticated,
     ensureAdmin,
     createProductSpecialistController.handle
+);
+
+specialistsRoutes.delete(
+    "/products/:id",
+    ensuredAuthenticated,
+    ensureAdmin,
+    removeProductSpecialistController.handle
 );
 
 specialistsRoutes.post(

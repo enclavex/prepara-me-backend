@@ -44,7 +44,7 @@ class Specialist {
         () => ProductSpecialist,
         (productSpecialist) => productSpecialist.specialist
     )
-    productSpecialist: ProductSpecialist[];
+    public productSpecialist!: ProductSpecialist[];
 
     @OneToMany(
         () => SpecialistScheduleAvailable,

@@ -1,6 +1,6 @@
 import { ICreateSpecialistScheduleAvailableDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleAvailableDTO"
 import { SpecialistScheduleAvailableStatusEnum } from "@modules/specialists/enums/SpecialistScheduleAvailableStatusEnum"
-import { SpecialistScheduleAvailableRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/SpecialistScheduleAvailableRepositoryInMemory"
+import { SpecialistScheduleAvailableRepositoryInMemory } from "@modules/specialists/repositories/in-memory/SpecialistScheduleAvailableRepositoryInMemory"
 import { CreateSpecialistScheduleAvailableUseCase } from "../createSpecialistScheduleAvailable/CreateSpecialistScheduleAvailableUseCase"
 import { UpdateSpecialistScheduleAvailableUseCase } from "./UpdateSpecialistScheduleAvailableUseCase"
 

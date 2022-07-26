@@ -12,6 +12,7 @@ class SpecialistMap {
         specialistScheduleAvailable,
         status,
         user,
+        productSpecialist
     }: Specialist): ISpecialistResponseDTO {
         const statusMapped = status === "ACTIVE" ? "Ativo" : "Inativo";
 
@@ -23,6 +24,7 @@ class SpecialistMap {
             specialistScheduleAvailable,
             status: { label: statusMapped, value: status },
             user: process.env.NODE_ENV === "test" ? user : UserMap.toDTO(user),
+            productSpecialist
         });
 
         return specialist;

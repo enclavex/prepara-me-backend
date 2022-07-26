@@ -4,7 +4,7 @@ import { ProductStatusEnum } from "@modules/products/enums/ProductStatusEnum";
 import { ProductTypeEnum } from "@modules/products/enums/ProductTypesEnum";
 import { ProductContentsRepositoryInMemory } from "@modules/products/repositories/in-memory/ProductContentsRepositoryInMemory";
 import { ProductsRepositoryInMemory } from "@modules/products/repositories/in-memory/ProductsRepositoryInMemory";
-import { ProductsSpecialistsRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/ProductsSpecialistsRepositoryInMemory";
+import { ProductsSpecialistsRepositoryInMemory } from "@modules/specialists/repositories/in-memory/ProductsSpecialistsRepositoryInMemory";
 import { CreateProductUseCase } from "../createProduct/CreateProductUseCase";
 import { ListProductUseCase } from "../listProduct/ListProductUseCase";
 import { RemoveProductUseCase } from "./RemoveProductUseCase";

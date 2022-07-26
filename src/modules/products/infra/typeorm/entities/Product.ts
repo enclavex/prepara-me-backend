@@ -46,7 +46,7 @@ class Product {
     productContent: ProductContent[];
 
     @OneToMany(() => ProductSpecialist, productSpecialist => productSpecialist.product)
-    productSpecialist: ProductSpecialist[]
+    public productSpecialist!: ProductSpecialist[];
 
     @OneToMany(() => SubscriptionPlanProduct, (subscriptionPlanProduct) => subscriptionPlanProduct.product)
     public subscriptionPlanProduct!: SubscriptionPlanProduct[];

@@ -85,34 +85,42 @@ class SpecialistsRepository implements ISpecialistsRepository {
         id,
     }): Promise<ISpecialistResponseDTO[]> {
         const specialistsQuery = this.repository
-            .createQueryBuilder("e")
-            .leftJoinAndSelect("e.user", "user")
+            .createQueryBuilder("s")
+            .leftJoinAndSelect("s.user", "u")
             .leftJoinAndSelect(
-                "e.specialistScheduleAvailable",
-                "specialistScheduleAvailable"
+                "s.specialistScheduleAvailable",
+                "ssa"
+            )
+            .leftJoinAndSelect(
+                "s.productSpecialist",
+                "ps"
+            )
+            .leftJoinAndSelect(
+                "ps.product",
+                "p"
             );
 
         if (id) {
-            specialistsQuery.andWhere("e.id = :id", {
+            specialistsQuery.andWhere("s.id = :id", {
                 id: id,
             });
         } else {
             if (name) {
                 name = `%${name}%`;
 
-                specialistsQuery.andWhere("e.name like :name", {
+                specialistsQuery.andWhere("s.name like :name", {
                     name: name,
                 });
             }
 
             if (status) {
-                specialistsQuery.andWhere("e.status = :status", {
+                specialistsQuery.andWhere("s.status = :status", {
                     status: status,
                 });
             }
 
             if (userId) {
-                specialistsQuery.andWhere("e.userId = :userId", {
+                specialistsQuery.andWhere("s.userId = :userId", {
                     userId: userId,
                 });
             }
@@ -123,6 +131,8 @@ class SpecialistsRepository implements ISpecialistsRepository {
         const specialistsMapped = specialists.map((specialist) => {
             return SpecialistMap.toDTO(specialist);
         });
+
+        console.log(specialistsMapped)
 
         return specialistsMapped;
     }

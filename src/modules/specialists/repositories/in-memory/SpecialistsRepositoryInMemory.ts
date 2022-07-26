@@ -2,7 +2,7 @@ import { ICreateSpecialistDTO } from "@modules/specialists/dtos/ICreateSpecialis
 import { ISpecialistResponseDTO } from "@modules/specialists/dtos/ISpecialistResponseDTO";
 import { SpecialistMap } from "@modules/specialists/mapper/SpecialistMap";
 import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpecialistsRepository";
-import { Specialist } from "../../entities/Specialist";
+import { Specialist } from "../../infra/typeorm/entities/Specialist";
 
 class SpecialistsRepositoryInMemory implements ISpecialistsRepository {
     specialists: Specialist[] = [];

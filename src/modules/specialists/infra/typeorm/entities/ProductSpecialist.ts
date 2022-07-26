@@ -1,6 +1,6 @@
 import { Product } from "@modules/products/infra/typeorm/entities/Product";
 import { injectable } from "tsyringe";
-import { Column, Entity, ManyToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
 import { Specialist } from "./Specialist";
 import { v4 as uuidV4 } from "uuid"
 
@@ -15,16 +15,27 @@ class ProductSpecialist {
     @Column()
     specialistId: string;
 
-    @ManyToMany(() => Product, product => product.productSpecialist)
+    @ManyToOne(
+        () => Product,
+        (product) => product.productSpecialist
+    )
     product: Product;
 
-    @ManyToMany(() => Specialist, specialist => specialist.productSpecialist)
+    @ManyToOne(
+        () => Specialist,
+        (specialist) => specialist.productSpecialist
+    )
     specialist: Specialist;
 
     constructor(
         productId: string,
-        specialistId: string
+        specialistId: string,
+        id: string
     ) {
+        if (id) {
+            this.id = id
+        }
+
         if (!this.id) {
             this.id = uuidV4()
         }

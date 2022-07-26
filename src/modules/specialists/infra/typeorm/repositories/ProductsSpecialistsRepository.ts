@@ -11,14 +11,14 @@ class ProductsSpecialistsRepository implements IProductsSpecialistsRepository {
     }
 
     async create({
-        product,
-        specialist,
+        productId,
+        specialistId,
+        id,
     }: ICreateProductSpecialistDTO): Promise<ProductSpecialist> {
         const productSpecialist = this.repository.create({
-            product,
-            specialist,
-            productId: product.id,
-            specialistId: specialist.id,
+            productId,
+            specialistId,
+            id,
         });
 
         await this.repository.save(productSpecialist);
@@ -41,6 +41,13 @@ class ProductsSpecialistsRepository implements IProductsSpecialistsRepository {
 
         return specialists;
     }
+
+    async remove(id: string): Promise<string> {
+        this.repository.delete(id);
+
+        return id;
+    }
 }
 
 export { ProductsSpecialistsRepository };
+

@@ -1,6 +1,6 @@
 import { ICreateSpecialistScheduleAvailableDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleAvailableDTO";
 import { ISpecialistSchedulesAvailablesRepository } from "@modules/specialists/repositories/ISpecialistSchedulesAvailablesRepository";
-import { SpecialistScheduleAvailable } from "../../entities/SpecialistScheduleAvailable";
+import { SpecialistScheduleAvailable } from "../../infra/typeorm/entities/SpecialistScheduleAvailable";
 
 class SpecialistScheduleAvailableRepositoryInMemory implements ISpecialistSchedulesAvailablesRepository {
     specialistScheduleAvailables: SpecialistScheduleAvailable[] = []
