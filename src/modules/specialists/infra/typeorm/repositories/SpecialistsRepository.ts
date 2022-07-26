@@ -49,6 +49,7 @@ class SpecialistsRepository implements ISpecialistsRepository {
         const specialistsQuery = this.repository
             .createQueryBuilder("s")
             .leftJoinAndSelect("s.user", "user");
+
         if (dateBegin && dateEnd) {
             specialistsQuery.leftJoinAndSelect(
                 "s.specialistScheduleAvailable",

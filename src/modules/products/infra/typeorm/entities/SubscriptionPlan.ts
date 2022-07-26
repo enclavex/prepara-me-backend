@@ -1,6 +1,8 @@
+import { Company } from "@modules/company/infra/typeorm/entities/Company";
+import { CompanySubscriptionPlan } from "@modules/company/infra/typeorm/entities/CompanySubscriptionPlan";
 import { SubscriptionPlanStatusEnum } from "@modules/products/enums/SubscriptionPlanStatusEnum";
 import { SubscriptionPlanTypeEnum } from "@modules/products/enums/SubscriptionPlanTypeEnum";
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { SubscriptionPlanProduct } from "./SubscriptionPlanProduct";
 
@@ -28,6 +30,12 @@ class SubscriptionPlan {
         default: SubscriptionPlanTypeEnum.COMPANY,
     })
     type: SubscriptionPlanTypeEnum;
+
+    @OneToMany(
+        () => CompanySubscriptionPlan,
+        (companySubscriptionPlan) => companySubscriptionPlan.subscriptionPlan
+    )
+    public companySubscriptionPlan!: CompanySubscriptionPlan[];
 
     @OneToMany(
         () => SubscriptionPlanProduct,

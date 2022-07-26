@@ -1,5 +1,12 @@
 import { SubscriptionPlan } from "@modules/products/infra/typeorm/entities/SubscriptionPlan";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToMany,
+    ManyToOne,
+    PrimaryColumn,
+} from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { Company } from "./Company";
 
@@ -8,16 +15,8 @@ class CompanySubscriptionPlan {
     @PrimaryColumn()
     id: string;
 
-    @ManyToOne(() => Company)
-    @JoinColumn({ name: "companyId" })
-    company: Company;
-    
     @Column()
     companyId: string;
-
-    @ManyToOne(() => SubscriptionPlan)
-    @JoinColumn({ name: "subscriptionPlanId" })
-    subscriptionPlan: SubscriptionPlan;
 
     @Column()
     subscriptionPlanId: string;
@@ -31,13 +30,24 @@ class CompanySubscriptionPlan {
     @Column()
     subscribeToken: string;
 
+    @ManyToOne(() => Company, (company) => company.companySubscriptionPlan)
+    public company!: Company
+
+    @ManyToOne(() => SubscriptionPlan, (subscriptionPlan) => subscriptionPlan.companySubscriptionPlan)
+    public subscriptionPlan!: SubscriptionPlan
+
     constructor(
         companyId: string,
         subscriptionPlanId: string,
         startDate: Date,
         endDate: Date,
-        subscribeToken: string
+        subscribeToken: string,
+        id: string
     ) {
+        if (id) {
+            this.id = id
+        }
+        
         if (!this.id) {
             this.id = uuidV4();
         }
@@ -51,3 +61,4 @@ class CompanySubscriptionPlan {
 }
 
 export { CompanySubscriptionPlan };
+

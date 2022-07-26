@@ -10,7 +10,7 @@ class CreateProductController {
 
         const createProductUseCase = container.resolve(CreateProductUseCase);
 
-        await createProductUseCase.execute({
+        const product = await createProductUseCase.execute({
             name,
             shortName,
             price,
@@ -20,8 +20,9 @@ class CreateProductController {
             id,
         });
 
-        return response.status(201).send();
+        return response.status(201).json(product);
     }
 }
 
 export { CreateProductController };
+

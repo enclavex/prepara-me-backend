@@ -13,13 +13,15 @@ class CompanySubscriptionPlansRepositoryInMemory
         startDate,
         subscribeToken,
         subscriptionPlanId,
+        id
     }: ICreateCompanySubscriptionPlanDTO): Promise<CompanySubscriptionPlan> {
         const companySubscriptionPlan = new CompanySubscriptionPlan(
             companyId,
             subscriptionPlanId,
             startDate,
             endDate,
-            subscribeToken
+            subscribeToken,
+            id
         );
 
         this.companySubscriptionPlans.push(companySubscriptionPlan);

@@ -13,7 +13,6 @@ const companiesRoutes = Router();
 const createCompanyController = new CreateCompanyController();
 const listCompanyController = new ListCompanyController();
 const removeCompanyControllerController = new RemoveCompanyController();
-const getCompanyByIdController = new GetCompanyByIdController();
 const createCompanyEmployeeController = new CreateCompanyEmployeeController();
 const createCompanySubscriptionPlanController = new CreateCompanySubscriptionPlanController();
 
@@ -35,7 +34,7 @@ companiesRoutes.get(
     "/:id",
     ensuredAuthenticated,
     ensureAdmin,
-    getCompanyByIdController.handle
+    listCompanyController.handle
 );
 
 companiesRoutes.delete(
@@ -53,7 +52,7 @@ companiesRoutes.post(
 );
 
 companiesRoutes.post(
-    "/subscriptionPlans",
+    "/:id/subscriptionPlans",
     ensuredAuthenticated,
     ensureAdmin,
     createCompanySubscriptionPlanController.handle

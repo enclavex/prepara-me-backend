@@ -5,7 +5,7 @@ import { CreateProductContentUseCase } from "./CreateProductContentUseCase";
 
 class CreateProductContentController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { content } = request.body;
+        const { content, id } = request.body;
         const { productId } = request.params;
 
         const createProductContentUseCase = container.resolve(
@@ -15,6 +15,7 @@ class CreateProductContentController {
         const productContent = createProductContentUseCase.execute({
             content,
             productId,
+            id
         });
 
         return response.status(201).json(productContent);

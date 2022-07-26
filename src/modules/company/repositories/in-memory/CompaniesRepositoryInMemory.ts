@@ -17,13 +17,19 @@ class CompaniesRepositoryInMemory implements ICompaniesRepository {
         return this.companies.find((company) => company.id === id);
     }
 
-    async find({ name }): Promise<Company[]> {
+    async find({ name, id }): Promise<Company[]> {
         let companies = this.companies;
 
-        if (name) {
+        if (id) {
             companies = companies.filter((company) => {
-                return company.name.includes(name);
+                return company.id === id;
             });
+        } else {
+            if (name) {
+                companies = companies.filter((company) => {
+                    return company.name.includes(name);
+                });
+            }
         }
 
         return companies;

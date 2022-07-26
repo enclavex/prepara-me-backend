@@ -9,13 +9,21 @@ class ProductContentsRepositoryInMemory implements IProductContentsRepository {
     async create({
         content,
         productId,
+        id,
     }: ICreateProductContentDTO): Promise<ProductContent> {
-        const productContent = new ProductContent(content, productId);
+        const productContent = new ProductContent(content, productId, id);
 
         this.productContents.push(productContent);
 
         return productContent;
     }
+
+    async remove(id: string): Promise<void> {
+        this.productContents = this.productContents.filter((productContent) => {
+            return id !== productContent.id;
+        });
+    }
 }
 
 export { ProductContentsRepositoryInMemory };
+

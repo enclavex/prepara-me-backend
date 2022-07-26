@@ -14,6 +14,9 @@ class ProductsRepository implements IProductsRepository {
     constructor() {
         this.repository = getRepository(Product);
     }
+    findById(id: string): Promise<Product> {
+        throw new Error("Method not implemented.");
+    }
 
     async create({
         name,
@@ -36,11 +39,6 @@ class ProductsRepository implements IProductsRepository {
 
         await this.repository.save(product);
 
-        return product;
-    }
-
-    async findById(id: string): Promise<Product> {
-        const product = await this.repository.findOne(id);
         return product;
     }
 
@@ -77,7 +75,9 @@ class ProductsRepository implements IProductsRepository {
         bestSeller,
         id,
     }): Promise<IResponseProductDTO[]> {
-        const productsQuery = this.repository.createQueryBuilder("p");
+        const productsQuery = this.repository
+            .createQueryBuilder("p")
+            .leftJoinAndSelect("p.productContent", "productContent");
 
         if (id) {
             productsQuery.andWhere("p.id = :id", {

@@ -17,6 +17,7 @@ class CreateCompanySubscriptionPlanUseCase {
         startDate,
         endDate,
         subscribeToken,
+        id
     }: ICreateCompanySubscriptionPlanDTO): Promise<CompanySubscriptionPlan> {
         if (!companyId) {
             throw new AppError("Company can't be null");
@@ -49,6 +50,7 @@ class CreateCompanySubscriptionPlanUseCase {
                 startDate,
                 endDate,
                 subscribeToken,
+                id
             });
 
         return companySubscriptionPlan;

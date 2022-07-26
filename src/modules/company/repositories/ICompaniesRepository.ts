@@ -3,6 +3,7 @@ import { Company } from "../infra/typeorm/entities/Company";
 
 interface IRequestFind {
     name?: string;
+    id?: string;
 }
 
 interface ICompaniesRepository {

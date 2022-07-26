@@ -8,8 +8,8 @@ class ListCompanyUseCase {
         private companiesRepository: ICompaniesRepository
     ) {}
 
-    async execute(name) {
-        const companies = await this.companiesRepository.find({ name });
+    async execute({ name, id }) {
+        const companies = await this.companiesRepository.find({ name, id });
 
         return companies;
     }

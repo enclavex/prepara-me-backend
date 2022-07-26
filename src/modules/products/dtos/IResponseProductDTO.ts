@@ -1,3 +1,5 @@
+import { ProductContent } from "../infra/typeorm/entities/ProductContent";
+
 interface IResponseProductDTO {
     id: string;
     name: string;
@@ -6,6 +8,7 @@ interface IResponseProductDTO {
     type: Object;
     bestSeller: Object;
     price: number;
+    productContent: ProductContent[]
 }
 
 export { IResponseProductDTO };

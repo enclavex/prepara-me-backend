@@ -1,9 +1,9 @@
 import { ICreateCompanySubscriptionPlanDTO } from "@modules/company/dtos/ICreateCompanySubscriptionPlanDTO";
-import { ICompanySubscriptionPlans } from "@modules/company/repositories/ICompanySubscriptionPlans";
+import { ICompanySubscriptionPlansRepository } from "@modules/company/repositories/ICompanySubscriptionPlansRepository";
 import { getRepository, Repository } from "typeorm";
 import { CompanySubscriptionPlan } from "../entities/CompanySubscriptionPlan";
 
-class CompanySubscriptionPlansRepository implements ICompanySubscriptionPlans {
+class CompanySubscriptionPlansRepository implements ICompanySubscriptionPlansRepository {
     private repository: Repository<CompanySubscriptionPlan>;
 
     constructor() {
@@ -16,6 +16,7 @@ class CompanySubscriptionPlansRepository implements ICompanySubscriptionPlans {
         startDate,
         endDate,
         subscribeToken,
+        id
     }: ICreateCompanySubscriptionPlanDTO): Promise<CompanySubscriptionPlan> {
         const companySubscriptionPlan = this.repository.create({
             companyId,
@@ -23,6 +24,7 @@ class CompanySubscriptionPlansRepository implements ICompanySubscriptionPlans {
             startDate,
             endDate,
             subscribeToken,
+            id
         });
 
         await this.repository.save(companySubscriptionPlan);

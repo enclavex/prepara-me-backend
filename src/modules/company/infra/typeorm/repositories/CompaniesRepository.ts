@@ -27,15 +27,30 @@ class CompaniesRepository implements ICompaniesRepository {
         return company;
     }
 
-    async find({ name }): Promise<Company[]> {
-        const companiesQuery = this.repository.createQueryBuilder("c");
+    async find({ name, id }): Promise<Company[]> {
+        const companiesQuery = this.repository
+            .createQueryBuilder("c")
+            .leftJoinAndSelect(
+                "c.companySubscriptionPlan",
+                "companySubscriptionPlans"
+            )
+            .leftJoinAndSelect(
+                "companySubscriptionPlans.subscriptionPlan",
+                "subscriptionPlans"
+            );
 
-        if (name) {
-            name = `%${name}%`;
-
-            companiesQuery.andWhere("c.name like :name", {
-                name: name,
+        if (id) {
+            companiesQuery.andWhere("c.id = :id", {
+                id: id,
             });
+        } else {
+            if (name) {
+                name = `%${name}%`;
+
+                companiesQuery.andWhere("c.name like :name", {
+                    name: name,
+                });
+            }
         }
 
         const companies = await companiesQuery.getMany();

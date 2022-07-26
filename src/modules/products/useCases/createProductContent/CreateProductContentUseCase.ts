@@ -15,6 +15,7 @@ class CreateProductContentUseCase {
     async execute({
         content,
         productId,
+        id
     }: ICreateProductContentDTO): Promise<ProductContent> {
         if (!productId) {
             throw new AppError("Product ID Can't be null");
@@ -23,6 +24,7 @@ class CreateProductContentUseCase {
         const productContent = this.productContentsRepository.create({
             content,
             productId,
+            id
         });
 
         return productContent;

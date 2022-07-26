@@ -1,3 +1,4 @@
+import { AppError } from "@shared/errors/AppError";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { RemoveProductUseCase } from "./RemoveProductUseCase";
@@ -10,7 +11,11 @@ class RemoveProductController {
             RemoveProductUseCase
         );
 
-        await removeProductUseCase.execute(id);
+        const resultRemoveProduct = await removeProductUseCase.execute(id);
+
+        if (!resultRemoveProduct) {
+            throw new AppError("Can't delete product")
+        }
 
         return response.status(200).send();
     }

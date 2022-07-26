@@ -14,16 +14,23 @@ class ProductContentsRepository implements IProductContentsRepository {
     async create({
         content,
         productId,
+        id,
     }: ICreateProductContentDTO): Promise<ProductContent> {
         const productContent = this.repository.create({
             content,
             productId,
+            id,
         });
 
         await this.repository.save(productContent);
 
         return productContent;
     }
+
+    async remove(id: string): Promise<void> {
+        this.repository.delete(id);
+    }
 }
 
 export { ProductContentsRepository };
+

@@ -17,7 +17,11 @@ class ProductContent {
     @ManyToOne(() => Product, (product) => product.productContent)
     product: Product;
 
-    constructor(content: string, productId: string) {
+    constructor(content: string, productId: string, id: string) {
+        if (id) {
+            this.id = id;
+        }
+
         if (!this.id) {
             this.id = uuidV4();
         }
@@ -28,3 +32,4 @@ class ProductContent {
 }
 
 export { ProductContent };
+
