@@ -2,8 +2,6 @@ import { SubscriptionPlan } from "@modules/products/infra/typeorm/entities/Subsc
 import {
     Column,
     Entity,
-    JoinColumn,
-    ManyToMany,
     ManyToOne,
     PrimaryColumn,
 } from "typeorm";

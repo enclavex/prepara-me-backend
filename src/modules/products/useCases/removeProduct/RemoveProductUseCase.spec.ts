@@ -2,12 +2,16 @@ import { ICreateProductDTO } from "@modules/products/dtos/ICreateProductDTO";
 import { ProductBestSellerEnum } from "@modules/products/enums/ProductBestSellerEnum";
 import { ProductStatusEnum } from "@modules/products/enums/ProductStatusEnum";
 import { ProductTypeEnum } from "@modules/products/enums/ProductTypesEnum";
+import { ProductContentsRepositoryInMemory } from "@modules/products/repositories/in-memory/ProductContentsRepositoryInMemory";
 import { ProductsRepositoryInMemory } from "@modules/products/repositories/in-memory/ProductsRepositoryInMemory";
+import { ProductsSpecialistsRepositoryInMemory } from "@modules/specialists/infra/typeorm/repositories/in-memory/ProductsSpecialistsRepositoryInMemory";
 import { CreateProductUseCase } from "../createProduct/CreateProductUseCase";
 import { ListProductUseCase } from "../listProduct/ListProductUseCase";
 import { RemoveProductUseCase } from "./RemoveProductUseCase";
 
 let productsRepositoryInMemory: ProductsRepositoryInMemory;
+let productContentsRepositoryInMemory: ProductContentsRepositoryInMemory;
+let productsSpecialistsRepositoryInMemory: ProductsSpecialistsRepositoryInMemory;
 let listProductUseCase: ListProductUseCase;
 let createProductUseCase: CreateProductUseCase;
 let removeProductUseCase: RemoveProductUseCase;
@@ -15,12 +19,18 @@ let removeProductUseCase: RemoveProductUseCase;
 describe("Remove Products", () => {
     beforeEach(() => {
         productsRepositoryInMemory = new ProductsRepositoryInMemory();
+        productContentsRepositoryInMemory =
+            new ProductContentsRepositoryInMemory();
+        productsSpecialistsRepositoryInMemory =
+            new ProductsSpecialistsRepositoryInMemory();
         listProductUseCase = new ListProductUseCase(productsRepositoryInMemory);
         createProductUseCase = new CreateProductUseCase(
             productsRepositoryInMemory
         );
         removeProductUseCase = new RemoveProductUseCase(
-            productsRepositoryInMemory
+            productsRepositoryInMemory,
+            productContentsRepositoryInMemory,
+            productsSpecialistsRepositoryInMemory
         );
     });
 
@@ -61,3 +71,4 @@ describe("Remove Products", () => {
         expect(result).toHaveLength(1);
     });
 });
+

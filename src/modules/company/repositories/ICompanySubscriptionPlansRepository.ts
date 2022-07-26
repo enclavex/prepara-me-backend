@@ -5,6 +5,7 @@ interface ICompanySubscriptionPlansRepository {
     create(
         data: ICreateCompanySubscriptionPlanDTO
     ): Promise<CompanySubscriptionPlan>;
+    remove(id: string): Promise<string>;
 }
 
 export { ICompanySubscriptionPlansRepository };

@@ -9,7 +9,7 @@ class RemoveProductContentUseCase {
     ) {}
 
     async execute(id) {
-        await this.productContentsRepository.remove(id);
+        return await this.productContentsRepository.remove(id);
     }
 }
 

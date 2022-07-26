@@ -39,7 +39,10 @@ describe("Remove Companies", () => {
 
         await removeCompanyUseCase.execute(companyCreated.id);
 
-        const result = await listCompanyUseCase.execute("");
+        const result = await listCompanyUseCase.execute({
+            name: "",
+            id: ""
+        });
 
         expect(result).toHaveLength(1);
     });

@@ -30,9 +30,11 @@ class RemoveProductUseCase {
         });
 
         products.forEach((product) => {
-            product.productContent.forEach(async (productContent) => {
-                await this.productContentsRepository.remove(productContent.id);
-            });
+            if (product.productContent) {
+                product.productContent.forEach(async (productContent) => {
+                    await this.productContentsRepository.remove(productContent.id);
+                });
+            }
         });
 
         await this.productsRepository.remove(id);

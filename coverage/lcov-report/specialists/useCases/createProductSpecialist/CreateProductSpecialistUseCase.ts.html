@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>48/48</span>
+                <span class='fraction'>53/53</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>48/48</span>
+                <span class='fraction'>53/53</span>
             </div>
         
             
@@ -110,7 +110,13 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -133,6 +139,8 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -155,63 +163,73 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { IProductsRepository } from "@modules/products/repositories/IProductsRepository"
-import { ProductSpecialist } from "@modules/specialists/infra/typeorm/entities/ProductSpecialist"
-import { IProductsSpecialistsRepository } from "@modules/specialists/repositories/IProductsSpecialistsRepository"
-import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpecialistsRepository"
-import { inject, injectable } from "tsyringe"
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IProductsRepository } from "@modules/products/repositories/IProductsRepository";
+import { ProductSpecialist } from "@modules/specialists/infra/typeorm/entities/ProductSpecialist";
+import { IProductsSpecialistsRepository } from "@modules/specialists/repositories/IProductsSpecialistsRepository";
+import { ISpecialistsRepository } from "@modules/specialists/repositories/ISpecialistsRepository";
+import { inject, injectable } from "tsyringe";
 &nbsp;
 interface IRequest {
-    products: string[],
-    specialistId: string
+    products: string[];
+    specialistId: string;
 }
 &nbsp;
 @injectable()
 class CreateProductSpecialistUseCase {
     constructor(
-        @inject("ProductSpecialistRepository")
-        private productSpecialistRepository: IProductsSpecialistsRepository,
+        @inject("ProductsSpecialistsRepository")
+        private productsSpecialistsRepository: IProductsSpecialistsRepository,
         @inject("ProductsRepository")
         private productsRepository: IProductsRepository,
-        @inject("SpecialistRepository")
-        private specialistRepository: ISpecialistsRepository
-    ) { }
+        @inject("SpecialistsRepository")
+        private specialistsRepository: ISpecialistsRepository
+    ) {}
 &nbsp;
     async execute({
         products,
-        specialistId
+        specialistId,
     }: IRequest): Promise&lt;ProductSpecialist[]&gt; {
-        const specialist = await this.specialistRepository.findById(specialistId);
-        
+        const specialist = await this.specialistsRepository.findById(
+            specialistId
+        );
+&nbsp;
         const productsSpecialist = products.map(async (productId) =&gt; {
             const product = await this.productsRepository.findById(productId);
 &nbsp;
-            const productSpecialist = await this.productSpecialistRepository.create({
-                product,
-                specialist
-            })
+            const productSpecialist =
+                await this.productsSpecialistsRepository.create({
+                    product,
+                    specialist,
+                });
 &nbsp;
-            return productSpecialist
-        })
+            return productSpecialist;
+        });
 &nbsp;
-        const productsSpecialistResolved = Promise.all(productsSpecialist).then((productsSpecialist) =&gt; {
-            return productsSpecialist
-        })
+        const productsSpecialistResolved = Promise.all(productsSpecialist).then(
+            (productsSpecialist) =&gt; {
+                return productsSpecialist;
+            }
+        );
 &nbsp;
-        return productsSpecialistResolved
+        return productsSpecialistResolved;
     }
 }
 &nbsp;
-export { CreateProductSpecialistUseCase }</pre></td></tr></table></pre>
+export { CreateProductSpecialistUseCase };
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Jul 23 2022 00:39:43 GMT-0300 (Horário Padrão de Brasília)
+                at Mon Jul 25 2022 23:42:26 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

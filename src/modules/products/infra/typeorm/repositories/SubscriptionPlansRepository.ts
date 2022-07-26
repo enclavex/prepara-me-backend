@@ -43,7 +43,15 @@ class SubscriptionPlansRepository implements ISubscriptionPlansRepository {
         type,
         id,
     }): Promise<IResponseSubscriptionPlanDTO[]> {
-        const subscriptionPlansQuery = this.repository.createQueryBuilder("sp");
+        const subscriptionPlansQuery = this.repository.createQueryBuilder("sp")
+        .leftJoinAndSelect(
+            "sp.subscriptionPlanProduct",
+            "subscriptionPlanProducts"
+        )
+        .leftJoinAndSelect(
+            "subscriptionPlanProducts.product",
+            "products"
+        );
 
         if (id) {
             subscriptionPlansQuery.andWhere("sp.id = :id", {

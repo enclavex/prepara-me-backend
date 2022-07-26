@@ -49,7 +49,7 @@ class Product {
     productSpecialist: ProductSpecialist[]
 
     @OneToMany(() => SubscriptionPlanProduct, (subscriptionPlanProduct) => subscriptionPlanProduct.product)
-    subscriptionPlanProduct: SubscriptionPlanProduct[];
+    public subscriptionPlanProduct!: SubscriptionPlanProduct[];
 
     constructor(
         name: string,

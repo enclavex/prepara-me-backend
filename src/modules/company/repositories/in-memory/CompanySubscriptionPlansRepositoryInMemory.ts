@@ -28,6 +28,14 @@ class CompanySubscriptionPlansRepositoryInMemory
 
         return companySubscriptionPlan;
     }
+
+    async remove(id: string): Promise<string> {
+        this.companySubscriptionPlans = this.companySubscriptionPlans.filter((companySubscriptionPlan) => {
+            return id !== companySubscriptionPlan.id;
+        });
+
+        return id
+    }
 }
 
 export { CompanySubscriptionPlansRepositoryInMemory };

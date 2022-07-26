@@ -9,16 +9,18 @@ class SubscriptionPlanMap {
         price,
         status,
         type,
+        subscriptionPlanProduct
     }: SubscriptionPlan): IResponseSubscriptionPlanDTO {
-        const statusMaped = status === "ACTIVE" ? "Ativo" : "Inativo";
-        const typeMaped = type === "SITE" ? "Site" : "Empresa";
+        const statusMapped = status === "ACTIVE" ? "Ativo" : "Inativo";
+        const typeMapped = type === "SITE" ? "Site" : "Empresa";
 
         const subscriptionPlan = instanceToInstance({
             id,
             name,
             price,
-            status: statusMaped,
-            type: typeMaped,
+            status: { label: statusMapped, value: status },
+            type: { label: typeMapped, value: type },
+            subscriptionPlanProduct
         });
 
         return subscriptionPlan;

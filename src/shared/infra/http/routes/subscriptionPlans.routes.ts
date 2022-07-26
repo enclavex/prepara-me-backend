@@ -5,14 +5,12 @@ import { Router } from "express";
 import { ensuredAuthenticated } from "../middlewares/ensureAuthenticated";
 import { ensureAdmin } from "../middlewares/ensureAdmin";
 import { RemoveSubscriptionPlanController } from "@modules/products/useCases/removeSubscriptionPlan/RemoveSubscriptionPlanController";
-import { GetSubscriptionPlanByIdController } from "@modules/products/useCases/getSubscriptionPlanById/GetSubscriptionPlanByIdController";
 
 const subscriptionPlansRoutes = Router();
 
 const createSubscriptionPlanController = new CreateSubscriptionPlanController();
 const createSubscriptionPlanProductController = new CreateSubscriptionPlanProductController();
 const listSubscriptionPlanController = new ListSubscriptionPlanController();
-const getSubscriptionPlanByIdController = new GetSubscriptionPlanByIdController();
 const removeSubscriptionPlanController = new RemoveSubscriptionPlanController();
 
 subscriptionPlansRoutes.post(
@@ -33,7 +31,7 @@ subscriptionPlansRoutes.get(
     "/:id",
     ensuredAuthenticated,
     ensureAdmin,
-    getSubscriptionPlanByIdController.handle
+    listSubscriptionPlanController.handle
 );
 
 subscriptionPlansRoutes.delete(
@@ -44,7 +42,7 @@ subscriptionPlansRoutes.delete(
 );
 
 subscriptionPlansRoutes.post(
-    "/products",
+    "/:id/products",
     ensuredAuthenticated,
     ensureAdmin,
     createSubscriptionPlanProductController.handle

@@ -4,8 +4,9 @@ import { CreateSubscriptionPlanProductUseCase } from "./CreateSubscriptionPlanPr
 
 class CreateSubscriptionPlanProductController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { subscriptionPlanId, productId, availableQuantity } =
-            request.body;
+        const { productId, availableQuantity } = request.body;
+
+        const { id: subscriptionPlanId } = request.params;
 
         const createSubscriptionPlanProductUseCase = container.resolve(
             CreateSubscriptionPlanProductUseCase
@@ -23,3 +24,4 @@ class CreateSubscriptionPlanProductController {
 }
 
 export { CreateSubscriptionPlanProductController };
+

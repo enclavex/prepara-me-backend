@@ -3,7 +3,7 @@ import { ProductContent } from "../infra/typeorm/entities/ProductContent";
 
 interface IProductContentsRepository {
     create(data: ICreateProductContentDTO): Promise<ProductContent>;
-    remove(id: string): Promise<void>;
+    remove(id: string): Promise<string>;
 }
 
 export { IProductContentsRepository };

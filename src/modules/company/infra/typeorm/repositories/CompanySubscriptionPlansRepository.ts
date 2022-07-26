@@ -3,7 +3,9 @@ import { ICompanySubscriptionPlansRepository } from "@modules/company/repositori
 import { getRepository, Repository } from "typeorm";
 import { CompanySubscriptionPlan } from "../entities/CompanySubscriptionPlan";
 
-class CompanySubscriptionPlansRepository implements ICompanySubscriptionPlansRepository {
+class CompanySubscriptionPlansRepository
+    implements ICompanySubscriptionPlansRepository
+{
     private repository: Repository<CompanySubscriptionPlan>;
 
     constructor() {
@@ -16,7 +18,7 @@ class CompanySubscriptionPlansRepository implements ICompanySubscriptionPlansRep
         startDate,
         endDate,
         subscribeToken,
-        id
+        id,
     }: ICreateCompanySubscriptionPlanDTO): Promise<CompanySubscriptionPlan> {
         const companySubscriptionPlan = this.repository.create({
             companyId,
@@ -24,12 +26,18 @@ class CompanySubscriptionPlansRepository implements ICompanySubscriptionPlansRep
             startDate,
             endDate,
             subscribeToken,
-            id
+            id,
         });
 
         await this.repository.save(companySubscriptionPlan);
 
         return companySubscriptionPlan;
+    }
+
+    async remove(id: string): Promise<string> {
+        this.repository.delete(id);
+
+        return id
     }
 }
 

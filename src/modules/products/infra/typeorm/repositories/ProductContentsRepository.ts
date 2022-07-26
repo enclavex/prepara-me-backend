@@ -27,8 +27,10 @@ class ProductContentsRepository implements IProductContentsRepository {
         return productContent;
     }
 
-    async remove(id: string): Promise<void> {
+    async remove(id: string): Promise<string> {
         this.repository.delete(id);
+
+        return id
     }
 }
 

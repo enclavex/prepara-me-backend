@@ -18,10 +18,12 @@ class ProductContentsRepositoryInMemory implements IProductContentsRepository {
         return productContent;
     }
 
-    async remove(id: string): Promise<void> {
+    async remove(id: string): Promise<string> {
         this.productContents = this.productContents.filter((productContent) => {
             return id !== productContent.id;
         });
+
+        return id
     }
 }
 

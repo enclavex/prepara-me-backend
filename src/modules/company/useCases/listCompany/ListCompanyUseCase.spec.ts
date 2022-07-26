@@ -1,6 +1,5 @@
 import { ICreateCompanyDTO } from "@modules/company/dtos/ICreateCompanyDTO";
 import { CompaniesRepositoryInMemory } from "@modules/company/repositories/in-memory/CompaniesRepositoryInMemory";
-import { ICreateSubscriptionPlanDTO } from "@modules/products/dtos/ICreateSubscriptionPlanDTO";
 import { CreateCompanyUseCase } from "../createCompany/CreateCompanyUseCase";
 import { ListCompanyUseCase } from "./ListCompanyUseCase";
 
@@ -32,7 +31,10 @@ describe("List Companies", () => {
 
         await createCompanyUseCase.execute(company2);
 
-        const result = await listCompanyUseCase.execute("");
+        const result = await listCompanyUseCase.execute({
+            name: "",
+            id: ""
+        });
 
         expect(result).toHaveLength(2);
     });
@@ -50,7 +52,10 @@ describe("List Companies", () => {
 
         await createCompanyUseCase.execute(company2);
 
-        const result = await listCompanyUseCase.execute("One");
+        const result = await listCompanyUseCase.execute({
+            id: "",
+            name: "Two"
+        });
 
         expect(result).toHaveLength(1);
     });
