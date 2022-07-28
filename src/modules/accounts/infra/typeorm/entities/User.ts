@@ -1,6 +1,6 @@
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
-import { SpecialistScheduleAvailable } from "@modules/specialists/infra/typeorm/entities/SpecialistScheduleAvailable";
+import { SpecialistSchedule } from "@modules/specialists/infra/typeorm/entities/SpecialistSchedule";
 import { Expose } from "class-transformer";
 import { Entity, PrimaryColumn, Column, CreateDateColumn, OneToMany } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
@@ -45,8 +45,8 @@ class User {
     @CreateDateColumn()
     created_at: Date;
 
-    @OneToMany(() => SpecialistScheduleAvailable, specialistScheduleAvailable => specialistScheduleAvailable.specialist)
-    specialistScheduleAvailable: SpecialistScheduleAvailable[];
+    @OneToMany(() => SpecialistSchedule, specialistSchedule => specialistSchedule.specialist)
+    specialistSchedule: SpecialistSchedule[];
 
     @Expose({ name: "avatarUrl" })
     avatarUrl(): string {

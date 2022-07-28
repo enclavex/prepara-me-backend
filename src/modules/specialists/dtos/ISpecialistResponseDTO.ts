@@ -1,12 +1,12 @@
 import { IUserResponseDTO } from "@modules/accounts/dtos/IUserResponseDTO";
-import { SpecialistScheduleAvailable } from "../infra/typeorm/entities/SpecialistScheduleAvailable";
+import { SpecialistSchedule } from "../infra/typeorm/entities/SpecialistSchedule";
 
 interface ISpecialistResponseDTO {
     id: string;
     name: string;
     bio: string;
     linkedinUrl: string;
-    specialistScheduleAvailable: SpecialistScheduleAvailable[];
+    specialistSchedule: SpecialistSchedule[];
     status,
     user: IUserResponseDTO
 }

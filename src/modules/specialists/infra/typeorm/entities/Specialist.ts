@@ -10,7 +10,7 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { ProductSpecialist } from "./ProductSpecialist";
-import { SpecialistScheduleAvailable } from "./SpecialistScheduleAvailable";
+import { SpecialistSchedule } from "./SpecialistSchedule";
 
 @Entity("specialists")
 class Specialist {
@@ -47,10 +47,10 @@ class Specialist {
     public productSpecialist!: ProductSpecialist[];
 
     @OneToMany(
-        () => SpecialistScheduleAvailable,
-        (specialistScheduleAvailable) => specialistScheduleAvailable.specialist
+        () => SpecialistSchedule,
+        (specialistSchedule) => specialistSchedule.specialist
     )
-    specialistScheduleAvailable: SpecialistScheduleAvailable[];
+    specialistSchedule: SpecialistSchedule[];
 
     constructor(
         name: string,

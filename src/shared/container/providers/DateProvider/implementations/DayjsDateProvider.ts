@@ -6,6 +6,16 @@ import { IDateProvider } from "../IDateProvider";
 dayjs.extend(utc);
 
 class DayjsDateProvider implements IDateProvider {
+    getDateTimeZone(date: Date): Date {
+        const timeZone = parseInt(process.env.TIMEZONE)
+
+        return this.addHours(timeZone, this.getDate(date))
+    }
+
+    getDate(date: Date): Date {
+        return dayjs(date).toDate()
+    }
+
     isBetween(dateVerified: Date, dateStart: Date, dateEnd: Date): Boolean {
         return dateVerified >= dateStart && dateVerified <= dateEnd
     }
@@ -39,8 +49,8 @@ class DayjsDateProvider implements IDateProvider {
         return dayjs(start_date).isBefore(end_date);
     }
 
-    addHours(hours: number): Date {
-        return dayjs().add(hours, "hour").toDate();
+    addHours(hours: number, date?: Date): Date {
+        return dayjs(date).add(hours, "hour").toDate();
     }
 
     addDays(days: number, date?: Date): Date {
@@ -68,6 +78,8 @@ class DayjsDateProvider implements IDateProvider {
             "days"
         );
     }
+
+    
 }
 
 export { DayjsDateProvider };

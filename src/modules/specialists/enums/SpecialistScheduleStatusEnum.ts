@@ -1,4 +1,4 @@
-export enum SpecialistScheduleAvailableStatusEnum {
+export enum SpecialistScheduleStatusEnum {
     AVAILABLE = "AVAILABLE",
     UNAVAILABLE = "UNAVAILABLE"
 }

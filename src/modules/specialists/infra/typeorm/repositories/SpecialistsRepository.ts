@@ -52,9 +52,9 @@ class SpecialistsRepository implements ISpecialistsRepository {
 
         if (dateBegin && dateEnd) {
             specialistsQuery.leftJoinAndSelect(
-                "s.specialistScheduleAvailable",
-                "ssa",
-                "ssa.dateSchedule between :dateBegin and :dateEnd",
+                "s.specialistSchedule",
+                "ss",
+                "ss.dateSchedule between :dateBegin and :dateEnd",
                 {
                     dateBegin,
                     dateEnd,
@@ -88,8 +88,8 @@ class SpecialistsRepository implements ISpecialistsRepository {
             .createQueryBuilder("s")
             .leftJoinAndSelect("s.user", "u")
             .leftJoinAndSelect(
-                "s.specialistScheduleAvailable",
-                "ssa"
+                "s.specialistSchedule",
+                "ss"
             )
             .leftJoinAndSelect(
                 "s.productSpecialist",
@@ -131,8 +131,6 @@ class SpecialistsRepository implements ISpecialistsRepository {
         const specialistsMapped = specialists.map((specialist) => {
             return SpecialistMap.toDTO(specialist);
         });
-
-        console.log(specialistsMapped)
 
         return specialistsMapped;
     }
