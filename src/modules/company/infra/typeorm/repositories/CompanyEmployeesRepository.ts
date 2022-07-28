@@ -1,9 +1,9 @@
 import { ICreateCompanyEmployeeDTO } from "@modules/company/dtos/ICreateCompanyEmployeeDTO";
-import { ICompanyEmployees } from "@modules/company/repositories/ICompanyEmployees";
+import { ICompanyEmployeesRepository } from "@modules/company/repositories/ICompanyEmployeesRepository";
 import { getRepository, Repository } from "typeorm";
 import { CompanyEmployee } from "../entities/CompanyEmployee";
 
-class CompanyEmployeesRepository implements ICompanyEmployees {
+class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
     private repository: Repository<CompanyEmployee>;
 
     constructor() {
@@ -16,6 +16,9 @@ class CompanyEmployeesRepository implements ICompanyEmployees {
         name,
         subscribeToken,
         userId,
+        phone,
+        email,
+        id,
     }: ICreateCompanyEmployeeDTO): Promise<CompanyEmployee> {
         const companyEmployee = this.repository.create({
             companyId,
@@ -23,6 +26,9 @@ class CompanyEmployeesRepository implements ICompanyEmployees {
             name,
             subscribeToken,
             userId,
+            phone,
+            email,
+            id,
         });
 
         await this.repository.save(companyEmployee);
@@ -30,9 +36,67 @@ class CompanyEmployeesRepository implements ICompanyEmployees {
         return companyEmployee;
     }
 
-    async findByDocumentId(documentId: string): Promise<CompanyEmployee> {
-        const companyEmployee = await this.repository.findOne(documentId);
-        return companyEmployee;
+    async find({
+        name,
+        documentId,
+        userId,
+        phone,
+        email,
+        id,
+    }): Promise<CompanyEmployee[]> {
+        const companyEmployeesQuery = this.repository
+            .createQueryBuilder("ce")
+            .leftJoinAndSelect("ce.user", "u")
+            .leftJoinAndSelect("ce.company", "c");
+
+        if (id) {
+            companyEmployeesQuery.andWhere("ce.id = :id", {
+                id: id,
+            });
+        } else {
+            if (name) {
+                name = `%${name}%`;
+
+                companyEmployeesQuery.andWhere("ce.name like :name", {
+                    name: name,
+                });
+            }
+
+            if (documentId) {
+                companyEmployeesQuery.andWhere("ce.documentId = :documentId", {
+                    documentId: documentId,
+                });
+            }
+
+            if (userId) {
+                companyEmployeesQuery.andWhere("ce.userId = :userId", {
+                    documentId: userId,
+                });
+            }
+
+            if (phone) {
+                companyEmployeesQuery.andWhere("ce.phone = :phone", {
+                    documentId: phone,
+                });
+            }
+
+            if (email) {
+                companyEmployeesQuery.andWhere("ce.email = :email", {
+                    documentId: email,
+                });
+            }
+        }
+        
+        const companyEmployees = await companyEmployeesQuery.getMany();
+
+
+        return companyEmployees;
+    }
+
+    async remove(id: string): Promise<string> {
+        this.repository.delete(id);
+
+        return id
     }
 }
 

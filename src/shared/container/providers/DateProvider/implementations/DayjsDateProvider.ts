@@ -7,8 +7,7 @@ dayjs.extend(utc);
 
 class DayjsDateProvider implements IDateProvider {
     getDateTimeZone(date: Date): Date {
-        const timeZone = parseInt(process.env.TIMEZONE)
-
+        const timeZone = parseInt(process.env.TIMEZONE) || 0
         return this.addHours(timeZone, this.getDate(date))
     }
 

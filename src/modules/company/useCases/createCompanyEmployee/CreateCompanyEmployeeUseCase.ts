@@ -17,6 +17,9 @@ class CreateCompanyEmployeeUseCase {
         name,
         subscribeToken,
         userId,
+        phone,
+        email,
+        id,
     }: ICreateCompanyEmployeeDTO): Promise<CompanyEmployee> {
         if (!name) {
             throw new AppError("Name can't be null");
@@ -35,11 +38,14 @@ class CreateCompanyEmployeeUseCase {
         }
 
         const companyEmployee = await this.companyEmployeesRepository.create({
-            name,
             companyId,
             documentId,
-            subscribeToken,
+            name,
             userId,
+            subscribeToken,
+            phone,
+            email,
+            id,
         });
 
         return companyEmployee;
