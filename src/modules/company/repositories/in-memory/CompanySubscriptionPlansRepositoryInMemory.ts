@@ -13,7 +13,7 @@ class CompanySubscriptionPlansRepositoryInMemory
         startDate,
         subscribeToken,
         subscriptionPlanId,
-        id
+        id,
     }: ICreateCompanySubscriptionPlanDTO): Promise<CompanySubscriptionPlan> {
         const companySubscriptionPlan = new CompanySubscriptionPlan(
             companyId,
@@ -29,12 +29,63 @@ class CompanySubscriptionPlansRepositoryInMemory
         return companySubscriptionPlan;
     }
 
-    async remove(id: string): Promise<string> {
-        this.companySubscriptionPlans = this.companySubscriptionPlans.filter((companySubscriptionPlan) => {
-            return id !== companySubscriptionPlan.id;
-        });
+    async find({
+        companyId,
+        subscriptionPlanId,
+        subscribeToken,
+        id,
+    }): Promise<CompanySubscriptionPlan[]> {
+        let companySubscriptionPlans = this.companySubscriptionPlans;
 
-        return id
+        if (id) {
+            companySubscriptionPlans = companySubscriptionPlans.filter(
+                (companySubscriptionPlan) => {
+                    return companySubscriptionPlan.id === id;
+                }
+            );
+        } else {
+            if (companyId) {
+                companySubscriptionPlans = companySubscriptionPlans.filter(
+                    (companySubscriptionPlan) => {
+                        return companySubscriptionPlan.companyId === companyId;
+                    }
+                );
+            }
+
+            if (subscriptionPlanId) {
+                companySubscriptionPlans = companySubscriptionPlans.filter(
+                    (companySubscriptionPlan) => {
+                        return (
+                            companySubscriptionPlan.subscriptionPlanId ===
+                            subscriptionPlanId
+                        );
+                    }
+                );
+            }
+
+            if (subscribeToken) {
+                companySubscriptionPlans = companySubscriptionPlans.filter(
+                    (companySubscriptionPlan) => {
+                        return (
+                            companySubscriptionPlan.subscribeToken ===
+                            subscribeToken
+                        );
+                    }
+                );
+            }
+        }
+
+        return companySubscriptionPlans;
+    }
+
+    async remove(id: string): Promise<string> {
+        this.companySubscriptionPlans = this.companySubscriptionPlans.filter(
+            (companySubscriptionPlan) => {
+                return id !== companySubscriptionPlan.id;
+            }
+        );
+
+        return id;
     }
 }
 

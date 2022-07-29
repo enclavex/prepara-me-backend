@@ -11,6 +11,7 @@ interface ICreateUserDTO {
     active: UserStatusEnum;
     id?: string;
     avatar?: string;
+    subscribeToken?: string;
 }
 
 export { ICreateUserDTO };

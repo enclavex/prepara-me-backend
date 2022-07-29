@@ -1,23 +1,38 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
+import { UserProductsAvailableRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserProductsAvailableRepositoryInMemory";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
+import { CompanyEmployeesRepositoryInMemory } from "@modules/company/repositories/in-memory/CompanyEmployeesRepositoryInMemory";
+import { CompanySubscriptionPlansRepositoryInMemory } from "@modules/company/repositories/in-memory/CompanySubscriptionPlansRepositoryInMemory";
+import { SubscriptionPlansRepositoryInMemory } from "@modules/products/repositories/in-memory/SubscriptionPlansRepositoryInMemory";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { ListUserUseCase } from "./ListUserUseCase";
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let listUserUseCase: ListUserUseCase;
 let createUserUseCase: CreateUserUseCase;
+let companySubscriptionPlansRepository: CompanySubscriptionPlansRepositoryInMemory;
+let companyEmployeesRepository: CompanyEmployeesRepositoryInMemory;
+let subscriptionPlansRepository: SubscriptionPlansRepositoryInMemory;
+let userProductsAvailableRepository: UserProductsAvailableRepositoryInMemory;
 
 describe("List User", () => {
     beforeEach(() => {
-        usersRepositoryInMemory =
-            new UsersRepositoryInMemory();
-        listUserUseCase = new ListUserUseCase(
-            usersRepositoryInMemory
-        );
+        usersRepositoryInMemory = new UsersRepositoryInMemory();
+        listUserUseCase = new ListUserUseCase(usersRepositoryInMemory);
+        companySubscriptionPlansRepository =
+            new CompanySubscriptionPlansRepositoryInMemory();
+        companyEmployeesRepository = new CompanyEmployeesRepositoryInMemory();
+        subscriptionPlansRepository = new SubscriptionPlansRepositoryInMemory();
+        userProductsAvailableRepository =
+            new UserProductsAvailableRepositoryInMemory();
         createUserUseCase = new CreateUserUseCase(
-            usersRepositoryInMemory
+            usersRepositoryInMemory,
+            companySubscriptionPlansRepository,
+            companyEmployeesRepository,
+            subscriptionPlansRepository,
+            userProductsAvailableRepository
         );
     });
 
@@ -29,7 +44,7 @@ describe("List User", () => {
             email: "user@user.com",
             password: "123",
             type: UserTypeEnum.USER,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user1);
@@ -41,7 +56,7 @@ describe("List User", () => {
             email: "user2@user.com",
             password: "123",
             type: UserTypeEnum.USER,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user2);
@@ -51,7 +66,7 @@ describe("List User", () => {
             id: "",
             name: "",
             status: "",
-            type: ""
+            type: "",
         });
 
         expect(result).toHaveLength(2);
@@ -65,7 +80,7 @@ describe("List User", () => {
             email: "user@user.com",
             password: "123",
             type: UserTypeEnum.USER,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user1);
@@ -77,7 +92,7 @@ describe("List User", () => {
             email: "user2@user.com",
             password: "123",
             type: UserTypeEnum.USER,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user2);
@@ -87,7 +102,7 @@ describe("List User", () => {
             id: "",
             name: "One",
             status: "",
-            type: ""
+            type: "",
         });
 
         expect(result).toHaveLength(1);
@@ -101,7 +116,7 @@ describe("List User", () => {
             email: "user@user.com",
             password: "123",
             type: UserTypeEnum.USER,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user1);
@@ -113,7 +128,7 @@ describe("List User", () => {
             email: "user2@user.com",
             password: "123",
             type: UserTypeEnum.USER,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user2);
@@ -123,7 +138,7 @@ describe("List User", () => {
             id: "",
             name: "",
             status: "",
-            type: ""
+            type: "",
         });
 
         expect(result).toHaveLength(1);
@@ -137,7 +152,7 @@ describe("List User", () => {
             email: "user@user.com",
             password: "123",
             type: UserTypeEnum.USER,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user1);
@@ -149,7 +164,7 @@ describe("List User", () => {
             email: "user2@user.com",
             password: "123",
             type: UserTypeEnum.USER,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user2);
@@ -159,7 +174,7 @@ describe("List User", () => {
             id: "",
             name: "",
             status: UserStatusEnum.INACTIVE,
-            type: ""
+            type: "",
         });
 
         expect(result).toHaveLength(1);
@@ -173,7 +188,7 @@ describe("List User", () => {
             email: "user@user.com",
             password: "123",
             type: UserTypeEnum.ADMIN,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user1);
@@ -185,7 +200,7 @@ describe("List User", () => {
             email: "user2@user.com",
             password: "123",
             type: UserTypeEnum.USER,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user2);
@@ -195,7 +210,7 @@ describe("List User", () => {
             id: "",
             name: "",
             status: "",
-            type: UserTypeEnum.USER
+            type: UserTypeEnum.USER,
         });
 
         expect(result).toHaveLength(1);
@@ -209,7 +224,7 @@ describe("List User", () => {
             email: "user@user.com",
             password: "123",
             type: UserTypeEnum.ADMIN,
-            username: "User One"
+            username: "User One",
         };
 
         await createUserUseCase.execute(user1);
@@ -221,7 +236,7 @@ describe("List User", () => {
             email: "user2@user.com",
             password: "123",
             type: UserTypeEnum.USER,
-            username: "User One"
+            username: "User One",
         };
 
         const userCreated = await createUserUseCase.execute(user2);
@@ -231,9 +246,10 @@ describe("List User", () => {
             id: userCreated.id,
             name: "",
             status: "",
-            type: ""
+            type: "",
         });
 
         expect(result).toHaveLength(1);
     });
 });
+

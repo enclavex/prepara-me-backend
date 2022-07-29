@@ -6,12 +6,24 @@ import { inject, injectable } from "tsyringe";
 
 import { AppError } from "@shared/errors/AppError";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
+import { ICompanySubscriptionPlansRepository } from "@modules/company/repositories/ICompanySubscriptionPlansRepository";
+import { ISubscriptionPlansRepository } from "@modules/products/repositories/ISubscriptionPlansRepository";
+import { IUserProductsAvailableRepository } from "@modules/accounts/repositories/IUserProductsAvailableRepository";
+import { ICompanyEmployeesRepository } from "@modules/company/repositories/ICompanyEmployeesRepository";
 
 @injectable()
 class CreateUserUseCase {
     constructor(
         @inject("UsersRepository")
-        private usersRepository: IUsersRepository
+        private usersRepository: IUsersRepository,
+        @inject("CompanySubscriptionPlansRepository")
+        private companySubscriptionPlansRepository: ICompanySubscriptionPlansRepository,
+        @inject("CompanyEmployeesRepository")
+        private companyEmployeesRepository: ICompanyEmployeesRepository,
+        @inject("SubscriptionPlansRepository")
+        private subscriptionPlansRepository: ISubscriptionPlansRepository,
+        @inject("UserProductsAvailableRepository")
+        private userProductsAvailableRepository: IUserProductsAvailableRepository
     ) {}
 
     async execute({
@@ -21,7 +33,8 @@ class CreateUserUseCase {
         password,
         documentId,
         type,
-        active
+        active,
+        subscribeToken,
     }: ICreateUserDTO): Promise<User> {
         const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
@@ -58,11 +71,60 @@ class CreateUserUseCase {
             password: passwordHash,
             documentId,
             type,
-            active
+            active,
         });
+
+        if (subscribeToken && user && user.id) {
+            const companySubscriptionPlans =
+                await this.companySubscriptionPlansRepository.find({
+                    subscribeToken,
+                });
+
+            if (companySubscriptionPlans && companySubscriptionPlans[0].id) {
+                let companyEmployee =
+                    await this.companyEmployeesRepository.find({
+                        documentId,
+                    });
+
+                if (!(companyEmployee.length > 0)) {
+                    companyEmployee =
+                        await this.companyEmployeesRepository.find({
+                            email,
+                        });
+                }
+
+                if (companyEmployee.length > 0) {
+                    companyEmployee[0].userId = user.id;
+
+                    this.companyEmployeesRepository.create(companyEmployee[0]);
+
+                    const subscriptionPlan =
+                        await this.subscriptionPlansRepository.find({
+                            id: companySubscriptionPlans[0].subscriptionPlanId,
+                        });
+
+                    if (subscriptionPlan && subscriptionPlan[0]) {
+                        subscriptionPlan[0].subscriptionPlanProduct.forEach(
+                            async (subscriptionPlanProduct) => {
+                                await this.userProductsAvailableRepository.create(
+                                    {
+                                        availableQuantity:
+                                            subscriptionPlanProduct.availableQuantity,
+                                        productId:
+                                            subscriptionPlanProduct.product.id,
+                                        userId: user.id,
+                                    }
+                                );
+                            }
+                        );
+                    }
+                }
+            }
+        }
 
         return user;
     }
 }
 
 export { CreateUserUseCase };
+

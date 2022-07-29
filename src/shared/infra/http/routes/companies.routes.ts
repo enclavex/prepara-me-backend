@@ -4,6 +4,7 @@ import { ensureAdmin } from "../middlewares/ensureAdmin";
 import { CreateCompanyEmployeeController } from "@modules/company/useCases/createCompanyEmployee/CreateCompanyEmployeeController";
 import { ListCompanyEmployeeController } from "@modules/company/useCases/listCompanyEmployee/ListCompanyEmployeeController";
 import { CreateCompanySubscriptionPlanController } from "@modules/company/useCases/createCompanySubscriptionPlan/CreateCompanySubscriptionPlanController";
+import { ListCompanySubscriptionPlanController } from "@modules/company/useCases/listCompanySubscriptionPlan/ListCompanySubscriptionPlanController";
 import { RemoveCompanySubscriptionPlanController } from "@modules/company/useCases/removeCompanySubscriptionPlan/RemoveCompanySubscriptionPlanController";
 import { ListCompanyController } from "@modules/company/useCases/listCompany/ListCompanyController";
 import { CreateCompanyController } from "@modules/company/useCases/createCompany/CreateCompanyController";
@@ -50,6 +51,22 @@ companiesRoutes.post(
     ensuredAuthenticated,
     ensureAdmin,
     createCompanySubscriptionPlanController.handle
+);
+
+const listCompanySubscriptionPlanController =
+    new ListCompanySubscriptionPlanController();
+companiesRoutes.get(
+    "/subscriptionPlans",
+    ensuredAuthenticated,
+    ensureAdmin,
+    listCompanySubscriptionPlanController.handle
+);
+
+companiesRoutes.get(
+    "/subscriptionPlans/:id",
+    ensuredAuthenticated,
+    ensureAdmin,
+    listCompanySubscriptionPlanController.handle
 );
 
 const removeCompanySubscriptionPlanController =

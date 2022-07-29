@@ -1,8 +1,12 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
+import { UserProductsAvailableRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserProductsAvailableRepositoryInMemory";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 import { UserTokensRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserTokensRepositoryInMemory";
+import { CompanyEmployeesRepositoryInMemory } from "@modules/company/repositories/in-memory/CompanyEmployeesRepositoryInMemory";
+import { CompanySubscriptionPlansRepositoryInMemory } from "@modules/company/repositories/in-memory/CompanySubscriptionPlansRepositoryInMemory";
+import { SubscriptionPlansRepositoryInMemory } from "@modules/products/repositories/in-memory/SubscriptionPlansRepositoryInMemory";
 
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { AppError } from "@shared/errors/AppError";
@@ -17,12 +21,21 @@ let resetPasswordUserUseCase: ResetPasswordUserUseCase;
 let dateProvider: DayjsDateProvider;
 let userTokensRepositoryinMemory: UserTokensRepositoryInMemory;
 let authenticateUserUseCase: AuthenticateUserUseCase;
+let companySubscriptionPlansRepository: CompanySubscriptionPlansRepositoryInMemory;
+let companyEmployeesRepository: CompanyEmployeesRepositoryInMemory;
+let subscriptionPlansRepository: SubscriptionPlansRepositoryInMemory;
+let userProductsAvailableRepository: UserProductsAvailableRepositoryInMemory;
 
 describe("Reset Password", () => {
     beforeEach(() => {
         dateProvider = new DayjsDateProvider();
         usersRepositoryInMemory = new UsersRepositoryInMemory();
-        createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
+        createUserUseCase = new CreateUserUseCase(
+            usersRepositoryInMemory,
+            companySubscriptionPlansRepository,
+            companyEmployeesRepository,
+            subscriptionPlansRepository,
+            userProductsAvailableRepository)
         userTokensRepositoryinMemory = new UserTokensRepositoryInMemory();
         resetPasswordUserUseCase = new ResetPasswordUserUseCase(
             userTokensRepositoryinMemory,

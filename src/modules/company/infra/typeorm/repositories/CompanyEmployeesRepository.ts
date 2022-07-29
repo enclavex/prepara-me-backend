@@ -70,23 +70,23 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
 
             if (userId) {
                 companyEmployeesQuery.andWhere("ce.userId = :userId", {
-                    documentId: userId,
+                    userId: userId,
                 });
             }
 
             if (phone) {
                 companyEmployeesQuery.andWhere("ce.phone = :phone", {
-                    documentId: phone,
+                    phone: phone,
                 });
             }
 
             if (email) {
                 companyEmployeesQuery.andWhere("ce.email = :email", {
-                    documentId: email,
+                    email: email,
                 });
             }
         }
-        
+
         const companyEmployees = await companyEmployeesQuery.getMany();
 
 

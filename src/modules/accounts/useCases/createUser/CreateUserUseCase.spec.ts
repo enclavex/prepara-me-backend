@@ -1,7 +1,11 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
+import { UserProductsAvailableRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserProductsAvailableRepositoryInMemory";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
+import { CompanyEmployeesRepositoryInMemory } from "@modules/company/repositories/in-memory/CompanyEmployeesRepositoryInMemory";
+import { CompanySubscriptionPlansRepositoryInMemory } from "@modules/company/repositories/in-memory/CompanySubscriptionPlansRepositoryInMemory";
+import { SubscriptionPlansRepositoryInMemory } from "@modules/products/repositories/in-memory/SubscriptionPlansRepositoryInMemory";
 
 import { AppError } from "@shared/errors/AppError";
 
@@ -9,11 +13,21 @@ import { CreateUserUseCase } from "./CreateUserUseCase";
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let createUserUseCase: CreateUserUseCase;
+let companySubscriptionPlansRepository: CompanySubscriptionPlansRepositoryInMemory;
+let companyEmployeesRepository: CompanyEmployeesRepositoryInMemory;
+let subscriptionPlansRepository: SubscriptionPlansRepositoryInMemory;
+let userProductsAvailableRepository: UserProductsAvailableRepositoryInMemory;
 
 describe("Create User", () => {
     beforeEach(() => {
         usersRepositoryInMemory = new UsersRepositoryInMemory();
-        createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
+        createUserUseCase = new CreateUserUseCase(
+            usersRepositoryInMemory,
+            companySubscriptionPlansRepository,
+            companyEmployeesRepository,
+            subscriptionPlansRepository,
+            userProductsAvailableRepository
+        );
     });
 
     it("should be able to create a new user", async () => {

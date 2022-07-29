@@ -21,17 +21,16 @@ class SubscriptionPlanProduct {
     @Column()
     subscriptionPlanId: string;
 
-
     @Column()
     productId: string;
 
     @Column()
-    availableQuantity: Number;
+    availableQuantity: number;
 
     constructor(
         subscriptionPlanId: string,
         productId: string,
-        availableQuantity: Number
+        availableQuantity: number
     ){
         if (!this.id) {
             this.id = uuidV4();

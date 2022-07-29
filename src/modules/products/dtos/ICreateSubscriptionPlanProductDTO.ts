@@ -1,7 +1,7 @@
 interface ICreateSubscriptionPlanProductDTO {
     subscriptionPlanId: string;
     productId: string;
-    availableQuantity: Number;
+    availableQuantity: number;
     id?: string;
 }
 

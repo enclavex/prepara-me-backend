@@ -9,12 +9,12 @@ interface IRequestFind {
     name?: string;
     status?: SubscriptionPlanStatusEnum;
     type?: SubscriptionPlanTypeEnum;
+    subscribeToken?: string;
     id?: string;
 }
 
 interface ISubscriptionPlansRepository {
     create(data: ICreateSubscriptionPlanDTO): Promise<SubscriptionPlan>;
-    findById(id: string): Promise<SubscriptionPlan>;
     find(data: IRequestFind): Promise<IResponseSubscriptionPlanDTO[]>;
     remove(id: string): Promise<void>;
 }
