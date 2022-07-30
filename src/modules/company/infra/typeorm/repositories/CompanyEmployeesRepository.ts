@@ -42,6 +42,7 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
         userId,
         phone,
         email,
+        companyId,
         id,
     }): Promise<CompanyEmployee[]> {
         const companyEmployeesQuery = this.repository
@@ -65,6 +66,12 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
             if (documentId) {
                 companyEmployeesQuery.andWhere("ce.documentId = :documentId", {
                     documentId: documentId,
+                });
+            }
+
+            if (companyId) {
+                companyEmployeesQuery.andWhere("ce.companyId = :companyId", {
+                    companyId: companyId,
                 });
             }
 

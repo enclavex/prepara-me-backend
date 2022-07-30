@@ -1,5 +1,5 @@
 export enum UserStatusEnum {
-    ACTIVE = "true",
-    INACTIVE = "false",
+    ACTIVE = "ACTIVE",
+    INACTIVE = "INACTIVE",
 }
 

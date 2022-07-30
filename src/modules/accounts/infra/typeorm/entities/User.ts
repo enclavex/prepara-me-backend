@@ -2,7 +2,13 @@ import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { SpecialistSchedule } from "@modules/specialists/infra/typeorm/entities/SpecialistSchedule";
 import { Expose } from "class-transformer";
-import { Entity, PrimaryColumn, Column, CreateDateColumn, OneToMany } from "typeorm";
+import {
+    Entity,
+    PrimaryColumn,
+    Column,
+    CreateDateColumn,
+    OneToMany,
+} from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
 @Entity("users")
@@ -31,13 +37,13 @@ class User {
         default: UserTypeEnum.USER,
     })
     type: UserTypeEnum;
-    
+
     @Column({
         type: "enum",
         enum: UserStatusEnum,
         default: UserStatusEnum.ACTIVE,
     })
-    active: UserStatusEnum;
+    status: UserStatusEnum;
 
     @Column()
     avatar: string;
@@ -45,7 +51,10 @@ class User {
     @CreateDateColumn()
     created_at: Date;
 
-    @OneToMany(() => SpecialistSchedule, specialistSchedule => specialistSchedule.specialist)
+    @OneToMany(
+        () => SpecialistSchedule,
+        (specialistSchedule) => specialistSchedule.specialist
+    )
     specialistSchedule: SpecialistSchedule[];
 
     @Expose({ name: "avatarUrl" })
@@ -67,25 +76,29 @@ class User {
         password: string,
         documentId: string,
         type: UserTypeEnum,
-        active: UserStatusEnum,
+        status: UserStatusEnum,
         id: string
     ) {
         if (id) {
-            this.id = id
+            this.id = id;
         }
 
         if (!this.id) {
             this.id = uuidV4();
         }
-        
+
+        if (password) {
+            this.password = password;
+        }
+
         this.name = name;
         this.username = username;
         this.email = email;
-        this.password = password;
         this.documentId = documentId;
         this.type = type;
-        this.active = active;
+        this.status = status;
     }
 }
 
 export { User };
+

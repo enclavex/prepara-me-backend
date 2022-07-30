@@ -36,6 +36,7 @@ class CompanyEmployeesRepositoryInMemory
     async find({
         name,
         documentId,
+        companyId,
         userId,
         phone,
         email,
@@ -60,6 +61,14 @@ class CompanyEmployeesRepositoryInMemory
                 companyEmployees = companyEmployees.filter(
                     (companyEmployee) => {
                         return companyEmployee.userId === userId;
+                    }
+                );
+            }
+
+            if (companyId) {
+                companyEmployees = companyEmployees.filter(
+                    (companyEmployee) => {
+                        return companyEmployee.companyId === companyId;
                     }
                 );
             }

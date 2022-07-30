@@ -1,0 +1,3 @@
+class RemoveUserController {}
+
+export { RemoveUserController };

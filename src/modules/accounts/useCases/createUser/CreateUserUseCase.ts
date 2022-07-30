@@ -33,19 +33,33 @@ class CreateUserUseCase {
         password,
         documentId,
         type,
-        active,
+        status,
         subscribeToken,
+        id,
     }: ICreateUserDTO): Promise<User> {
-        const userAlreadyExists = await this.usersRepository.findByEmail(email);
+        const userFind = await this.usersRepository.findById(id);
 
-        if (userAlreadyExists) {
+        if (userFind && userFind.id !== id) {
             throw new AppError("E-mail used by another user!");
         }
 
-        const passwordHash = await hash(password, 8);
+        let passwordHash = "";
 
-        if (!Object.values(UserTypeEnum).includes(type)) {
-            throw new AppError("Type entered wrong");
+        if (!userFind) {
+            if (!password) {
+                throw new AppError("Password can't be null!");
+            }
+
+            passwordHash = await hash(password, 8);
+        } else {
+            username = userFind.name;
+            passwordHash = userFind.password;
+        }
+
+        if (!userFind) {
+            if (!Object.values(UserTypeEnum).includes(type)) {
+                throw new AppError("Type entered wrong");
+            }
         }
 
         if (!documentId) {
@@ -56,25 +70,22 @@ class CreateUserUseCase {
             throw new AppError("Name can't be null!");
         }
 
-        if (!password) {
-            throw new AppError("Password can't be null!");
-        }
-
         if (!email) {
             throw new AppError("E-mail can't be null!");
         }
-
-        const user = await this.usersRepository.create({
+        
+        const userCreated = await this.usersRepository.create({
             name,
             username,
             email,
             password: passwordHash,
             documentId,
             type,
-            active,
+            status,
+            id
         });
 
-        if (subscribeToken && user && user.id) {
+        if (subscribeToken && userCreated && userCreated.id && !userFind) {
             const companySubscriptionPlans =
                 await this.companySubscriptionPlansRepository.find({
                     subscribeToken,
@@ -94,7 +105,7 @@ class CreateUserUseCase {
                 }
 
                 if (companyEmployee.length > 0) {
-                    companyEmployee[0].userId = user.id;
+                    companyEmployee[0].userId = userCreated.id;
 
                     this.companyEmployeesRepository.create(companyEmployee[0]);
 
@@ -112,7 +123,7 @@ class CreateUserUseCase {
                                             subscriptionPlanProduct.availableQuantity,
                                         productId:
                                             subscriptionPlanProduct.product.id,
-                                        userId: user.id,
+                                        userId: userCreated.id,
                                     }
                                 );
                             }
@@ -122,7 +133,7 @@ class CreateUserUseCase {
             }
         }
 
-        return user;
+        return userCreated;
     }
 }
 

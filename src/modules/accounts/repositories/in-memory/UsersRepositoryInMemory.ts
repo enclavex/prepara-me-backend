@@ -16,7 +16,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
         documentId,
         type,
         id,
-        active
+        status,
     }: ICreateUserDTO): Promise<User> {
         const user = new User(
             name,
@@ -25,8 +25,8 @@ class UsersRepositoryInMemory implements IUsersRepository {
             password,
             documentId,
             type,
-            active,
-            id,
+            status,
+            id
         );
 
         this.users.push(user);
@@ -42,7 +42,14 @@ class UsersRepositoryInMemory implements IUsersRepository {
         return this.users.find((user) => user.id === id);
     }
 
-    async find({ name, status, type, email, id }): Promise<IUserResponseDTO[]> {
+    async find({
+        name,
+        status,
+        type,
+        email,
+        documentId,
+        id,
+    }): Promise<IUserResponseDTO[]> {
         let users = this.users;
 
         if (id) {
@@ -52,13 +59,19 @@ class UsersRepositoryInMemory implements IUsersRepository {
         } else {
             if (status) {
                 users = users.filter((user) => {
-                    return user.active === status;
+                    return user.status === status;
                 });
             }
 
             if (email) {
                 users = users.filter((user) => {
                     return user.email === email;
+                });
+            }
+
+            if (documentId) {
+                users = users.filter((user) => {
+                    return user.documentId === documentId;
                 });
             }
 
@@ -78,6 +91,14 @@ class UsersRepositoryInMemory implements IUsersRepository {
         return users.map((user) => {
             return UserMap.toDTO(user);
         });
+    }
+
+    async remove(id: string): Promise<string> {
+        this.users = this.users.filter((specialist) => {
+            return id !== specialist.id;
+        });
+
+        return id;
     }
 }
 

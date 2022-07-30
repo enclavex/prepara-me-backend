@@ -1,15 +1,12 @@
-import { UserStatusEnum } from "../enums/UserStatusEnum";
-import { UserTypeEnum } from "../enums/UserTypeEnum";
-
 interface IUserResponseDTO {
     email: string;
     name: string;
     username: string;
     id: string;
     avatar: string;
-    active: UserStatusEnum;
+    status: Object;
     documentId: string;
-    type: UserTypeEnum;
+    type: Object;
     avatarUrl(): string;
 }
 

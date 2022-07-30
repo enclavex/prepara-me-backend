@@ -56,7 +56,7 @@ describe("Reset Password", () => {
             email: "user@test.com",
             password: "1234",
             documentId: "00000000000",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
         };
 

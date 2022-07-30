@@ -1,5 +1,6 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { IUserResponseDTO } from "@modules/accounts/dtos/IUserResponseDTO";
+import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserMap } from "@modules/accounts/mapper/UserMap";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { getRepository, Repository } from "typeorm";
@@ -22,18 +23,18 @@ class UsersRepository implements IUsersRepository {
         type,
         avatar,
         id,
-        active
+        status,
     }: ICreateUserDTO): Promise<User> {
         const user = this.repository.create({
+            id,
             name,
             username,
             email,
             password,
             documentId,
             type,
+            status,
             avatar,
-            id,
-            active
         });
 
         await this.repository.save(user);
@@ -51,36 +52,49 @@ class UsersRepository implements IUsersRepository {
         return user;
     }
 
-    async find({ name, status, type, email, id }): Promise<IUserResponseDTO[]> {
+    async find({
+        name,
+        status,
+        type,
+        email,
+        documentId,
+        id,
+    }): Promise<IUserResponseDTO[]> {
         const usersQuery = this.repository.createQueryBuilder("u");
 
         if (id) {
-            usersQuery.andWhere("e.id = :id", {
+            usersQuery.andWhere("u.id = :id", {
                 id: id,
             });
         } else {
             if (name) {
                 name = `%${name}%`;
 
-                usersQuery.andWhere("e.name like :name", {
+                usersQuery.andWhere("u.name like :name", {
                     name: name,
                 });
             }
 
             if (status) {
-                usersQuery.andWhere("e.status = :status", {
+                usersQuery.andWhere("u.status = :status", {
                     status: status,
                 });
             }
 
+            if (documentId) {
+                usersQuery.andWhere("u.documentId = :documentId", {
+                    documentId: documentId,
+                });
+            }
+
             if (type) {
-                usersQuery.andWhere("e.type = :type", {
+                usersQuery.andWhere("u.type = :type", {
                     type: type,
                 });
             }
 
             if (email) {
-                usersQuery.andWhere("e.email = :email", {
+                usersQuery.andWhere("u.email = :email", {
                     email: email,
                 });
             }
@@ -93,6 +107,12 @@ class UsersRepository implements IUsersRepository {
         });
 
         return usersMapped;
+    }
+
+    async remove(id: string): Promise<string> {
+        this.repository.delete(id);
+
+        return id;
     }
 }
 

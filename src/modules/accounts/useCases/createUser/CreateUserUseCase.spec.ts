@@ -8,6 +8,7 @@ import { CompanySubscriptionPlansRepositoryInMemory } from "@modules/company/rep
 import { SubscriptionPlansRepositoryInMemory } from "@modules/products/repositories/in-memory/SubscriptionPlansRepositoryInMemory";
 
 import { AppError } from "@shared/errors/AppError";
+import { RemoveUserUseCase } from "../removeUser/RemoveUserUseCase";
 
 import { CreateUserUseCase } from "./CreateUserUseCase";
 
@@ -17,6 +18,7 @@ let companySubscriptionPlansRepository: CompanySubscriptionPlansRepositoryInMemo
 let companyEmployeesRepository: CompanyEmployeesRepositoryInMemory;
 let subscriptionPlansRepository: SubscriptionPlansRepositoryInMemory;
 let userProductsAvailableRepository: UserProductsAvailableRepositoryInMemory;
+
 
 describe("Create User", () => {
     beforeEach(() => {
@@ -37,7 +39,7 @@ describe("Create User", () => {
             email: "user@test.com",
             password: "1234",
             documentId: "00000000000",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
         };
 
@@ -55,7 +57,7 @@ describe("Create User", () => {
                 email: "user@test.com",
                 password: "1234",
                 documentId: "",
-                active: UserStatusEnum.ACTIVE,
+                status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
             };
 
@@ -71,7 +73,7 @@ describe("Create User", () => {
                 email: "user@test.com",
                 password: "1234",
                 documentId: "000000",
-                active: UserStatusEnum.ACTIVE,
+                status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
             };
 
@@ -87,7 +89,7 @@ describe("Create User", () => {
                 email: "",
                 password: "1234",
                 documentId: "000000",
-                active: UserStatusEnum.ACTIVE,
+                status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
             };
 
@@ -103,7 +105,7 @@ describe("Create User", () => {
                 email: "user@test.com",
                 password: "",
                 documentId: "000000",
-                active: UserStatusEnum.ACTIVE,
+                status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
             };
 

@@ -25,6 +25,12 @@ usersRoutes.get(
     ensureAdmin,
     listUserController.handle
 );
+usersRoutes.get(
+    "/:id",
+    ensuredAuthenticated,
+    ensureAdmin,
+    listUserController.handle
+);
 
 usersRoutes.post(
     "/products",

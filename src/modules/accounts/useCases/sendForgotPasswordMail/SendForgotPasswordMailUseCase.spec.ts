@@ -38,7 +38,7 @@ describe("Send Forgot Mail", () => {
             email: "guilherme.teste@teste.com",
             password: "1234",
             documentId: "08113754989",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
         });
 
@@ -61,7 +61,7 @@ describe("Send Forgot Mail", () => {
             email: "guilherme.teste@teste.com",
             password: "1234",
             documentId: "08113754989",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
         });
 

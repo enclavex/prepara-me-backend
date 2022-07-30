@@ -2,6 +2,7 @@ import { ICreateCompanyEmployeeDTO } from "../dtos/ICreateCompanyEmployeeDTO";
 import { CompanyEmployee } from "../infra/typeorm/entities/CompanyEmployee";
 
 interface IRequestFind {
+    companyId?: string;
     name?: string;
     documentId?: string;
     userId?: string;

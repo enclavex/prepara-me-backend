@@ -8,7 +8,7 @@ interface ICreateUserDTO {
     password: string;
     documentId: string;
     type: UserTypeEnum;
-    active: UserStatusEnum;
+    status: UserStatusEnum;
     id?: string;
     avatar?: string;
     subscribeToken?: string;

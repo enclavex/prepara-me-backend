@@ -6,7 +6,7 @@ class ListCompanyEmployeeController {
     async handle(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
-        const { name, documentId, userId, phone, email } = request.query;
+        const { name, documentId, userId, phone, email, companyId } = request.query;
 
         const listCompanyEmployeeUseCase = container.resolve(
             ListCompanyEmployeeUseCase
@@ -18,6 +18,7 @@ class ListCompanyEmployeeController {
             userId,
             phone,
             email,
+            companyId,
             id,
         });
 

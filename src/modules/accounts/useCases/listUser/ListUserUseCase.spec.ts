@@ -39,7 +39,7 @@ describe("List User", () => {
     it("should be able to list users", async () => {
         const user1: ICreateUserDTO = {
             name: "User One",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             documentId: "08113754989",
             email: "user@user.com",
             password: "123",
@@ -51,7 +51,7 @@ describe("List User", () => {
 
         const user2: ICreateUserDTO = {
             name: "User Two",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             documentId: "08113754989",
             email: "user2@user.com",
             password: "123",
@@ -67,6 +67,7 @@ describe("List User", () => {
             name: "",
             status: "",
             type: "",
+            documentId: ""
         });
 
         expect(result).toHaveLength(2);
@@ -75,7 +76,7 @@ describe("List User", () => {
     it("should be able to list users filtered by name", async () => {
         const user1: ICreateUserDTO = {
             name: "User One",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             documentId: "08113754989",
             email: "user@user.com",
             password: "123",
@@ -87,7 +88,7 @@ describe("List User", () => {
 
         const user2: ICreateUserDTO = {
             name: "User Two",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             documentId: "08113754989",
             email: "user2@user.com",
             password: "123",
@@ -103,6 +104,7 @@ describe("List User", () => {
             name: "One",
             status: "",
             type: "",
+            documentId: ""
         });
 
         expect(result).toHaveLength(1);
@@ -111,7 +113,7 @@ describe("List User", () => {
     it("should be able to list users filtered by email", async () => {
         const user1: ICreateUserDTO = {
             name: "User One",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             documentId: "08113754989",
             email: "user@user.com",
             password: "123",
@@ -123,7 +125,7 @@ describe("List User", () => {
 
         const user2: ICreateUserDTO = {
             name: "User Two",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             documentId: "08113754989",
             email: "user2@user.com",
             password: "123",
@@ -139,6 +141,7 @@ describe("List User", () => {
             name: "",
             status: "",
             type: "",
+            documentId: ""
         });
 
         expect(result).toHaveLength(1);
@@ -147,7 +150,7 @@ describe("List User", () => {
     it("should be able to list users filtered by status", async () => {
         const user1: ICreateUserDTO = {
             name: "User One",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             documentId: "08113754989",
             email: "user@user.com",
             password: "123",
@@ -159,7 +162,7 @@ describe("List User", () => {
 
         const user2: ICreateUserDTO = {
             name: "User Two",
-            active: UserStatusEnum.INACTIVE,
+            status: UserStatusEnum.INACTIVE,
             documentId: "08113754989",
             email: "user2@user.com",
             password: "123",
@@ -175,6 +178,7 @@ describe("List User", () => {
             name: "",
             status: UserStatusEnum.INACTIVE,
             type: "",
+            documentId: ""
         });
 
         expect(result).toHaveLength(1);
@@ -183,7 +187,7 @@ describe("List User", () => {
     it("should be able to list users filtered by type", async () => {
         const user1: ICreateUserDTO = {
             name: "User One",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             documentId: "08113754989",
             email: "user@user.com",
             password: "123",
@@ -195,7 +199,7 @@ describe("List User", () => {
 
         const user2: ICreateUserDTO = {
             name: "User Two",
-            active: UserStatusEnum.INACTIVE,
+            status: UserStatusEnum.INACTIVE,
             documentId: "08113754989",
             email: "user2@user.com",
             password: "123",
@@ -211,6 +215,7 @@ describe("List User", () => {
             name: "",
             status: "",
             type: UserTypeEnum.USER,
+            documentId: ""
         });
 
         expect(result).toHaveLength(1);
@@ -219,7 +224,7 @@ describe("List User", () => {
     it("should be able to list users filtered by id", async () => {
         const user1: ICreateUserDTO = {
             name: "User One",
-            active: UserStatusEnum.ACTIVE,
+            status: UserStatusEnum.ACTIVE,
             documentId: "08113754989",
             email: "user@user.com",
             password: "123",
@@ -231,7 +236,7 @@ describe("List User", () => {
 
         const user2: ICreateUserDTO = {
             name: "User Two",
-            active: UserStatusEnum.INACTIVE,
+            status: UserStatusEnum.INACTIVE,
             documentId: "08113754989",
             email: "user2@user.com",
             password: "123",
@@ -247,6 +252,7 @@ describe("List User", () => {
             name: "",
             status: "",
             type: "",
+            documentId: ""
         });
 
         expect(result).toHaveLength(1);

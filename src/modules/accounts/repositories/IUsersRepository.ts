@@ -9,6 +9,7 @@ interface IRequestFind {
     type: UserTypeEnum;
     status: UserStatusEnum;
     email: string;
+    documentId: string;
     id: string;
 }
 
@@ -17,6 +18,7 @@ interface IUsersRepository {
     findByEmail(email: string): Promise<User>;
     findById(id: string): Promise<User>;
     find(data: IRequestFind): Promise<IUserResponseDTO[]>;
+    remove(id: string): Promise<String>;
 }
 
 export { IUsersRepository };
