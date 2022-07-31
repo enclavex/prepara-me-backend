@@ -23,9 +23,18 @@ class UserProductAvailable {
     product: Product;
 
     @Column()
-    availableQuantity: Number;
+    availableQuantity: number;
 
-    constructor(userId: string, productId: string, availableQuantity: Number) {
+    constructor(
+        userId: string,
+        productId: string,
+        availableQuantity: number,
+        id: string
+    ) {
+        if (id) {
+            this.id = id;
+        }
+
         if (!this.id) {
             this.id = uuidV4();
         }
@@ -37,3 +46,4 @@ class UserProductAvailable {
 }
 
 export { UserProductAvailable };
+

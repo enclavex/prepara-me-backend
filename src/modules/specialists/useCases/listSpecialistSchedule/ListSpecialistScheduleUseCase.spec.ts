@@ -1,8 +1,9 @@
+import { UserProductsAvailableRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserProductsAvailableRepositoryInMemory";
 import { ICreateSpecialistScheduleDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleDTO";
 import { SpecialistScheduleStatusEnum } from "@modules/specialists/enums/SpecialistScheduleStatusEnum";
 import { SpecialistScheduleRepositoryInMemory } from "@modules/specialists/repositories/in-memory/SpecialistScheduleRepositoryInMemory";
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
-import { AppError } from "@shared/errors/AppError";
+import { ScheduleGoogle } from "@shared/container/providers/ScheduleProvider/implementations/ScheduleGoogle";
 import { CreateSpecialistScheduleUseCase } from "../createSpecialistScheduleAvailable/CreateSpecialistScheduleUseCase";
 import { ListSpecialistScheduleUseCase } from "./ListSpecialistScheduleUseCase";
 
@@ -10,14 +11,22 @@ let specialistScheduleRepositoryInMemory: SpecialistScheduleRepositoryInMemory;
 let createSpecialistScheduleUseCase: CreateSpecialistScheduleUseCase;
 let listSpecialistScheduleUseCase: ListSpecialistScheduleUseCase;
 let dateProvider: DayjsDateProvider;
+let userProductsAvailableRepositoryInMemory: UserProductsAvailableRepositoryInMemory;
+let scheduleGoogle: ScheduleGoogle;
 
-describe("Create Specialist Schedule ", () => {
+describe("List Specialist Schedule ", () => {
     beforeAll(() => {
         specialistScheduleRepositoryInMemory =
             new SpecialistScheduleRepositoryInMemory();
+        userProductsAvailableRepositoryInMemory =
+            new UserProductsAvailableRepositoryInMemory();
+        scheduleGoogle = new ScheduleGoogle();
         dateProvider = new DayjsDateProvider();
         createSpecialistScheduleUseCase = new CreateSpecialistScheduleUseCase(
-            specialistScheduleRepositoryInMemory
+            specialistScheduleRepositoryInMemory,
+            userProductsAvailableRepositoryInMemory,
+            scheduleGoogle,
+            dateProvider
         );
         listSpecialistScheduleUseCase = new ListSpecialistScheduleUseCase(
             specialistScheduleRepositoryInMemory,
@@ -27,7 +36,7 @@ describe("Create Specialist Schedule ", () => {
 
     it("should be able to list a specialist schedule available", async () => {
         const specialistSchedule: ICreateSpecialistScheduleDTO = {
-            dateSchedule: dateProvider.getDate(new Date('2022-01-01 15:00:00')),
+            dateSchedule: dateProvider.getDate(new Date("2022-01-01 15:00:00")),
             status: SpecialistScheduleStatusEnum.AVAILABLE,
             specialistId: "1234",
         };
@@ -35,8 +44,8 @@ describe("Create Specialist Schedule ", () => {
         await createSpecialistScheduleUseCase.execute(specialistSchedule);
 
         const result = await listSpecialistScheduleUseCase.execute({
-            dateBegin: dateProvider.getDate(new Date('2022-01-01 15:00:00')),
-            dateEnd: dateProvider.getDate(new Date('2022-01-01 15:00:00')),
+            dateBegin: dateProvider.getDate(new Date("2022-01-01 15:00:00")),
+            dateEnd: dateProvider.getDate(new Date("2022-01-01 15:00:00")),
             specialistId: "1234",
             id: "",
             userId: "",
@@ -46,16 +55,5 @@ describe("Create Specialist Schedule ", () => {
 
         expect(result).toHaveLength(1);
     });
-
-    it("should not be able to create a specialist schedule available without a specialist", async () => {
-        expect(async () => {
-            const specialistSchedule: ICreateSpecialistScheduleDTO = {
-                dateSchedule: new Date("2021-01-01 11:15:31"),
-                status: SpecialistScheduleStatusEnum.AVAILABLE,
-                specialistId: "",
-            };
-
-            await createSpecialistScheduleUseCase.execute(specialistSchedule);
-        }).rejects.toBeInstanceOf(AppError);
-    });
 });
+

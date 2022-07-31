@@ -87,18 +87,9 @@ class SpecialistsRepository implements ISpecialistsRepository {
         const specialistsQuery = this.repository
             .createQueryBuilder("s")
             .leftJoinAndSelect("s.user", "u")
-            .leftJoinAndSelect(
-                "s.specialistSchedule",
-                "ss"
-            )
-            .leftJoinAndSelect(
-                "s.productSpecialist",
-                "ps"
-            )
-            .leftJoinAndSelect(
-                "ps.product",
-                "p"
-            );
+            .leftJoinAndSelect("s.specialistSchedule", "ss")
+            .leftJoinAndSelect("s.productSpecialist", "ps")
+            .leftJoinAndSelect("ps.product", "p");
 
         if (id) {
             specialistsQuery.andWhere("s.id = :id", {

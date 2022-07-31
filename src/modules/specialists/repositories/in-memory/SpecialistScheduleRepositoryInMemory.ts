@@ -13,6 +13,9 @@ class SpecialistScheduleRepositoryInMemory
         status,
         userId,
         productId,
+        comments,
+        hangoutLink,
+        scheduleEventId,
         id,
     }: ICreateSpecialistScheduleDTO): Promise<SpecialistSchedule> {
         const specialistSchedule = new SpecialistSchedule(
@@ -21,12 +24,11 @@ class SpecialistScheduleRepositoryInMemory
             userId,
             productId,
             status,
+            comments,
+            hangoutLink,
+            scheduleEventId,
             id
         );
-
-        if (userId) {
-            Object.assign(specialistSchedule, { userId });
-        }
 
         this.specialistSchedules.push(specialistSchedule);
 

@@ -10,6 +10,7 @@ interface IDateProvider {
     isBetween(dateVerified: Date, dateStart: Date, dateEnd: Date): Boolean;
     getDate(date: Date): Date;
     getDateTimeZone(date: Date): Date;
+    formatDateTime(date: Date, mask: string): string;
 }
 
 export { IDateProvider };

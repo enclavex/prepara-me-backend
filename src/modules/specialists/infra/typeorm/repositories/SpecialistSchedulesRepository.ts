@@ -15,18 +15,23 @@ class SpecialistSchedulesRepository implements ISpecialistSchedulesRepository {
         specialistId,
         status,
         userId,
+        productId,
+        comments,
+        hangoutLink,
+        scheduleEventId,
         id,
     }: ICreateSpecialistScheduleDTO): Promise<SpecialistSchedule> {
         const specialistSchedule = this.repository.create({
             dateSchedule,
             specialistId,
             status,
+            productId,
+            userId,
+            comments,
+            hangoutLink,
+            scheduleEventId,
             id,
         });
-
-        if (userId) {
-            Object.assign(specialistSchedule, { userId });
-        }
 
         await this.repository.save(specialistSchedule);
 
@@ -46,7 +51,8 @@ class SpecialistSchedulesRepository implements ISpecialistSchedulesRepository {
             .createQueryBuilder("ss")
             .leftJoinAndSelect("ss.user", "u")
             .leftJoinAndSelect("ss.specialist", "s")
-            .leftJoinAndSelect("ss.product", "p");
+            .leftJoinAndSelect("ss.product", "p")
+            .orderBy("ss.dateSchedule", "ASC");
 
         if (id) {
             specialistSchedulesQuery.andWhere("ss.id = :id", {

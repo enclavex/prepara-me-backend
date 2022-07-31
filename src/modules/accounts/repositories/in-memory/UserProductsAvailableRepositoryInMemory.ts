@@ -1,4 +1,5 @@
 import { ICreateUserProductAvailableDTO } from "@modules/accounts/dtos/ICreateUserProductAvailableDTO";
+import { IUserProductAvailableResponseDTO } from "@modules/accounts/dtos/IUserProductAvailableResponseDTO";
 import { UserProductAvailable } from "@modules/accounts/infra/typeorm/entities/UserProductAvailable";
 import { IUserProductsAvailableRepository } from "../IUserProductsAvailableRepository";
 
@@ -11,11 +12,13 @@ class UserProductsAvailableRepositoryInMemory
         userId,
         productId,
         availableQuantity,
+        id
     }: ICreateUserProductAvailableDTO): Promise<UserProductAvailable> {
         const userProductAvailable = new UserProductAvailable(
             userId,
             productId,
-            availableQuantity
+            availableQuantity,
+            id
         );
 
         this.userProductsAvailable.push(userProductAvailable);
@@ -33,6 +36,36 @@ class UserProductsAvailableRepositoryInMemory
         return this.userProductsAvailable.filter((userProductAvailable) => {
             return userProductAvailable.userId === userId;
         });
+    }
+
+    async find({ id, userId, productId }): Promise<IUserProductAvailableResponseDTO[]> {
+        let userProductsAvailable = this.userProductsAvailable;
+
+        if (id) {
+            userProductsAvailable = userProductsAvailable.filter(
+                (userProductsAvailable) => {
+                    return userProductsAvailable.id === id;
+                }
+            );
+        } else {
+            if (userId) {
+                userProductsAvailable = userProductsAvailable.filter(
+                    (userProductsAvailable) => {
+                        return userProductsAvailable.userId === userId;
+                    }
+                );
+            }
+
+            if (productId) {
+                userProductsAvailable = userProductsAvailable.filter(
+                    (userProductsAvailable) => {
+                        return userProductsAvailable.productId === productId;
+                    }
+                );
+            }
+        }
+
+        return userProductsAvailable;
     }
 }
 

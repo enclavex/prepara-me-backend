@@ -17,12 +17,12 @@ class SpecialistSchedule {
     specialistId: string;
     @ManyToOne(() => Specialist, (specialist) => specialist.specialistSchedule)
     specialist: Specialist;
-    
+
     @Column()
     userId: string;
     @ManyToOne(() => User, (user) => user.specialistSchedule)
     user: User;
-    
+
     @Column()
     productId: string;
     @ManyToOne(() => User, (user) => user.specialistSchedule)
@@ -35,12 +35,24 @@ class SpecialistSchedule {
     })
     status: SpecialistScheduleStatusEnum;
 
+    @Column()
+    comments: string;
+
+    @Column()
+    hangoutLink: string;
+
+    @Column()
+    scheduleEventId: string;
+
     constructor(
         dateSchedule: Date,
         specialistId: string,
         userId: string,
         productId: string,
         status: SpecialistScheduleStatusEnum,
+        comments: string,
+        hangoutLink: string,
+        scheduleEventId: string,
         id: string
     ) {
         if (id) {
@@ -56,7 +68,11 @@ class SpecialistSchedule {
         this.userId = userId;
         this.productId = productId;
         this.status = status;
+        this.comments = comments;
+        this.hangoutLink = hangoutLink;
+        this.scheduleEventId = scheduleEventId;
     }
 }
 
 export { SpecialistSchedule };
+

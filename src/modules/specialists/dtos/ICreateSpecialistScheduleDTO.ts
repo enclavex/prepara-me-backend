@@ -6,6 +6,9 @@ interface ICreateSpecialistScheduleDTO {
     status: SpecialistScheduleStatusEnum;
     userId?: string;
     productId?: string;
+    comments?: string;
+    hangoutLink?:string;
+    scheduleEventId?:string;
     id?: string;
 }
 

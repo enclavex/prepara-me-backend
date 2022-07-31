@@ -45,6 +45,7 @@ describe("List Company Employees", () => {
             userId: "",
             name: "",
             id: "",
+            companyId: ""
         });
 
         expect(result).toHaveLength(2);
@@ -76,6 +77,7 @@ describe("List Company Employees", () => {
             userId: "",
             name: "teste 2",
             id: "",
+            companyId: ""
         });
 
         expect(result).toHaveLength(1);
@@ -107,6 +109,7 @@ describe("List Company Employees", () => {
             userId: "",
             name: "",
             id: "",
+            companyId: ""
         });
 
         expect(result).toHaveLength(1);
@@ -146,6 +149,7 @@ describe("List Company Employees", () => {
             userId: "",
             name: "",
             id: "",
+            companyId: ""
         });
 
         expect(result).toHaveLength(1);
@@ -185,6 +189,47 @@ describe("List Company Employees", () => {
             phone: "8888888",
             email: "",
             id: "",
+            companyId: ""
+        });
+
+        expect(result).toHaveLength(1);
+    });
+
+    it("should be able to list company filtered by company", async () => {
+        const companyEmployee1: ICreateCompanyEmployeeDTO = {
+            companyId: "123",
+            documentId: "321",
+            name: "teste 2",
+            subscribeToken: "teste",
+            userId: "",
+            phone: "9999999",
+            email: "teste2@teste.com",
+            id: ""
+        };
+        
+        await createCompanyEmployeeUseCase.execute(companyEmployee1);
+        
+        const companyEmployee2: ICreateCompanyEmployeeDTO = {
+            companyId: "321",
+            documentId: "321",
+            name: "teste 2",
+            subscribeToken: "teste",
+            userId: "",
+            phone: "8888888",
+            email: "teste2@teste.com",
+            id: ""
+        };
+
+        await createCompanyEmployeeUseCase.execute(companyEmployee2);
+
+        const result = await listCompanyEmployeeUseCase.execute({
+            name: "",
+            documentId: "",
+            userId: "",
+            phone: "",
+            email: "",
+            id: "",
+            companyId: "123"
         });
 
         expect(result).toHaveLength(1);

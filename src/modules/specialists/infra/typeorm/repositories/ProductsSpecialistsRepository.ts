@@ -42,6 +42,37 @@ class ProductsSpecialistsRepository implements IProductsSpecialistsRepository {
         return specialists;
     }
 
+    async find({
+        productId,
+        specialistId,
+        id,
+    }): Promise<ProductSpecialist[]> {
+        const productsSpecialistsQuery = this.repository
+            .createQueryBuilder("ps")
+
+        if (id) {
+            productsSpecialistsQuery.andWhere("ps.id = :id", {
+                id: id,
+            });
+        } else {
+            if (productId) {
+                productsSpecialistsQuery.andWhere("ps.productId = :productId", {
+                    productId: productId,
+                });
+            }
+
+            if (specialistId) {
+                productsSpecialistsQuery.andWhere("ps.specialistId = :specialistId", {
+                    specialistId: specialistId,
+                });
+            }
+        }
+
+        const productsSpecialists = await productsSpecialistsQuery.getMany();
+
+        return productsSpecialists;
+    }
+
     async remove(id: string): Promise<string> {
         this.repository.delete(id);
 

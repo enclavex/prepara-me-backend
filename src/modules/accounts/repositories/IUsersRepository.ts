@@ -5,12 +5,12 @@ import { UserTypeEnum } from "../enums/UserTypeEnum";
 import { User } from "../infra/typeorm/entities/User";
 
 interface IRequestFind {
-    name: string;
-    type: UserTypeEnum;
-    status: UserStatusEnum;
-    email: string;
-    documentId: string;
-    id: string;
+    name?: string;
+    type?: UserTypeEnum;
+    status?: UserStatusEnum;
+    email?: string;
+    documentId?: string;
+    id?: string;
 }
 
 interface IUsersRepository {

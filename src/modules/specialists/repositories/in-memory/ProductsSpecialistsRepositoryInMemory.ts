@@ -33,13 +33,46 @@ class ProductsSpecialistsRepositoryInMemory
             });
     }
 
-    async remove(id: string): Promise<string> {
-        this.productsSpecialist = this.productsSpecialist.filter((productsSpecialist) => {
-            return id !== productsSpecialist.id;
-        });
+    async find({ productId, specialistId, id }): Promise<ProductSpecialist[]> {
+        let productsSpecialist = this.productsSpecialist;
 
-        return id
+        if (id) {
+            productsSpecialist = productsSpecialist.filter(
+                (productSpecialist) => {
+                    return productSpecialist.id === id;
+                }
+            );
+        } else {
+            if (productId) {
+                productsSpecialist = productsSpecialist.filter(
+                    (productSpecialist) => {
+                        return productSpecialist.productId === productId;
+                    }
+                );
+            }
+
+            if (specialistId) {
+                productsSpecialist = productsSpecialist.filter(
+                    (productSpecialist) => {
+                        return productSpecialist.specialistId === specialistId;
+                    }
+                );
+            }
+        }
+
+        return productsSpecialist;
+    }
+
+    async remove(id: string): Promise<string> {
+        this.productsSpecialist = this.productsSpecialist.filter(
+            (productsSpecialist) => {
+                return id !== productsSpecialist.id;
+            }
+        );
+
+        return id;
     }
 }
 
 export { ProductsSpecialistsRepositoryInMemory };
+
