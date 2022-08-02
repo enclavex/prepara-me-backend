@@ -2,6 +2,7 @@ import { ProductBestSellerEnum } from "@modules/products/enums/ProductBestSeller
 import { ProductStatusEnum } from "@modules/products/enums/ProductStatusEnum";
 import { ProductTypeEnum } from "@modules/products/enums/ProductTypesEnum";
 import { ProductSpecialist } from "@modules/specialists/infra/typeorm/entities/ProductSpecialist";
+import { SpecialistSchedule } from "@modules/specialists/infra/typeorm/entities/SpecialistSchedule";
 import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
@@ -50,6 +51,12 @@ class Product {
 
     @OneToMany(() => SubscriptionPlanProduct, (subscriptionPlanProduct) => subscriptionPlanProduct.product)
     public subscriptionPlanProduct!: SubscriptionPlanProduct[];
+
+    @OneToMany(
+        () => SpecialistSchedule,
+        (specialistSchedule) => specialistSchedule.specialist
+    )
+    public specialistSchedule!: SpecialistSchedule[];
 
     constructor(
         name: string,

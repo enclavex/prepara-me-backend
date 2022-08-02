@@ -48,57 +48,59 @@ class CreateSpecialistScheduleUseCase {
                             id,
                         });
 
-                    const userSpecialistEmail =
-                        specialistsSchedule[0].user.email;
+                    if (specialistsSchedule) {
+                        const userSpecialistEmail = userProduct.user.email;
 
-                    userProduct.availableQuantity =
-                        userProduct.availableQuantity - 1;
+                        userProduct.availableQuantity =
+                            userProduct.availableQuantity - 1;
 
-                    const userProductUpdated =
-                        await this.userProductsAvailableRepository.create({
-                            availableQuantity: userProduct.availableQuantity,
-                            productId: userProduct.product.id,
-                            userId: userProduct.user.id,
-                            id: userProduct.id,
-                        });
+                        const userProductUpdated =
+                            await this.userProductsAvailableRepository.create({
+                                availableQuantity:
+                                    userProduct.availableQuantity,
+                                productId: userProduct.product.id,
+                                userId: userProduct.user.id,
+                                id: userProduct.id,
+                            });
 
-                    const dateScheduleStartMasked =
-                        this.dateProvider.formatDateTime(
-                            this.dateProvider.getDateTimeZone(dateSchedule),
-                            "YYYY-MM-DDThh:mm:ssfff:00"
-                        );
-
-                    const dateScheduleEndMasked =
-                        this.dateProvider.formatDateTime(
-                            this.dateProvider.getDateTimeZone(
-                                this.dateProvider.addHours(1, dateSchedule)
-                            ),
-                            "YYYY-MM-DDThh:mm:ssfff:00"
-                        );
-
-                    if (userProductUpdated) {
-                        const eventScheduled =
-                            await this.scheduleGoogle.scheduleEvent(
-                                "Novo serviço agendado com a Prepara.me",
-                                "Online",
-                                "Estamos aguardando você",
-                                dateScheduleStartMasked,
-                                dateScheduleEndMasked,
-                                "America/Sao_Paulo",
-                                [
-                                    { email: userSpecialistEmail },
-                                    { email: userProduct.user.email },
-                                ]
+                        const dateScheduleStartMasked =
+                            this.dateProvider.formatDateTime(
+                                dateSchedule,
+                                "YYYY-MM-DDThh:mm:ssfff:00"
                             );
 
-                        if (eventScheduled.status != "200") {
-                            throw new AppError(
-                                "Was not possible schedule your event!"
+                        const dateScheduleEndMasked =
+                            this.dateProvider.formatDateTime(
+                                this.dateProvider.addHours(1, dateSchedule),
+                                "YYYY-MM-DDThh:mm:ssfff:00"
                             );
+
+                        if (userProductUpdated) {
+                            const eventScheduled =
+                                await this.scheduleGoogle.scheduleEvent(
+                                    "Novo serviço agendado com a Prepara.me",
+                                    "Online",
+                                    "Estamos aguardando você",
+                                    dateScheduleStartMasked,
+                                    dateScheduleEndMasked,
+                                    "America/Sao_Paulo",
+                                    [
+                                        { email: userSpecialistEmail },
+                                        { email: userProduct.user.email },
+                                    ]
+                                );
+
+                            if (eventScheduled.status != "200") {
+                                throw new AppError(
+                                    "Was not possible schedule your event!"
+                                );
+                            }
+
+                            hangoutLink = eventScheduled.data.hangoutLink;
+                            scheduleEventId = eventScheduled.data.id;
                         }
-
-                        hangoutLink = eventScheduled.data.hangoutLink
-                        scheduleEventId = eventScheduled.data.id
+                    } else {
+                        throw new AppError("Schedule not found!");
                     }
                 } else {
                     throw new AppError("Quantity available insufficient!");
@@ -109,7 +111,7 @@ class CreateSpecialistScheduleUseCase {
         }
 
         dateSchedule = new Date(dateSchedule);
-
+        
         if (!dateSchedule) {
             throw new AppError("Date Schedule can't be null!");
         }

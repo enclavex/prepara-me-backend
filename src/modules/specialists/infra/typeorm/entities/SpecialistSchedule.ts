@@ -25,7 +25,7 @@ class SpecialistSchedule {
 
     @Column()
     productId: string;
-    @ManyToOne(() => User, (user) => user.specialistSchedule)
+    @ManyToOne(() => Product, (product) => product.specialistSchedule)
     product: Product;
 
     @Column({

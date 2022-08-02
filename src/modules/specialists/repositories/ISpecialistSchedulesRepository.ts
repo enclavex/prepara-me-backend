@@ -1,4 +1,5 @@
 import { ICreateSpecialistScheduleDTO } from "../dtos/ICreateSpecialistScheduleDTO"
+import { ISpecialistScheduleResponseDTO } from "../dtos/ISpecialistScheduleResponseDTO";
 import { SpecialistScheduleStatusEnum } from "../enums/SpecialistScheduleStatusEnum";
 import { SpecialistSchedule } from "../infra/typeorm/entities/SpecialistSchedule"
 
@@ -15,7 +16,7 @@ interface IRequestFind {
 
 interface ISpecialistSchedulesRepository {
     create(data: ICreateSpecialistScheduleDTO): Promise<SpecialistSchedule>
-    find(data: IRequestFind): Promise<SpecialistSchedule[]>
+    find(data: IRequestFind): Promise<ISpecialistScheduleResponseDTO[]>
     remove(id: string): Promise<string>;
 }
 

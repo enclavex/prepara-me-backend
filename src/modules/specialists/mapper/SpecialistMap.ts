@@ -23,7 +23,7 @@ class SpecialistMap {
             linkedinUrl,
             specialistSchedule,
             status: { label: statusMapped, value: status },
-            user: process.env.NODE_ENV === "test" ? user : UserMap.toDTO(user),
+            user: user ? process.env.NODE_ENV === "test" ? user : UserMap.toDTO(user) : null,
             productSpecialist
         });
 

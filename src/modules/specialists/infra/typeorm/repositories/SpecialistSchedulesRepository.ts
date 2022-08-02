@@ -1,4 +1,6 @@
 import { ICreateSpecialistScheduleDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleDTO";
+import { ISpecialistScheduleResponseDTO } from "@modules/specialists/dtos/ISpecialistScheduleResponseDTO";
+import { SpecialistScheduleMap } from "@modules/specialists/mapper/SpecialistScheduleMap";
 import { ISpecialistSchedulesRepository } from "@modules/specialists/repositories/ISpecialistSchedulesRepository";
 import { getRepository, Repository } from "typeorm";
 import { SpecialistSchedule } from "../entities/SpecialistSchedule";
@@ -46,7 +48,7 @@ class SpecialistSchedulesRepository implements ISpecialistSchedulesRepository {
         productId,
         specialistId,
         id,
-    }): Promise<SpecialistSchedule[]> {
+    }): Promise<ISpecialistScheduleResponseDTO[]> {
         const specialistSchedulesQuery = this.repository
             .createQueryBuilder("ss")
             .leftJoinAndSelect("ss.user", "u")
@@ -99,7 +101,11 @@ class SpecialistSchedulesRepository implements ISpecialistSchedulesRepository {
 
         const specialistSchedules = await specialistSchedulesQuery.getMany();
 
-        return specialistSchedules;
+        const specialistSchedulesMapped = specialistSchedules.map((specialistSchedule) => {
+            return SpecialistScheduleMap.toDTO(specialistSchedule);
+        });
+
+        return specialistSchedulesMapped;
     }
 
     async remove(id: string): Promise<string> {

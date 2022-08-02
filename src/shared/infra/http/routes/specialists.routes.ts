@@ -16,7 +16,7 @@ const specialistsRoutes = Router();
 const createSpecialistScheduleController =
     new CreateSpecialistScheduleController();
 specialistsRoutes.post(
-    "/:specialistId/schedule",
+    "/schedule",
     ensuredAuthenticated,
     createSpecialistScheduleController.handle
 );
@@ -38,8 +38,6 @@ specialistsRoutes.delete(
     ensuredAuthenticated,
     removeSpecialistScheduleController.handle
 );
-
-
 
 const createProductSpecialistController =
     new CreateProductSpecialistController();

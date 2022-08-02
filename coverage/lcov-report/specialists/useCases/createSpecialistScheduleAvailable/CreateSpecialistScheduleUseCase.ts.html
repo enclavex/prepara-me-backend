@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.02% </span>
+                <span class="strong">45.07% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>58/138</span>
+                <span class='fraction'>64/142</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">55.55% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>5/9</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.02% </span>
+                <span class="strong">45.07% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>58/138</span>
+                <span class='fraction'>64/142</span>
             </div>
         
             
@@ -202,7 +202,11 @@
 <a name='L137'></a><a href='#L137'>137</a>
 <a name='L138'></a><a href='#L138'>138</a>
 <a name='L139'></a><a href='#L139'>139</a>
-<a name='L140'></a><a href='#L140'>140</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -234,8 +238,9 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -324,19 +329,22 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -370,6 +378,9 @@ class CreateSpecialistScheduleUseCase {
         status,
         productId,
         userId,
+        comments,
+        hangoutLink,
+        scheduleEventId,
         id,
     }: ICreateSpecialistScheduleDTO): Promise&lt;SpecialistSchedule&gt; {
         if (productId<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; userId)</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
@@ -378,8 +389,6 @@ class CreateSpecialistScheduleUseCase {
 <span class="cstat-no" title="statement not covered" >                    productId,</span>
 <span class="cstat-no" title="statement not covered" >                    userId,</span>
 <span class="cstat-no" title="statement not covered" >                });</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            console.log(userProducts);</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >            if (userProducts.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >                const userProduct = userProducts[0];</span>
@@ -439,8 +448,8 @@ class CreateSpecialistScheduleUseCase {
 <span class="cstat-no" title="statement not covered" >                            );</span>
 <span class="cstat-no" title="statement not covered" >                        }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                        // eventScheduled.data.hangoutlink</span>
-<span class="cstat-no" title="statement not covered" >                        // eventScheduled.data.id</span>
+<span class="cstat-no" title="statement not covered" >                        hangoutLink = eventScheduled.data.hangoutLink</span>
+<span class="cstat-no" title="statement not covered" >                        scheduleEventId = eventScheduled.data.id</span>
 <span class="cstat-no" title="statement not covered" >                    }</span>
 <span class="cstat-no" title="statement not covered" >                } else {</span>
 <span class="cstat-no" title="statement not covered" >                    throw new AppError("Quantity available insufficient!");</span>
@@ -471,6 +480,9 @@ class CreateSpecialistScheduleUseCase {
                 status,
                 productId,
                 userId,
+                comments,
+                hangoutLink,
+                scheduleEventId,
                 id,
             });
 &nbsp;
@@ -487,7 +499,7 @@ export { CreateSpecialistScheduleUseCase };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun Jul 31 2022 19:40:39 GMT-0300 (Horário Padrão de Brasília)
+                at Mon Aug 01 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

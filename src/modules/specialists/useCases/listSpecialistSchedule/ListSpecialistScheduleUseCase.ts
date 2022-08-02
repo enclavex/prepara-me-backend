@@ -26,7 +26,6 @@ class ListSpecialistScheduleUseCase {
             dateBegin = this.dateProvider.getDateTimeZone(dateBegin);
         }
 
-
         if (dateEnd) {
             dateEnd = this.dateProvider.getDate(dateEnd);
             dateEnd.setHours(23, 59, 59);

@@ -1,4 +1,5 @@
 import { ICreateSpecialistScheduleDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleDTO";
+import { ISpecialistScheduleResponseDTO } from "@modules/specialists/dtos/ISpecialistScheduleResponseDTO";
 import { SpecialistSchedule } from "@modules/specialists/infra/typeorm/entities/SpecialistSchedule";
 import { ISpecialistSchedulesRepository } from "../ISpecialistSchedulesRepository";
 
@@ -43,7 +44,7 @@ class SpecialistScheduleRepositoryInMemory
         productId,
         specialistId,
         id,
-    }): Promise<SpecialistSchedule[]> {
+    }): Promise<ISpecialistScheduleResponseDTO[]> {
         let specialistSchedules = this.specialistSchedules;
 
         if (id) {
