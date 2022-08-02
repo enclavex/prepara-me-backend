@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.07% </span>
+                <span class="strong">44.44% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>64/142</span>
+                <span class='fraction'>64/144</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.55% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/9</span>
+                <span class='fraction'>4/8</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.07% </span>
+                <span class="strong">44.44% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>64/142</span>
+                <span class='fraction'>64/144</span>
             </div>
         
             
@@ -206,7 +206,9 @@
 <a name='L141'></a><a href='#L141'>141</a>
 <a name='L142'></a><a href='#L142'>142</a>
 <a name='L143'></a><a href='#L143'>143</a>
-<a name='L144'></a><a href='#L144'>144</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -315,6 +317,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -329,22 +333,22 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -399,57 +403,59 @@ class CreateSpecialistScheduleUseCase {
 <span class="cstat-no" title="statement not covered" >                            id,</span>
 <span class="cstat-no" title="statement not covered" >                        });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                    const userSpecialistEmail =</span>
-<span class="cstat-no" title="statement not covered" >                        specialistsSchedule[0].user.email;</span>
+<span class="cstat-no" title="statement not covered" >                    if (specialistsSchedule) {</span>
+<span class="cstat-no" title="statement not covered" >                        const userSpecialistEmail = userProduct.user.email;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                    userProduct.availableQuantity =</span>
-<span class="cstat-no" title="statement not covered" >                        userProduct.availableQuantity - 1;</span>
+<span class="cstat-no" title="statement not covered" >                        userProduct.availableQuantity =</span>
+<span class="cstat-no" title="statement not covered" >                            userProduct.availableQuantity - 1;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                    const userProductUpdated =</span>
-<span class="cstat-no" title="statement not covered" >                        await this.userProductsAvailableRepository.create({</span>
-<span class="cstat-no" title="statement not covered" >                            availableQuantity: userProduct.availableQuantity,</span>
-<span class="cstat-no" title="statement not covered" >                            productId: userProduct.product.id,</span>
-<span class="cstat-no" title="statement not covered" >                            userId: userProduct.user.id,</span>
-<span class="cstat-no" title="statement not covered" >                            id: userProduct.id,</span>
-<span class="cstat-no" title="statement not covered" >                        });</span>
+<span class="cstat-no" title="statement not covered" >                        const userProductUpdated =</span>
+<span class="cstat-no" title="statement not covered" >                            await this.userProductsAvailableRepository.create({</span>
+<span class="cstat-no" title="statement not covered" >                                availableQuantity:</span>
+<span class="cstat-no" title="statement not covered" >                                    userProduct.availableQuantity,</span>
+<span class="cstat-no" title="statement not covered" >                                productId: userProduct.product.id,</span>
+<span class="cstat-no" title="statement not covered" >                                userId: userProduct.user.id,</span>
+<span class="cstat-no" title="statement not covered" >                                id: userProduct.id,</span>
+<span class="cstat-no" title="statement not covered" >                            });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                    const dateScheduleStartMasked =</span>
-<span class="cstat-no" title="statement not covered" >                        this.dateProvider.formatDateTime(</span>
-<span class="cstat-no" title="statement not covered" >                            this.dateProvider.getDateTimeZone(dateSchedule),</span>
-<span class="cstat-no" title="statement not covered" >                            "YYYY-MM-DDThh:mm:ssfff:00"</span>
-<span class="cstat-no" title="statement not covered" >                        );</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                    const dateScheduleEndMasked =</span>
-<span class="cstat-no" title="statement not covered" >                        this.dateProvider.formatDateTime(</span>
-<span class="cstat-no" title="statement not covered" >                            this.dateProvider.getDateTimeZone(</span>
-<span class="cstat-no" title="statement not covered" >                                this.dateProvider.addHours(1, dateSchedule)</span>
-<span class="cstat-no" title="statement not covered" >                            ),</span>
-<span class="cstat-no" title="statement not covered" >                            "YYYY-MM-DDThh:mm:ssfff:00"</span>
-<span class="cstat-no" title="statement not covered" >                        );</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                    if (userProductUpdated) {</span>
-<span class="cstat-no" title="statement not covered" >                        const eventScheduled =</span>
-<span class="cstat-no" title="statement not covered" >                            await this.scheduleGoogle.scheduleEvent(</span>
-<span class="cstat-no" title="statement not covered" >                                "Novo serviço agendado com a Prepara.me",</span>
-<span class="cstat-no" title="statement not covered" >                                "Online",</span>
-<span class="cstat-no" title="statement not covered" >                                "Estamos aguardando você",</span>
-<span class="cstat-no" title="statement not covered" >                                dateScheduleStartMasked,</span>
-<span class="cstat-no" title="statement not covered" >                                dateScheduleEndMasked,</span>
-<span class="cstat-no" title="statement not covered" >                                "America/Sao_Paulo",</span>
-<span class="cstat-no" title="statement not covered" >                                [</span>
-<span class="cstat-no" title="statement not covered" >                                    { email: userSpecialistEmail },</span>
-<span class="cstat-no" title="statement not covered" >                                    { email: userProduct.user.email },</span>
-<span class="cstat-no" title="statement not covered" >                                ]</span>
+<span class="cstat-no" title="statement not covered" >                        const dateScheduleStartMasked =</span>
+<span class="cstat-no" title="statement not covered" >                            this.dateProvider.formatDateTime(</span>
+<span class="cstat-no" title="statement not covered" >                                dateSchedule,</span>
+<span class="cstat-no" title="statement not covered" >                                "YYYY-MM-DDThh:mm:ssfff:00"</span>
 <span class="cstat-no" title="statement not covered" >                            );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                        if (eventScheduled.status != "200") {</span>
-<span class="cstat-no" title="statement not covered" >                            throw new AppError(</span>
-<span class="cstat-no" title="statement not covered" >                                "Was not possible schedule your event!"</span>
+<span class="cstat-no" title="statement not covered" >                        const dateScheduleEndMasked =</span>
+<span class="cstat-no" title="statement not covered" >                            this.dateProvider.formatDateTime(</span>
+<span class="cstat-no" title="statement not covered" >                                this.dateProvider.addHours(1, dateSchedule),</span>
+<span class="cstat-no" title="statement not covered" >                                "YYYY-MM-DDThh:mm:ssfff:00"</span>
 <span class="cstat-no" title="statement not covered" >                            );</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >                        if (userProductUpdated) {</span>
+<span class="cstat-no" title="statement not covered" >                            const eventScheduled =</span>
+<span class="cstat-no" title="statement not covered" >                                await this.scheduleGoogle.scheduleEvent(</span>
+<span class="cstat-no" title="statement not covered" >                                    "Novo serviço agendado com a Prepara.me",</span>
+<span class="cstat-no" title="statement not covered" >                                    "Online",</span>
+<span class="cstat-no" title="statement not covered" >                                    "Estamos aguardando você",</span>
+<span class="cstat-no" title="statement not covered" >                                    dateScheduleStartMasked,</span>
+<span class="cstat-no" title="statement not covered" >                                    dateScheduleEndMasked,</span>
+<span class="cstat-no" title="statement not covered" >                                    "America/Sao_Paulo",</span>
+<span class="cstat-no" title="statement not covered" >                                    [</span>
+<span class="cstat-no" title="statement not covered" >                                        { email: userSpecialistEmail },</span>
+<span class="cstat-no" title="statement not covered" >                                        { email: userProduct.user.email },</span>
+<span class="cstat-no" title="statement not covered" >                                    ]</span>
+<span class="cstat-no" title="statement not covered" >                                );</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >                            if (eventScheduled.status != "200") {</span>
+<span class="cstat-no" title="statement not covered" >                                throw new AppError(</span>
+<span class="cstat-no" title="statement not covered" >                                    "Was not possible schedule your event!"</span>
+<span class="cstat-no" title="statement not covered" >                                );</span>
+<span class="cstat-no" title="statement not covered" >                            }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >                            hangoutLink = eventScheduled.data.hangoutLink;</span>
+<span class="cstat-no" title="statement not covered" >                            scheduleEventId = eventScheduled.data.id;</span>
 <span class="cstat-no" title="statement not covered" >                        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                        hangoutLink = eventScheduled.data.hangoutLink</span>
-<span class="cstat-no" title="statement not covered" >                        scheduleEventId = eventScheduled.data.id</span>
+<span class="cstat-no" title="statement not covered" >                    } else {</span>
+<span class="cstat-no" title="statement not covered" >                        throw new AppError("Schedule not found!");</span>
 <span class="cstat-no" title="statement not covered" >                    }</span>
 <span class="cstat-no" title="statement not covered" >                } else {</span>
 <span class="cstat-no" title="statement not covered" >                    throw new AppError("Quantity available insufficient!");</span>
@@ -460,7 +466,7 @@ class CreateSpecialistScheduleUseCase {
 <span class="cstat-no" title="statement not covered" >        }</span>
 &nbsp;
         dateSchedule = new Date(dateSchedule);
-&nbsp;
+        
         if (!dateSchedule) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >            throw new AppError("Date Schedule can't be null!");</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
@@ -499,7 +505,7 @@ export { CreateSpecialistScheduleUseCase };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Aug 01 2022 21:00:00 GMT-0300 (Horário Padrão de Brasília)
+                at Tue Aug 02 2022 09:25:52 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

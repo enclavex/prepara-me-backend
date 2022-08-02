@@ -20,26 +20,30 @@ class RemoveSpecialistUseCase {
                 specialistId: id,
             });
 
-        await Promise.all(
-            productsSpecialists.map(async (productSpecialist) => {
-                return await this.productsSpecialistsRepository.remove(
-                    productSpecialist.id
-                );
-            })
-        );
+        if (productsSpecialists.length > 0) {
+            await Promise.all(
+                productsSpecialists.map(async (productSpecialist) => {
+                    return await this.productsSpecialistsRepository.remove(
+                        productSpecialist.id
+                    );
+                })
+            );
+        }
 
         const specialistSchedules =
             await this.specialistSchedulesRepository.find({
                 specialistId: id,
             });
 
-        await Promise.all(
-            specialistSchedules.map(async (specialistSchedule) => {
-                return await this.specialistSchedulesRepository.remove(
-                    specialistSchedule.id
-                );
-            })
-        );
+        if (specialistSchedules.length > 0) {
+            await Promise.all(
+                specialistSchedules.map(async (specialistSchedule) => {
+                    return await this.specialistSchedulesRepository.remove(
+                        specialistSchedule.id
+                    );
+                })
+            );
+        }
 
         await this.specialistsRepository.remove(id);
     }

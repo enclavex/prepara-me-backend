@@ -1,5 +1,7 @@
 import { ICreateSpecialistDTO } from "@modules/specialists/dtos/ICreateSpecialistDTO";
 import { SpecialistStatusEnum } from "@modules/specialists/enums/SpecialistStatusEnum";
+import { ProductsSpecialistsRepositoryInMemory } from "@modules/specialists/repositories/in-memory/ProductsSpecialistsRepositoryInMemory";
+import { SpecialistScheduleRepositoryInMemory } from "@modules/specialists/repositories/in-memory/SpecialistScheduleRepositoryInMemory";
 import { SpecialistsRepositoryInMemory } from "@modules/specialists/repositories/in-memory/SpecialistsRepositoryInMemory";
 import { CreateSpecialistUseCase } from "../createSpecialist/CreateSpecialistUseCase";
 import { ListSpecialistUseCase } from "../listSpecialist/ListSpecialistUseCase";
@@ -9,10 +11,14 @@ let specialistsRepositoryInMemory: SpecialistsRepositoryInMemory;
 let listSpecialistUseCase: ListSpecialistUseCase;
 let createSpecialistUseCase: CreateSpecialistUseCase;
 let removeSpecialistUseCase: RemoveSpecialistUseCase;
+let productsSpecialistsRepositoryInMemory: ProductsSpecialistsRepositoryInMemory;
+let specialistScheduleRepositoryInMemory: SpecialistScheduleRepositoryInMemory;
 
 describe("Remove Specialists", () => {
     beforeEach(() => {
         specialistsRepositoryInMemory = new SpecialistsRepositoryInMemory();
+        productsSpecialistsRepositoryInMemory = new ProductsSpecialistsRepositoryInMemory();
+        specialistScheduleRepositoryInMemory = new SpecialistScheduleRepositoryInMemory();
         listSpecialistUseCase = new ListSpecialistUseCase(
             specialistsRepositoryInMemory
         );
@@ -20,7 +26,9 @@ describe("Remove Specialists", () => {
             specialistsRepositoryInMemory
         );
         removeSpecialistUseCase = new RemoveSpecialistUseCase(
-            specialistsRepositoryInMemory
+            specialistsRepositoryInMemory,
+            productsSpecialistsRepositoryInMemory,
+            specialistScheduleRepositoryInMemory
         );
     });
 
