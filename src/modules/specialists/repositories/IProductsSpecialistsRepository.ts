@@ -2,8 +2,8 @@ import { ICreateProductSpecialistDTO } from "../dtos/ICreateProductSpecialistDTO
 import { ProductSpecialist } from "../infra/typeorm/entities/ProductSpecialist"
 
 interface IRequestFind {
-    productId: string;
-    specialistId: string;
+    productId?: string;
+    specialistId?: string;
     id?: string;
 }
 
