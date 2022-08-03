@@ -43,6 +43,7 @@ describe("List Company Employees", () => {
             email: "",
             phone: "",
             userId: "",
+            notUserId: null,
             name: "",
             id: "",
             companyId: ""
@@ -75,6 +76,7 @@ describe("List Company Employees", () => {
             email: "",
             phone: "",
             userId: "",
+            notUserId: null,
             name: "teste 2",
             id: "",
             companyId: ""
@@ -107,6 +109,7 @@ describe("List Company Employees", () => {
             email: "",
             phone: "",
             userId: "",
+            notUserId: null,
             name: "",
             id: "",
             companyId: ""
@@ -147,6 +150,7 @@ describe("List Company Employees", () => {
             email: "teste2@teste.com",
             phone: "",
             userId: "",
+            notUserId: null,
             name: "",
             id: "",
             companyId: ""
@@ -186,6 +190,7 @@ describe("List Company Employees", () => {
             name: "",
             documentId: "",
             userId: "",
+            notUserId: null,
             phone: "8888888",
             email: "",
             id: "",
@@ -226,6 +231,7 @@ describe("List Company Employees", () => {
             name: "",
             documentId: "",
             userId: "",
+            notUserId: null,
             phone: "",
             email: "",
             id: "",

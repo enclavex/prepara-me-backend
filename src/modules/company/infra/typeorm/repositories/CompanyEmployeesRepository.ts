@@ -40,6 +40,7 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
         name,
         documentId,
         userId,
+        notUserId,
         phone,
         email,
         companyId,
@@ -81,6 +82,14 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
                 });
             }
 
+            if (notUserId) {
+                if (notUserId === 'true') {
+                    companyEmployeesQuery.andWhere("ce.userId is null");
+                } else {
+                    companyEmployeesQuery.andWhere("not ce.userId is null");
+                }
+            }
+
             if (phone) {
                 companyEmployeesQuery.andWhere("ce.phone = :phone", {
                     phone: phone,
@@ -96,14 +105,13 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
 
         const companyEmployees = await companyEmployeesQuery.getMany();
 
-
         return companyEmployees;
     }
 
     async remove(id: string): Promise<string> {
         this.repository.delete(id);
 
-        return id
+        return id;
     }
 }
 

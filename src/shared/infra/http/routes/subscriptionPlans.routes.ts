@@ -9,10 +9,6 @@ import { RemoveSubscriptionPlanController } from "@modules/products/useCases/rem
 const subscriptionPlansRoutes = Router();
 
 const createSubscriptionPlanController = new CreateSubscriptionPlanController();
-const createSubscriptionPlanProductController = new CreateSubscriptionPlanProductController();
-const listSubscriptionPlanController = new ListSubscriptionPlanController();
-const removeSubscriptionPlanController = new RemoveSubscriptionPlanController();
-
 subscriptionPlansRoutes.post(
     "/",
     ensuredAuthenticated,
@@ -20,6 +16,7 @@ subscriptionPlansRoutes.post(
     createSubscriptionPlanController.handle
 );
 
+const listSubscriptionPlanController = new ListSubscriptionPlanController();
 subscriptionPlansRoutes.get(
     "/",
     ensuredAuthenticated,
@@ -34,6 +31,7 @@ subscriptionPlansRoutes.get(
     listSubscriptionPlanController.handle
 );
 
+const removeSubscriptionPlanController = new RemoveSubscriptionPlanController();
 subscriptionPlansRoutes.delete(
     "/:id",
     ensuredAuthenticated,
@@ -41,6 +39,7 @@ subscriptionPlansRoutes.delete(
     removeSubscriptionPlanController.handle
 );
 
+const createSubscriptionPlanProductController = new CreateSubscriptionPlanProductController();
 subscriptionPlansRoutes.post(
     "/:id/products",
     ensuredAuthenticated,

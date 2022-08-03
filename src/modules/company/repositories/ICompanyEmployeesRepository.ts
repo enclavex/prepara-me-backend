@@ -5,6 +5,7 @@ interface IRequestFind {
     companyId?: string;
     name?: string;
     documentId?: string;
+    notUserId?: string;
     userId?: string;
     phone?: string;
     email?: string;

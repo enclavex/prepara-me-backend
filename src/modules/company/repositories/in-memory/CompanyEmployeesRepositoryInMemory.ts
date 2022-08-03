@@ -38,6 +38,7 @@ class CompanyEmployeesRepositoryInMemory
         documentId,
         companyId,
         userId,
+        notUserId,
         phone,
         email,
         id,
@@ -61,6 +62,14 @@ class CompanyEmployeesRepositoryInMemory
                 companyEmployees = companyEmployees.filter(
                     (companyEmployee) => {
                         return companyEmployee.userId === userId;
+                    }
+                );
+            }
+
+            if (notUserId) {
+                companyEmployees = companyEmployees.filter(
+                    (companyEmployee) => {
+                        return !companyEmployee.userId;
                     }
                 );
             }
@@ -106,7 +115,7 @@ class CompanyEmployeesRepositoryInMemory
             return id !== company.id;
         });
 
-        return id
+        return id;
     }
 }
 

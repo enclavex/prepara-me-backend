@@ -73,7 +73,7 @@ class CreateUserUseCase {
         if (!email) {
             throw new AppError("E-mail can't be null!");
         }
-        
+
         const userCreated = await this.usersRepository.create({
             name,
             username,
@@ -82,7 +82,7 @@ class CreateUserUseCase {
             documentId,
             type,
             status,
-            id
+            id,
         });
 
         if (subscribeToken && userCreated && userCreated.id && !userFind) {
@@ -95,12 +95,14 @@ class CreateUserUseCase {
                 let companyEmployee =
                     await this.companyEmployeesRepository.find({
                         documentId,
+                        notUserId: "true",
                     });
 
                 if (!(companyEmployee.length > 0)) {
                     companyEmployee =
                         await this.companyEmployeesRepository.find({
                             email,
+                            notUserId: "true",
                         });
                 }
 

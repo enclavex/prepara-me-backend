@@ -10,16 +10,9 @@ import multer from "multer";
 import { ListUserProductsAvailableController } from "@modules/accounts/useCases/listUserProductsAvailable/ListUserProductsAvailableController";
 
 const usersRoutes = Router();
-const uploadAvatar = multer(uploadConfig);
 
-const createUserController = new CreateUserController();
 const createUserProductAvailableController =
     new CreateUserProductAvailableController();
-const listUserProductsAvailableController =
-    new ListUserProductsAvailableController();
-const updateUserAvatarController = new UpdateUserAvatarController();
-const listUserController = new ListUserController();
-
 usersRoutes.post(
     "/products",
     ensuredAuthenticated,
@@ -27,12 +20,16 @@ usersRoutes.post(
     createUserProductAvailableController.handle
 );
 
+const listUserProductsAvailableController =
+    new ListUserProductsAvailableController();
 usersRoutes.get(
     "/products",
     ensuredAuthenticated,
     listUserProductsAvailableController.handle
 );
 
+const updateUserAvatarController = new UpdateUserAvatarController();
+const uploadAvatar = multer(uploadConfig);
 usersRoutes.patch(
     "/avatar",
     ensuredAuthenticated,
@@ -40,14 +37,17 @@ usersRoutes.patch(
     updateUserAvatarController.handle
 );
 
+const createUserController = new CreateUserController();
 usersRoutes.post("/", createUserController.handle);
 
+const listUserController = new ListUserController();
 usersRoutes.get(
     "/",
     ensuredAuthenticated,
     ensureAdmin,
     listUserController.handle
 );
+
 usersRoutes.get(
     "/:id",
     ensuredAuthenticated,

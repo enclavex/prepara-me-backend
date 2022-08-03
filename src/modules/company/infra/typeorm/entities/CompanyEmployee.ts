@@ -66,9 +66,9 @@ class CompanyEmployee {
         this.companyId = companyId;
         this.documentId = documentId;
 
-        if (userId) {
+        // if (userId) {
             this.userId = userId;
-        }
+        // }
 
         this.phone = phone;
         this.email = email;
