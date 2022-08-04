@@ -18,6 +18,7 @@ class ListSpecialistScheduleUseCase {
         status,
         productId,
         specialistId,
+        specialistUserId,
         id,
     }) {
         if (dateBegin) {
@@ -40,6 +41,7 @@ class ListSpecialistScheduleUseCase {
                 status,
                 productId,
                 specialistId,
+                specialistUserId,
                 id,
             });
 

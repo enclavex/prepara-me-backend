@@ -6,7 +6,7 @@ import { inject, injectable } from "tsyringe";
 class ListProductUseCase {
     constructor(
         @inject("ProductsRepository")
-        private productsRepository: IProductsRepository
+        private productsRepository: IProductsRepository 
     ) {}
 
     async execute({

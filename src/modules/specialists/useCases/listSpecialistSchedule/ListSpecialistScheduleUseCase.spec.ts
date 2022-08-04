@@ -49,6 +49,7 @@ describe("List Specialist Schedule ", () => {
             specialistId: "1234",
             id: "",
             userId: "",
+            specialistUserId: null,
             productId: "",
             status: "",
         });

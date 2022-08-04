@@ -7,10 +7,14 @@ interface ISpecialistScheduleResponseDTO {
     comments: string;
     dateSchedule: Date;
     hangoutLink: string;
+    scheduleEventId: string;
     product: IResponseProductDTO;
+    productId: string;
     specialist: ISpecialistResponseDTO;
+    specialistId: string;
     status: Object;
     user: IUserResponseDTO;
+    userId: string;
 }
 
 export { ISpecialistScheduleResponseDTO };

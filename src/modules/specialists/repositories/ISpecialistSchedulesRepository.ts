@@ -11,6 +11,7 @@ interface IRequestFind {
     status?: SpecialistScheduleStatusEnum;
     productId?: string;
     specialistId?: string;
+    specialistUserId?: string;
     id?: string;
 }
 

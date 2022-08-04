@@ -48,8 +48,8 @@ class CreateSpecialistScheduleUseCase {
                             id,
                         });
 
-                    if (specialistsSchedule) {
-                        const userSpecialistEmail = userProduct.user.email;
+                    if (specialistsSchedule.length > 0) {
+                        const userSpecialistEmail = specialistsSchedule[0].specialist.user.email;
 
                         userProduct.availableQuantity =
                             userProduct.availableQuantity - 1;
@@ -78,7 +78,7 @@ class CreateSpecialistScheduleUseCase {
                         if (userProductUpdated) {
                             const eventScheduled =
                                 await this.scheduleGoogle.scheduleEvent(
-                                    "Novo serviço agendado com a Prepara.me",
+                                    `Agendado ${userProduct.product.shortName} com o(a) especialista ${specialistsSchedule[0].specialist.name}`,
                                     "Online",
                                     "Estamos aguardando você",
                                     dateScheduleStartMasked,
@@ -111,7 +111,7 @@ class CreateSpecialistScheduleUseCase {
         }
 
         dateSchedule = new Date(dateSchedule);
-        
+
         if (!dateSchedule) {
             throw new AppError("Date Schedule can't be null!");
         }

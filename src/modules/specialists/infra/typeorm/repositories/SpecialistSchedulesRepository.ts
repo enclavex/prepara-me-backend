@@ -47,15 +47,17 @@ class SpecialistSchedulesRepository implements ISpecialistSchedulesRepository {
         status,
         productId,
         specialistId,
+        specialistUserId,
         id,
     }): Promise<ISpecialistScheduleResponseDTO[]> {
         const specialistSchedulesQuery = this.repository
             .createQueryBuilder("ss")
             .leftJoinAndSelect("ss.user", "u")
             .leftJoinAndSelect("ss.specialist", "s")
+            .leftJoinAndSelect("s.user", "su")
             .leftJoinAndSelect("ss.product", "p")
             .orderBy("ss.dateSchedule", "ASC");
-
+        
         if (id) {
             specialistSchedulesQuery.andWhere("ss.id = :id", {
                 id: id,
@@ -70,6 +72,12 @@ class SpecialistSchedulesRepository implements ISpecialistSchedulesRepository {
             if (userId) {
                 specialistSchedulesQuery.andWhere("ss.userId = :userId", {
                     userId: userId,
+                });
+            }
+
+            if (specialistUserId) {
+                specialistSchedulesQuery.andWhere("s.userId = :userId", {
+                    userId: specialistUserId,
                 });
             }
 
@@ -101,9 +109,11 @@ class SpecialistSchedulesRepository implements ISpecialistSchedulesRepository {
 
         const specialistSchedules = await specialistSchedulesQuery.getMany();
 
-        const specialistSchedulesMapped = specialistSchedules.map((specialistSchedule) => {
-            return SpecialistScheduleMap.toDTO(specialistSchedule);
-        });
+        const specialistSchedulesMapped = specialistSchedules.map(
+            (specialistSchedule) => {
+                return SpecialistScheduleMap.toDTO(specialistSchedule);
+            }
+        );
 
         return specialistSchedulesMapped;
     }

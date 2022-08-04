@@ -30,13 +30,16 @@ class SpecialistScheduleMap {
             dateSchedule,
             hangoutLink,
             product: product ? ProductMap.toDTO(product) : null,
+            productId: product ? product.id : null,
             scheduleEventId,
             user: user
                 ? process.env.NODE_ENV === "test"
                     ? user
                     : UserMap.toDTO(user)
                 : null,
+            userId: user ? user.id : null,
             specialist: specialist ? SpecialistMap.toDTO(specialist) : null,
+            specialistId: specialist ? specialist.id : null,
         });
 
         return specialistSchedule;

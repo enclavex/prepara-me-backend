@@ -6,7 +6,7 @@ class ListSpecialistScheduleController {
     async handle(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
-        let { dateBegin, dateEnd, specialistId, userId, status, productId } =
+        let { dateBegin, dateEnd, specialistId, specialistUserId, userId, status, productId } =
             request.query;
             
         const listScheduleSpecialistUseCase = container.resolve(
@@ -21,6 +21,7 @@ class ListSpecialistScheduleController {
                 status,
                 productId,
                 specialistId,
+                specialistUserId,
                 id,
             });
 

@@ -10,6 +10,7 @@ import { CreateSpecialistScheduleController } from "@modules/specialists/useCase
 import { ListSpecialistScheduleController } from "@modules/specialists/useCases/listSpecialistSchedule/ListSpecialistScheduleController";
 import { RemoveSpecialistScheduleController } from "@modules/specialists/useCases/removeSpecialistSchedule/RemoveSpecialistScheduleController";
 import { ListProductSpecialistController } from "@modules/specialists/useCases/listProductSpecialist/ListProductSpecialistController";
+import { CancelSpecialistScheduleController } from "@modules/specialists/useCases/cancelSpecilaistSchedule/CancelSpecialistScheduleController";
 
 const specialistsRoutes = Router();
 
@@ -25,6 +26,14 @@ specialistsRoutes.put(
     "/schedule/:id",
     ensuredAuthenticated,
     createSpecialistScheduleController.handle
+);
+
+const cancelSpecialistScheduleController =
+    new CancelSpecialistScheduleController();
+specialistsRoutes.post(
+    "/schedule/:id/cancel",
+    ensuredAuthenticated,
+    cancelSpecialistScheduleController.handle
 );
 
 const listSpecialistScheduleController = new ListSpecialistScheduleController();

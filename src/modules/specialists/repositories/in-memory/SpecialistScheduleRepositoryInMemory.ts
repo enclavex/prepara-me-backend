@@ -43,6 +43,7 @@ class SpecialistScheduleRepositoryInMemory
         status,
         productId,
         specialistId,
+        specialistUserId,
         id,
     }): Promise<ISpecialistScheduleResponseDTO[]> {
         let specialistSchedules = this.specialistSchedules;
@@ -74,6 +75,17 @@ class SpecialistScheduleRepositoryInMemory
                 specialistSchedules = specialistSchedules.filter(
                     (specialistSchedule) => {
                         return specialistSchedule.specialistId === specialistId;
+                    }
+                );
+            }
+
+            if (specialistUserId) {
+                specialistSchedules = specialistSchedules.filter(
+                    (specialistSchedule) => {
+                        return (
+                            specialistSchedule.specialist.userId ===
+                            specialistUserId
+                        );
                     }
                 );
             }

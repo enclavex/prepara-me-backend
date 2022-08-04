@@ -1,4 +1,3 @@
-import { AppError } from "@shared/errors/AppError";
 import { google } from "googleapis";
 import { IScheduleProvider } from "../IScheduleProvider";
 
@@ -55,16 +54,6 @@ class ScheduleGoogle implements IScheduleProvider {
             .catch((err) => {
                 console.log(err);
             });
-
-        // const resultado2 = await calendar.events
-        //     .update({
-        //         calendarId: "primary",
-        //         requestBody: event,
-        //         conferenceDataVersion: 1,
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
 
         return resultado;
     }

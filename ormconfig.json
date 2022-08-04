@@ -1,7 +1,7 @@
 {
     "type": "postgres",
-    "port": 5433,
-    "host": "localhost",
+    "port": 5432,
+    "host": "database",
     "username": "docker",
     "password": "admin@01",
     "database": "preparame", 

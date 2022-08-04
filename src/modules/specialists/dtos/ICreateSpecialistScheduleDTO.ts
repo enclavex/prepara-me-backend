@@ -1,9 +1,9 @@
 import { SpecialistScheduleStatusEnum } from "../enums/SpecialistScheduleStatusEnum";
 
 interface ICreateSpecialistScheduleDTO {
-    specialistId: string;
-    dateSchedule: Date;
-    status: SpecialistScheduleStatusEnum;
+    specialistId?: string;
+    dateSchedule?: Date;
+    status?: SpecialistScheduleStatusEnum;
     userId?: string;
     productId?: string;
     comments?: string;
