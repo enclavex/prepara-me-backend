@@ -6,6 +6,10 @@ class CancelSpecialistScheduleController {
     async handle(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
+        const {
+            revertAvailableProduct
+        } = request.body;
+
         const cancelSpecialistScheduleUseCase = container.resolve(
             CancelSpecialistScheduleUseCase
         );
@@ -13,6 +17,7 @@ class CancelSpecialistScheduleController {
         const specialistScheduleUpdated =
             await cancelSpecialistScheduleUseCase.execute({
                 id,
+                revertAvailableProduct
             });
 
         return response.status(201).json(specialistScheduleUpdated);

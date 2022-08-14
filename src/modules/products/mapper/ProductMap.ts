@@ -11,6 +11,7 @@ class ProductMap {
         type,
         bestSeller,
         price,
+        duration,
         productContent
     }: Product): IResponseProductDTO {
         const statusMapped = status === "ACTIVE" ? "Ativo" : "Inativo";
@@ -26,6 +27,7 @@ class ProductMap {
             type: { label: typeMapped, value: type },
             bestSeller: { label: bestSellerMapped, value: bestSeller },
             price,
+            duration,
             productContent
         });
 

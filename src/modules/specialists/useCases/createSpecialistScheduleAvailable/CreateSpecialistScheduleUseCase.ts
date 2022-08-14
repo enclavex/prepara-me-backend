@@ -1,4 +1,5 @@
 import { IUserProductsAvailableRepository } from "@modules/accounts/repositories/IUserProductsAvailableRepository";
+import { IProductsRepository } from "@modules/products/repositories/IProductsRepository";
 import { ICreateSpecialistScheduleDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleDTO";
 import { SpecialistScheduleStatusEnum } from "@modules/specialists/enums/SpecialistScheduleStatusEnum";
 import { SpecialistSchedule } from "@modules/specialists/infra/typeorm/entities/SpecialistSchedule";
@@ -15,6 +16,8 @@ class CreateSpecialistScheduleUseCase {
         private specialistSchedulesRepository: ISpecialistSchedulesRepository,
         @inject("UserProductsAvailableRepository")
         private userProductsAvailableRepository: IUserProductsAvailableRepository,
+        @inject("ProductsRepository")
+        private productsRepository: IProductsRepository,
         @inject("ScheduleGoogle")
         private scheduleGoogle: IScheduleProvider,
         @inject("DayjsDateProvider")
@@ -31,8 +34,9 @@ class CreateSpecialistScheduleUseCase {
         hangoutLink,
         scheduleEventId,
         id,
+        createEvent
     }: ICreateSpecialistScheduleDTO): Promise<SpecialistSchedule> {
-        if (productId && userId) {
+        if (productId && userId && createEvent) {
             const userProducts =
                 await this.userProductsAvailableRepository.find({
                     productId,
@@ -69,9 +73,15 @@ class CreateSpecialistScheduleUseCase {
                                 "YYYY-MM-DDThh:mm:ssfff:00"
                             );
 
+                        let products = await this.productsRepository.find({
+                            id: productId
+                        })
+
+                        let product = products[0]
+
                         const dateScheduleEndMasked =
                             this.dateProvider.formatDateTime(
-                                this.dateProvider.addHours(1, dateSchedule),
+                                this.dateProvider.addHours(product.duration, dateSchedule),
                                 "YYYY-MM-DDThh:mm:ssfff:00"
                             );
 

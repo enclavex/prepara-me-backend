@@ -26,6 +26,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -37,6 +38,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -61,6 +63,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -72,6 +75,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -96,6 +100,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -107,6 +112,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "Two",
         };
 
@@ -131,6 +137,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -142,6 +149,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "Two",
         };
 
@@ -166,6 +174,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -177,6 +186,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.INACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "Two",
         };
 
@@ -201,6 +211,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -212,6 +223,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.INACTIVE,
             type: ProductTypeEnum.NON_SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "Two",
         };
 
@@ -236,6 +248,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -247,6 +260,7 @@ describe("List Products", () => {
             status: ProductStatusEnum.INACTIVE,
             type: ProductTypeEnum.NON_SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "Two",
         };
 

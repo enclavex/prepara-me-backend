@@ -8,6 +8,7 @@ interface IResponseProductDTO {
     type: Object;
     bestSeller: Object;
     price: number;
+    duration: number;
     productContent: ProductContent[]
 }
 

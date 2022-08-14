@@ -26,6 +26,7 @@ describe("get product", () => {
             name: "Product Test One",
             shortName: "One",
             price: 100.0,
+            duration: 1,
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             bestSeller: ProductBestSellerEnum.NORMAL,

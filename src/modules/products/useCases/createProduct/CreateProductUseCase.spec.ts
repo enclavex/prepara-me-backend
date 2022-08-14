@@ -24,6 +24,7 @@ describe("Create Product", () => {
             name: "Product Test",
             shortName: "Product",
             price: 100.0,
+            duration: 1,
             bestSeller: ProductBestSellerEnum.NORMAL,
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
@@ -40,6 +41,7 @@ describe("Create Product", () => {
                 name: "",
                 shortName: "Product",
                 price: 100.0,
+                duration: 1,
                 bestSeller: ProductBestSellerEnum.NORMAL,
                 status: ProductStatusEnum.ACTIVE,
                 type: ProductTypeEnum.SCHEDULED,
@@ -55,6 +57,7 @@ describe("Create Product", () => {
                 name: "Product Test",
                 shortName: "",
                 price: 100.0,
+                duration: 1,
                 bestSeller: ProductBestSellerEnum.NORMAL,
                 status: ProductStatusEnum.ACTIVE,
                 type: ProductTypeEnum.SCHEDULED,
@@ -70,6 +73,7 @@ describe("Create Product", () => {
                 name: "Product Test",
                 shortName: "Product",
                 price: null,
+                duration: 1,
                 bestSeller: ProductBestSellerEnum.NORMAL,
                 status: ProductStatusEnum.ACTIVE,
                 type: ProductTypeEnum.SCHEDULED,
@@ -79,3 +83,4 @@ describe("Create Product", () => {
         }).rejects.toBeInstanceOf(AppError);
     });
 });
+

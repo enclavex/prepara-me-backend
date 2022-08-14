@@ -6,6 +6,7 @@ interface ICreateProductDTO {
     name: string;
     shortName: string;
     price: number;
+    duration: number;
     status: ProductStatusEnum;
     type: ProductTypeEnum;
     bestSeller: ProductBestSellerEnum;

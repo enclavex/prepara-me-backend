@@ -5,6 +5,11 @@ import { SpecialistSchedule } from "@modules/specialists/infra/typeorm/entities/
 import { ISpecialistSchedulesRepository } from "@modules/specialists/repositories/ISpecialistSchedulesRepository";
 import { inject, injectable } from "tsyringe";
 
+interface ICancelSpecialistSchedule {
+    id: string;
+    revertAvailableProduct: boolean;
+}
+
 @injectable()
 class CancelSpecialistScheduleUseCase {
     constructor(
@@ -16,7 +21,8 @@ class CancelSpecialistScheduleUseCase {
 
     async execute({
         id,
-    }: ICreateSpecialistScheduleDTO): Promise<SpecialistSchedule> {
+        revertAvailableProduct
+    }: ICancelSpecialistSchedule): Promise<SpecialistSchedule> {
         const specialistsSchedule =
             await this.specialistSchedulesRepository.find({
                 id,
@@ -27,7 +33,7 @@ class CancelSpecialistScheduleUseCase {
         const userId = specialistSchedule.userId;
         const productId = specialistSchedule.productId;
 
-        if (userId && productId) {
+        if (userId && productId && revertAvailableProduct) {
             const userProducts =
                 await this.userProductsAvailableRepository.find({
                     productId,

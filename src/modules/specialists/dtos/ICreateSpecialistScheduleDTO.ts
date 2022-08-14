@@ -10,6 +10,7 @@ interface ICreateSpecialistScheduleDTO {
     hangoutLink?:string;
     scheduleEventId?:string;
     id?: string;
+    createEvent?: boolean;
 }
 
 export { ICreateSpecialistScheduleDTO }

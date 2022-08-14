@@ -23,3 +23,4 @@ class RemoveProductController {
 
 export { RemoveProductController };
 
+ 

@@ -23,6 +23,9 @@ class Product {
     @Column()
     price: number;
 
+    @Column()
+    duration: number;
+
     @Column({
         type: "enum",
         enum: ProductStatusEnum,
@@ -62,6 +65,7 @@ class Product {
         name: string,
         shortName: string,
         price: number,
+        duration: number,
         status: ProductStatusEnum,
         type: ProductTypeEnum,
         bestSeller: ProductBestSellerEnum,
@@ -78,6 +82,7 @@ class Product {
         this.name = name;
         this.shortName = shortName;
         this.price = price;
+        this.duration = duration;
         this.status = status;
         this.type = type;
         this.bestSeller = bestSeller;

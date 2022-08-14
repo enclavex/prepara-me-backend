@@ -41,6 +41,7 @@ describe("Remove Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -52,6 +53,7 @@ describe("Remove Products", () => {
             status: ProductStatusEnum.ACTIVE,
             type: ProductTypeEnum.SCHEDULED,
             price: 10,
+            duration: 1,
             shortName: "One",
         };
 
@@ -71,4 +73,3 @@ describe("Remove Products", () => {
         expect(result).toHaveLength(1);
     });
 });
-
