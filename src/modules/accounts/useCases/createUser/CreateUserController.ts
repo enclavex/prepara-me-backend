@@ -1,4 +1,3 @@
-import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 

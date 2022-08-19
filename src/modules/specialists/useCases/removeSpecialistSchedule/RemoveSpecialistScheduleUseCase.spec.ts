@@ -1,4 +1,5 @@
 import { UserProductsAvailableRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserProductsAvailableRepositoryInMemory";
+import { ProductsRepositoryInMemory } from "@modules/products/repositories/in-memory/ProductsRepositoryInMemory";
 import { ICreateSpecialistScheduleDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleDTO";
 import { SpecialistScheduleStatusEnum } from "@modules/specialists/enums/SpecialistScheduleStatusEnum";
 import { SpecialistScheduleRepositoryInMemory } from "@modules/specialists/repositories/in-memory/SpecialistScheduleRepositoryInMemory";
@@ -9,6 +10,7 @@ import { RemoveSpecialistScheduleUseCase } from "./RemoveSpecialistScheduleUseCa
 
 let createSpecialistScheduleUseCase: CreateSpecialistScheduleUseCase;
 let specialistScheduleRepositoryInMemory: SpecialistScheduleRepositoryInMemory;
+let productsRepositoryInMemory: ProductsRepositoryInMemory;
 let removeSpecialistScheduleUseCase: RemoveSpecialistScheduleUseCase;
 let dateProvider: DayjsDateProvider;
 let userProductsAvailableRepositoryInMemory: UserProductsAvailableRepositoryInMemory;
@@ -20,11 +22,13 @@ describe("Remove Specialist Schedule", () => {
             new SpecialistScheduleRepositoryInMemory();
         userProductsAvailableRepositoryInMemory =
             new UserProductsAvailableRepositoryInMemory();
+        productsRepositoryInMemory = new ProductsRepositoryInMemory();
         scheduleGoogle = new ScheduleGoogle();
         dateProvider = new DayjsDateProvider();
         createSpecialistScheduleUseCase = new CreateSpecialistScheduleUseCase(
             specialistScheduleRepositoryInMemory,
             userProductsAvailableRepositoryInMemory,
+            productsRepositoryInMemory,
             scheduleGoogle,
             dateProvider
         );

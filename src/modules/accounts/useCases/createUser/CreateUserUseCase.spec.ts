@@ -6,12 +6,8 @@ import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memor
 import { CompanyEmployeesRepositoryInMemory } from "@modules/company/repositories/in-memory/CompanyEmployeesRepositoryInMemory";
 import { CompanySubscriptionPlansRepositoryInMemory } from "@modules/company/repositories/in-memory/CompanySubscriptionPlansRepositoryInMemory";
 import { SubscriptionPlansRepositoryInMemory } from "@modules/products/repositories/in-memory/SubscriptionPlansRepositoryInMemory";
-
 import { AppError } from "@shared/errors/AppError";
-import { RemoveUserUseCase } from "../removeUser/RemoveUserUseCase";
-
 import { CreateUserUseCase } from "./CreateUserUseCase";
-
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let createUserUseCase: CreateUserUseCase;
 let companySubscriptionPlansRepository: CompanySubscriptionPlansRepositoryInMemory;

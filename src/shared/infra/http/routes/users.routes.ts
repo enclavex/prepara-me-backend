@@ -8,8 +8,16 @@ import { ensureAdmin } from "../middlewares/ensureAdmin";
 import uploadConfig from "@config/upload";
 import multer from "multer";
 import { ListUserProductsAvailableController } from "@modules/accounts/useCases/listUserProductsAvailable/ListUserProductsAvailableController";
+import { CreateSubscriptionNewsletterController } from "@modules/accounts/useCases/createSubscriptionNewsletter/CreateSubscriptionNewsletterController";
 
 const usersRoutes = Router();
+
+const createSubscriptionNewsletterController =
+    new CreateSubscriptionNewsletterController();
+usersRoutes.post(
+    "/subscriptionNewsletter",
+    createSubscriptionNewsletterController.handle
+);
 
 const createUserProductAvailableController =
     new CreateUserProductAvailableController();

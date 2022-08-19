@@ -1,4 +1,5 @@
 import { UserProductsAvailableRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserProductsAvailableRepositoryInMemory";
+import { ProductsRepositoryInMemory } from "@modules/products/repositories/in-memory/ProductsRepositoryInMemory";
 import { ICreateSpecialistScheduleDTO } from "@modules/specialists/dtos/ICreateSpecialistScheduleDTO";
 import { SpecialistScheduleStatusEnum } from "@modules/specialists/enums/SpecialistScheduleStatusEnum";
 import { SpecialistScheduleRepositoryInMemory } from "@modules/specialists/repositories/in-memory/SpecialistScheduleRepositoryInMemory";
@@ -9,6 +10,7 @@ import { CreateSpecialistScheduleUseCase } from "./CreateSpecialistScheduleUseCa
 
 let specialistScheduleRepositoryInMemory: SpecialistScheduleRepositoryInMemory;
 let createSpecialistScheduleUseCase: CreateSpecialistScheduleUseCase;
+let productsRepositoryInMemory: ProductsRepositoryInMemory;
 let dateProvider: DayjsDateProvider;
 let userProductsAvailableRepositoryInMemory: UserProductsAvailableRepositoryInMemory;
 let scheduleGoogle: ScheduleGoogle;
@@ -19,11 +21,13 @@ describe("Create Specialist Schedule ", () => {
             new SpecialistScheduleRepositoryInMemory();
         userProductsAvailableRepositoryInMemory =
             new UserProductsAvailableRepositoryInMemory();
+        productsRepositoryInMemory = new ProductsRepositoryInMemory();
         scheduleGoogle = new ScheduleGoogle();
         dateProvider = new DayjsDateProvider();
         createSpecialistScheduleUseCase = new CreateSpecialistScheduleUseCase(
             specialistScheduleRepositoryInMemory,
             userProductsAvailableRepositoryInMemory,
+            productsRepositoryInMemory,
             scheduleGoogle,
             dateProvider
         );
@@ -55,3 +59,4 @@ describe("Create Specialist Schedule ", () => {
         }).rejects.toBeInstanceOf(AppError);
     });
 });
+
