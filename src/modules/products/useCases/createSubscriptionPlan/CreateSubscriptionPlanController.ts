@@ -10,7 +10,7 @@ class CreateSubscriptionPlanController {
             CreateSubscriptionPlanUseCase
         );
 
-        const createSubscriptionPlan =
+        const subscriptionPlan =
             await createSubscriptionPlanUseCase.execute({
                 name,
                 price,
@@ -19,7 +19,7 @@ class CreateSubscriptionPlanController {
                 id
             });
 
-        return response.status(201).send(createSubscriptionPlan);
+        return response.status(201).send(subscriptionPlan);
     }
 }
 

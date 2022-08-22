@@ -14,6 +14,7 @@ class ProductsRepository implements IProductsRepository {
     constructor() {
         this.repository = getRepository(Product);
     }
+    
     findById(id: string): Promise<Product> {
         throw new Error("Method not implemented.");
     }

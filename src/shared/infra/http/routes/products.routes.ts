@@ -6,6 +6,7 @@ import { RemoveProductController } from "@modules/products/useCases/removeProduc
 import { Router } from "express";
 import { ensuredAuthenticated } from "../middlewares/ensureAuthenticated";
 import { ensureAdmin } from "../middlewares/ensureAdmin";
+import { CreateRequestScheduleController } from "@modules/products/useCases/createRequestSchedule/CreateRequestScheduleController";
 
 const productsRoutes = Router();
 
@@ -27,6 +28,20 @@ productsRoutes.post(
     ensuredAuthenticated,
     ensureAdmin,
     createProductController.handle
+);
+
+const createRequestScheduleController = new CreateRequestScheduleController();
+productsRoutes.post(
+    "/requestSchedule",
+    createRequestScheduleController.handle
+);
+
+const listRequestScheduleController = new ListProductController();
+productsRoutes.get(
+    "/requestSchedule/:id",
+    ensuredAuthenticated,
+    ensureAdmin,
+    listRequestScheduleController.handle
 );
 
 const createProductContentController = new CreateProductContentController();
