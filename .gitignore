@@ -4,6 +4,8 @@ node_modules
 src/infra/typeorm/seed/admin.ts
 .env
 ormconfig.json
+preparame.pem
+preparame-358302-add1d723808e.json
 
 # local env files
 .env.local

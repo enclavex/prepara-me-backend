@@ -61,9 +61,17 @@ class User {
     avatarUrl(): string {
         switch (process.env.disk) {
             case "local":
-                return `${process.env.APP_API_URL_PLATFORM}/avatar/${this.avatar}`;
+                if (!this.avatar) {
+                    return `${process.env.APP_API_URL_PLATFORM}/avatar/nopic.png`;
+                } else {
+                    return `${process.env.APP_API_URL_PLATFORM}/avatar/${this.avatar}`;
+                }
             case "s3":
-                return `${process.env.AWS_BUCKET_URL}/avatar/${this.avatar}`;
+                if (!this.avatar) {
+                    return `${process.env.AWS_BUCKET_URL}/avatar/nopic.png`;
+                } else {
+                    return `${process.env.AWS_BUCKET_URL}/avatar/${this.avatar}`;
+                }
             default:
                 return null;
         }
