@@ -37,10 +37,14 @@ class CreateUserUseCase {
         subscribeToken,
         id,
     }: ICreateUserDTO): Promise<User> {
-        const userFind = await this.usersRepository.findById(id);
+        var userFind
 
-        if (userFind && userFind.id !== id) {
-            throw new AppError("E-mail used by another user!");
+        if (id) {
+            userFind = await this.usersRepository.findById(id);
+
+            if (userFind && userFind.id !== id) {
+                throw new AppError("E-mail used by another user!");
+            }
         }
 
         let passwordHash = "";
