@@ -8,6 +8,9 @@ interface IScheduleProvider {
         timeZone: string,
         attendees: Array<any>
     );
+
+    cancelScheduledEvent(calendarId: string, eventId: string);
 }
 
 export { IScheduleProvider };
+

@@ -3,6 +3,7 @@ import { ICreateSpecialistScheduleDTO } from "@modules/specialists/dtos/ICreateS
 import { SpecialistScheduleStatusEnum } from "@modules/specialists/enums/SpecialistScheduleStatusEnum";
 import { SpecialistSchedule } from "@modules/specialists/infra/typeorm/entities/SpecialistSchedule";
 import { ISpecialistSchedulesRepository } from "@modules/specialists/repositories/ISpecialistSchedulesRepository";
+import { IScheduleProvider } from "@shared/container/providers/ScheduleProvider/IScheduleProvider";
 import { inject, injectable } from "tsyringe";
 
 interface ICancelSpecialistSchedule {
@@ -17,11 +18,13 @@ class CancelSpecialistScheduleUseCase {
         private specialistSchedulesRepository: ISpecialistSchedulesRepository,
         @inject("UserProductsAvailableRepository")
         private userProductsAvailableRepository: IUserProductsAvailableRepository,
+        @inject("ScheduleGoogle")
+        private scheduleGoogle: IScheduleProvider
     ) {}
 
     async execute({
         id,
-        revertAvailableProduct
+        revertAvailableProduct,
     }: ICancelSpecialistSchedule): Promise<SpecialistSchedule> {
         const specialistsSchedule =
             await this.specialistSchedulesRepository.find({
@@ -29,6 +32,11 @@ class CancelSpecialistScheduleUseCase {
             });
 
         const specialistSchedule = specialistsSchedule[0];
+
+        this.scheduleGoogle.cancelScheduledEvent(
+            "primary",
+            specialistSchedule.scheduleEventId
+        );
 
         const userId = specialistSchedule.userId;
         const productId = specialistSchedule.productId;

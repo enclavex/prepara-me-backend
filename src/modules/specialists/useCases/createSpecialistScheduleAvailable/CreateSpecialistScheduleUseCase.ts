@@ -88,7 +88,7 @@ class CreateSpecialistScheduleUseCase {
                         if (userProductUpdated) {
                             const eventScheduled =
                                 await this.scheduleGoogle.scheduleEvent(
-                                    `Agendado ${userProduct.product.shortName} com o(a) especialista ${specialistsSchedule[0].specialist.name}`,
+                                    `${userProduct.product.shortName} com o(a) especialista ${specialistsSchedule[0].specialist.name}`,
                                     "Online",
                                     "Estamos aguardando você",
                                     dateScheduleStartMasked,
