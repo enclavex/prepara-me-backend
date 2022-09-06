@@ -10,8 +10,15 @@ import { ListCompanyController } from "@modules/company/useCases/listCompany/Lis
 import { CreateCompanyController } from "@modules/company/useCases/createCompany/CreateCompanyController";
 import { RemoveCompanyController } from "@modules/company/useCases/removeCompany/RemoveCompanyController";
 import { RemoveCompanyEmployeeController } from "@modules/company/useCases/removeCompanyEmployee/RemoveCompanyEmployeeController";
+import { SendFreeMentorshipMailController } from "@modules/company/useCases/sendFreeMentorshipMail/SendFreeMentorshipMailController";
 
 const companiesRoutes = Router();
+
+const sendFreeMentorshipMailController = new SendFreeMentorshipMailController();
+companiesRoutes.post(
+    "/freeMentorship",
+    sendFreeMentorshipMailController.handle
+);
 
 const createCompanyEmployeeController = new CreateCompanyEmployeeController();
 companiesRoutes.post(
