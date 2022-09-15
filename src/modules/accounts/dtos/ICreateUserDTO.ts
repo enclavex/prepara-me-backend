@@ -12,6 +12,10 @@ interface ICreateUserDTO {
     id?: string;
     avatar?: string;
     subscribeToken?: string;
+    laborRisk?: number;
+    NPSSurvey?: number;
+    surveyAnswered?: boolean;
 }
 
 export { ICreateUserDTO };
+

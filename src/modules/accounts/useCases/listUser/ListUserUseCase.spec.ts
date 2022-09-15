@@ -158,7 +158,7 @@ describe("List User", () => {
             username: "User One",
         };
 
-        await createUserUseCase.execute(user1);
+        await createUserUseCase.execute(user1); 
 
         const user2: ICreateUserDTO = {
             name: "User Two",

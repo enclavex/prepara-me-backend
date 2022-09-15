@@ -36,11 +36,15 @@ class CreateUserUseCase {
         status,
         subscribeToken,
         id,
+        NPSSurvey,
+        laborRisk,
+        surveyAnswered,
     }: ICreateUserDTO): Promise<User> {
-        var userFind
+        var userFind;
 
         if (id) {
             userFind = await this.usersRepository.findById(id);
+
 
             if (userFind && userFind.id !== id) {
                 throw new AppError("E-mail used by another user!");
@@ -87,6 +91,9 @@ class CreateUserUseCase {
             type,
             status,
             id,
+            NPSSurvey,
+            laborRisk,
+            surveyAnswered,
         });
 
         if (subscribeToken && userCreated && userCreated.id && !userFind) {

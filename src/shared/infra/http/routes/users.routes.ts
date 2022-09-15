@@ -9,6 +9,7 @@ import uploadConfig from "@config/upload";
 import multer from "multer";
 import { ListUserProductsAvailableController } from "@modules/accounts/useCases/listUserProductsAvailable/ListUserProductsAvailableController";
 import { CreateSubscriptionNewsletterController } from "@modules/accounts/useCases/createSubscriptionNewsletter/CreateSubscriptionNewsletterController";
+import { UpdateUserSurveyFieldsController } from "@modules/accounts/useCases/updateUserSurveyFields/UpdateUserSurveyFieldsController";
 
 const usersRoutes = Router();
 
@@ -59,8 +60,14 @@ usersRoutes.get(
 usersRoutes.get(
     "/:id",
     ensuredAuthenticated,
-    ensureAdmin,
     listUserController.handle
+);
+
+const updateUserSurveyFieldsController = new UpdateUserSurveyFieldsController()
+usersRoutes.put(
+    "/",
+    ensuredAuthenticated,
+    updateUserSurveyFieldsController.handle
 );
 
 export { usersRoutes };

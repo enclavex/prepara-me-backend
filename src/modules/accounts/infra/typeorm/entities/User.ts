@@ -77,6 +77,15 @@ class User {
         }
     }
 
+    @Column()
+    laborRisk: number;
+
+    @Column()
+    NPSSurvey: number;
+
+    @Column()
+    surveyAnswered?: boolean;
+
     constructor(
         name: string,
         username: string,
@@ -85,7 +94,10 @@ class User {
         documentId: string,
         type: UserTypeEnum,
         status: UserStatusEnum,
-        id: string
+        id: string,
+        laborRisk: number,
+        NPSSurvey: number,
+        surveyAnswered: boolean
     ) {
         if (id) {
             this.id = id;
@@ -105,6 +117,9 @@ class User {
         this.documentId = documentId;
         this.type = type;
         this.status = status;
+        this.laborRisk = laborRisk;
+        this.NPSSurvey = NPSSurvey;
+        this.surveyAnswered = surveyAnswered;
     }
 }
 

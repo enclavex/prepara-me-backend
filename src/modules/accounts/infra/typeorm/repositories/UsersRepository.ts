@@ -1,6 +1,5 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { IUserResponseDTO } from "@modules/accounts/dtos/IUserResponseDTO";
-import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserMap } from "@modules/accounts/mapper/UserMap";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { getRepository, Repository } from "typeorm";
@@ -24,6 +23,9 @@ class UsersRepository implements IUsersRepository {
         avatar,
         id,
         status,
+        NPSSurvey,
+        laborRisk,
+        surveyAnswered,
     }: ICreateUserDTO): Promise<User> {
         const user = this.repository.create({
             id,
@@ -35,6 +37,9 @@ class UsersRepository implements IUsersRepository {
             type,
             status,
             avatar,
+            NPSSurvey,
+            laborRisk,
+            surveyAnswered,
         });
 
         await this.repository.save(user);

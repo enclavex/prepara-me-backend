@@ -5,8 +5,35 @@ import { CreateUserUseCase } from "./CreateUserUseCase";
 
 class CreateUserController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { name, username, email, password, documentId, status, type, subscribeToken, id } =
-            request.body;
+        const {
+            name,
+            username,
+            email,
+            password,
+            documentId,
+            status,
+            type,
+            subscribeToken,
+            id,
+            laborRisk,
+            NPSSurvey,
+            surveyAnswered,
+        } = request.body;
+
+        console.log({
+            name,
+            username,
+            email,
+            password,
+            documentId,
+            status,
+            type,
+            subscribeToken,
+            id,
+            laborRisk,
+            NPSSurvey,
+            surveyAnswered,
+        })
 
         const createUserUseCase = container.resolve(CreateUserUseCase);
 
@@ -19,7 +46,10 @@ class CreateUserController {
             type,
             status,
             subscribeToken,
-            id
+            id,
+            laborRisk,
+            NPSSurvey,
+            surveyAnswered,
         });
 
         return response.status(201).send();

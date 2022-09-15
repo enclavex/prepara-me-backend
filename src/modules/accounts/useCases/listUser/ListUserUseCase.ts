@@ -25,7 +25,7 @@ class ListUserUseCase {
             documentId,
             id,
         });
-
+        
         return users
     }
 }

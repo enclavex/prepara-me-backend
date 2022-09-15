@@ -8,6 +8,9 @@ interface IUserResponseDTO {
     documentId: string;
     type: Object;
     avatarUrl(): string;
+    laborRisk?: number;
+    NPSSurvey?: number;
+    surveyAnswered?: boolean;
 }
 
 export { IUserResponseDTO };
