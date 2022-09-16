@@ -37,6 +37,7 @@ describe("Create User", () => {
             documentId: "00000000000",
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
+            companyId: '123'
         };
 
         const result = await createUserUseCase.execute(user);
@@ -55,6 +56,7 @@ describe("Create User", () => {
                 documentId: "",
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
+                companyId: '123'
             };
 
             await createUserUseCase.execute(user);
@@ -71,6 +73,7 @@ describe("Create User", () => {
                 documentId: "000000",
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
+                companyId: '123'
             };
 
             await createUserUseCase.execute(user);
@@ -87,6 +90,7 @@ describe("Create User", () => {
                 documentId: "000000",
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
+                companyId: '123'
             };
 
             await createUserUseCase.execute(user);
@@ -103,6 +107,7 @@ describe("Create User", () => {
                 documentId: "000000",
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
+                companyId: '123'
             };
 
             await createUserUseCase.execute(user);

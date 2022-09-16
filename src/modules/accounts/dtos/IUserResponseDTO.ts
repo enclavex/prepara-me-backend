@@ -1,3 +1,5 @@
+import { Company } from "@modules/company/infra/typeorm/entities/Company";
+
 interface IUserResponseDTO {
     email: string;
     name: string;
@@ -11,6 +13,7 @@ interface IUserResponseDTO {
     laborRisk?: number;
     NPSSurvey?: number;
     surveyAnswered?: boolean;
+    company?: Company;
 }
 
 export { IUserResponseDTO };

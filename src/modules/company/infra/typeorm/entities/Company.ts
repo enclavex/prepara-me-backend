@@ -1,4 +1,5 @@
-import { Column, Entity, ManyToMany, OneToMany, PrimaryColumn } from "typeorm";
+import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { CompanySubscriptionPlan } from "./CompanySubscriptionPlan";
 
@@ -14,7 +15,7 @@ class Company {
         () => CompanySubscriptionPlan,
         (companySubscriptionPlan) => companySubscriptionPlan.company
     )
-    public companySubscriptionPlan!: CompanySubscriptionPlan[];
+    public companySubscriptionPlan!: CompanySubscriptionPlan[];   
 
     constructor(name: string, id: string) {
         if (!this.id) {

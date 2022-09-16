@@ -19,7 +19,8 @@ class UsersRepositoryInMemory implements IUsersRepository {
         status,
         NPSSurvey,
         laborRisk,
-        surveyAnswered
+        surveyAnswered,
+        companyId
     }: ICreateUserDTO): Promise<User> {
         const user = new User(
             name,
@@ -32,7 +33,8 @@ class UsersRepositoryInMemory implements IUsersRepository {
             id,
             NPSSurvey,
             laborRisk,
-            surveyAnswered
+            surveyAnswered,
+            companyId
         );
 
         this.users.push(user);

@@ -18,7 +18,8 @@ class UserMap {
         status,
         NPSSurvey,
         laborRisk,
-        surveyAnswered
+        surveyAnswered,
+        company
     }: User): IUserResponseDTO {
         const statusMapped =
             status == UserStatusEnum.INACTIVE ? "Inativo" : "Ativo";
@@ -52,7 +53,8 @@ class UserMap {
             avatarUrl,
             NPSSurvey,
             laborRisk,
-            surveyAnswered
+            surveyAnswered,
+            company
         });
 
         return user;

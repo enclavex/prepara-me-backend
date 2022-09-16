@@ -18,22 +18,8 @@ class CreateUserController {
             laborRisk,
             NPSSurvey,
             surveyAnswered,
+            companyId
         } = request.body;
-
-        console.log({
-            name,
-            username,
-            email,
-            password,
-            documentId,
-            status,
-            type,
-            subscribeToken,
-            id,
-            laborRisk,
-            NPSSurvey,
-            surveyAnswered,
-        })
 
         const createUserUseCase = container.resolve(CreateUserUseCase);
 
@@ -50,6 +36,7 @@ class CreateUserController {
             laborRisk,
             NPSSurvey,
             surveyAnswered,
+            companyId
         });
 
         return response.status(201).send();

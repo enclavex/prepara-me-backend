@@ -15,6 +15,7 @@ interface ICreateUserDTO {
     laborRisk?: number;
     NPSSurvey?: number;
     surveyAnswered?: boolean;
+    companyId?:string;
 }
 
 export { ICreateUserDTO };

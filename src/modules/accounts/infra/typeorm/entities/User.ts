@@ -1,5 +1,6 @@
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
+import { Company } from "@modules/company/infra/typeorm/entities/Company";
 import { SpecialistSchedule } from "@modules/specialists/infra/typeorm/entities/SpecialistSchedule";
 import { Expose } from "class-transformer";
 import {
@@ -8,6 +9,7 @@ import {
     Column,
     CreateDateColumn,
     OneToMany,
+    ManyToOne,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
@@ -57,6 +59,12 @@ class User {
     )
     specialistSchedule: SpecialistSchedule[];
 
+    @ManyToOne(() => Company, (company) => company.id)
+    company: Company;
+
+    @Column()
+    companyId: string;
+
     @Expose({ name: "avatarUrl" })
     avatarUrl(): string {
         switch (process.env.disk) {
@@ -97,7 +105,8 @@ class User {
         id: string,
         laborRisk: number,
         NPSSurvey: number,
-        surveyAnswered: boolean
+        surveyAnswered: boolean,
+        companyId: string
     ) {
         if (id) {
             this.id = id;
@@ -120,6 +129,7 @@ class User {
         this.laborRisk = laborRisk;
         this.NPSSurvey = NPSSurvey;
         this.surveyAnswered = surveyAnswered;
+        this.companyId = companyId;
     }
 }
 

@@ -39,6 +39,7 @@ class CreateUserUseCase {
         NPSSurvey,
         laborRisk,
         surveyAnswered,
+        companyId
     }: ICreateUserDTO): Promise<User> {
         var userFind;
 
@@ -94,6 +95,7 @@ class CreateUserUseCase {
             NPSSurvey,
             laborRisk,
             surveyAnswered,
+            companyId
         });
 
         if (subscribeToken && userCreated && userCreated.id && !userFind) {

@@ -26,6 +26,7 @@ class UsersRepository implements IUsersRepository {
         NPSSurvey,
         laborRisk,
         surveyAnswered,
+        companyId,
     }: ICreateUserDTO): Promise<User> {
         const user = this.repository.create({
             id,
@@ -40,6 +41,7 @@ class UsersRepository implements IUsersRepository {
             NPSSurvey,
             laborRisk,
             surveyAnswered,
+            companyId,
         });
 
         await this.repository.save(user);
@@ -65,8 +67,10 @@ class UsersRepository implements IUsersRepository {
         documentId,
         id,
     }): Promise<IUserResponseDTO[]> {
-        const usersQuery = this.repository.createQueryBuilder("u");
-
+        const usersQuery = this.repository
+            .createQueryBuilder("u")
+            .leftJoinAndSelect("u.company", "c");
+            
         if (id) {
             usersQuery.andWhere("u.id = :id", {
                 id: id,
