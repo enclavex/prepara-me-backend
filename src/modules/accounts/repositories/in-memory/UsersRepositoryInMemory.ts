@@ -20,7 +20,9 @@ class UsersRepositoryInMemory implements IUsersRepository {
         NPSSurvey,
         laborRisk,
         surveyAnswered,
-        companyId
+        companyId,
+        realocated,
+        feelingsMapJSON,
     }: ICreateUserDTO): Promise<User> {
         const user = new User(
             name,
@@ -34,7 +36,9 @@ class UsersRepositoryInMemory implements IUsersRepository {
             NPSSurvey,
             laborRisk,
             surveyAnswered,
-            companyId
+            companyId,
+            realocated,
+            feelingsMapJSON
         );
 
         this.users.push(user);
@@ -57,6 +61,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
         email,
         documentId,
         id,
+        realocated
     }): Promise<IUserResponseDTO[]> {
         let users = this.users;
 
@@ -68,6 +73,12 @@ class UsersRepositoryInMemory implements IUsersRepository {
             if (status) {
                 users = users.filter((user) => {
                     return user.status === status;
+                });
+            }
+
+            if (realocated) {
+                users = users.filter((user) => {
+                    return user.realocated === realocated;
                 });
             }
 

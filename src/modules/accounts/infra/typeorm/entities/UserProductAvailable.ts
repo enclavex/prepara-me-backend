@@ -9,7 +9,7 @@ class UserProductAvailable {
     id: string;
 
     @Column()
-    userId: string;
+    userId: string; 
 
     @ManyToOne(() => User)
     @JoinColumn({ name: "userId" })

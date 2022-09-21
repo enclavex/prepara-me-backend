@@ -1,3 +1,4 @@
+import { UserRealocatedEnum } from "../enums/UserRealocatedEnum";
 import { UserStatusEnum } from "../enums/UserStatusEnum";
 import { UserTypeEnum } from "../enums/UserTypeEnum";
 
@@ -15,7 +16,9 @@ interface ICreateUserDTO {
     laborRisk?: number;
     NPSSurvey?: number;
     surveyAnswered?: boolean;
-    companyId?:string;
+    companyId?: string;
+    realocated: UserRealocatedEnum;
+    feelingsMapJSON?: string;
 }
 
 export { ICreateUserDTO };

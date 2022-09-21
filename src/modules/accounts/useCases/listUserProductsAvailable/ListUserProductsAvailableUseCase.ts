@@ -19,6 +19,7 @@ class ListUserProductsAvailableUseCase {
                 id,
                 userId,
                 productId,
+                onlyAvailables: true,
             });
 
         return userProductsAvailable;
@@ -26,3 +27,4 @@ class ListUserProductsAvailableUseCase {
 }
 
 export { ListUserProductsAvailableUseCase };
+

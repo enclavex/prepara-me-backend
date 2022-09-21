@@ -5,7 +5,9 @@ import { UpdateUserSurveyFieldsUseCase } from "./UpdateUserSurveyFieldsUseCase";
 class UpdateUserSurveyFieldsController {
     async handle(request: Request, response: Response): Promise<Response> {
         const { id } = request.user;
-        const { NPSSurvey, laborRisk, surveyAnswered } = request.body;
+
+        const { NPSSurvey, laborRisk, surveyAnswered, feelingsMapJSON } =
+            request.body;
 
         const updateUserSurveyFieldsUseCase = container.resolve(
             UpdateUserSurveyFieldsUseCase
@@ -16,6 +18,7 @@ class UpdateUserSurveyFieldsController {
             laborRisk,
             NPSSurvey,
             surveyAnswered,
+            feelingsMapJSON,
         });
 
         return response.status(204).send();

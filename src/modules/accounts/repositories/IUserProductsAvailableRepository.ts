@@ -6,15 +6,15 @@ interface IRequestFind {
     id?: string;
     userId?: string;
     productId?: string;
+    onlyAvailables?: boolean;
 }
 
 interface IUserProductsAvailableRepository {
-    create(
-        data: ICreateUserProductAvailableDTO
-    ): Promise<UserProductAvailable>;
-    find(data: IRequestFind): Promise<IUserProductAvailableResponseDTO[]>
+    create(data: ICreateUserProductAvailableDTO): Promise<UserProductAvailable>;
+    find(data: IRequestFind): Promise<IUserProductAvailableResponseDTO[]>;
     findById(id: string): Promise<UserProductAvailable>;
     findByUser(userId: string): Promise<UserProductAvailable[]>;
 }
 
 export { IUserProductsAvailableRepository };
+

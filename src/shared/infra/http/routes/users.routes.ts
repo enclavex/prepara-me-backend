@@ -46,6 +46,13 @@ usersRoutes.patch(
     updateUserAvatarController.handle
 );
 
+usersRoutes.patch(
+    "/avatar/:userId",
+    ensuredAuthenticated,
+    uploadAvatar.single("avatar"),
+    updateUserAvatarController.handle
+);
+
 const createUserController = new CreateUserController();
 usersRoutes.post("/", createUserController.handle);
 

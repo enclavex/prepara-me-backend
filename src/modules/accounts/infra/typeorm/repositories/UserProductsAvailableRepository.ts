@@ -51,11 +51,22 @@ class UserProductsAvailableRepository
         return userProductAvailable;
     }
 
-    async find({ id, userId, productId }): Promise<IUserProductAvailableResponseDTO[]> {
-        const userProductAvailableQuery = this.repository
+    async find({
+        id,
+        userId,
+        productId,
+        onlyAvailables,
+    }): Promise<IUserProductAvailableResponseDTO[]> {
+        let userProductAvailableQuery = this.repository
             .createQueryBuilder("upa")
             .leftJoinAndSelect("upa.product", "product")
             .leftJoinAndSelect("upa.user", "user");
+
+        if (onlyAvailables) {
+            userProductAvailableQuery = userProductAvailableQuery.andWhere(
+                "upa.availableQuantity > 0"
+            );
+        }
 
         if (id) {
             userProductAvailableQuery.andWhere("upa.id = :id", {

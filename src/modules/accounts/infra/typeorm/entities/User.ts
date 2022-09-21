@@ -1,3 +1,4 @@
+import { UserRealocatedEnum } from "@modules/accounts/enums/UserRealocatedEnum";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { Company } from "@modules/company/infra/typeorm/entities/Company";
@@ -92,7 +93,17 @@ class User {
     NPSSurvey: number;
 
     @Column()
-    surveyAnswered?: boolean;
+    surveyAnswered: boolean;
+
+    @Column({
+        type: "enum",
+        enum: UserRealocatedEnum,
+        default: UserRealocatedEnum.NOT_REALOCATED,
+    })
+    realocated: UserRealocatedEnum;
+
+    @Column()
+    feelingsMapJSON: string;
 
     constructor(
         name: string,
@@ -106,7 +117,9 @@ class User {
         laborRisk: number,
         NPSSurvey: number,
         surveyAnswered: boolean,
-        companyId: string
+        companyId: string,
+        realocated: UserRealocatedEnum,
+        feelingsMapJSON: string
     ) {
         if (id) {
             this.id = id;
@@ -130,6 +143,8 @@ class User {
         this.NPSSurvey = NPSSurvey;
         this.surveyAnswered = surveyAnswered;
         this.companyId = companyId;
+        this.realocated = realocated;
+        this.feelingsMapJSON = feelingsMapJSON;
     }
 }
 

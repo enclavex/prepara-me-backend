@@ -1,3 +1,4 @@
+import { UserRealocatedEnum } from "@modules/accounts/enums/UserRealocatedEnum";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
@@ -40,6 +41,7 @@ describe("Send Forgot Mail", () => {
             documentId: "08113754989",
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         });
 
         await sendForgotPasswordMailUseCase.execute(
@@ -63,6 +65,7 @@ describe("Send Forgot Mail", () => {
             documentId: "08113754989",
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         });
 
         await sendForgotPasswordMailUseCase.execute(

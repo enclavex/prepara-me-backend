@@ -18,7 +18,8 @@ class CreateUserController {
             laborRisk,
             NPSSurvey,
             surveyAnswered,
-            companyId
+            companyId,
+            realocated,
         } = request.body;
 
         const createUserUseCase = container.resolve(CreateUserUseCase);
@@ -36,7 +37,8 @@ class CreateUserController {
             laborRisk,
             NPSSurvey,
             surveyAnswered,
-            companyId
+            companyId,
+            realocated,
         });
 
         return response.status(201).send();

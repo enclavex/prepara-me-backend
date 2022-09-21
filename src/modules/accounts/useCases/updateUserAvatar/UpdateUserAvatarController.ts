@@ -5,7 +5,11 @@ import { UpdateUserAvatarUseCase } from "./UpdateUserAvatarUseCase";
 
 class UpdateUserAvatarController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { id } = request.user;
+        var { userId } = request.params;
+
+        if (!userId) {
+            userId = request.user.id;
+        }
 
         const updateUserAvatarUseCase = container.resolve(
             UpdateUserAvatarUseCase
@@ -14,7 +18,7 @@ class UpdateUserAvatarController {
         const avatar_file = request.file.filename;
 
         await updateUserAvatarUseCase.execute({
-            user_id: id,
+            user_id: userId,
             avatar_file,
         });
 
@@ -23,3 +27,4 @@ class UpdateUserAvatarController {
 }
 
 export { UpdateUserAvatarController };
+

@@ -27,6 +27,8 @@ class UsersRepository implements IUsersRepository {
         laborRisk,
         surveyAnswered,
         companyId,
+        realocated,
+        feelingsMapJSON,
     }: ICreateUserDTO): Promise<User> {
         const user = this.repository.create({
             id,
@@ -42,6 +44,8 @@ class UsersRepository implements IUsersRepository {
             laborRisk,
             surveyAnswered,
             companyId,
+            realocated,
+            feelingsMapJSON,
         });
 
         await this.repository.save(user);
@@ -51,11 +55,13 @@ class UsersRepository implements IUsersRepository {
 
     async findByEmail(email: string): Promise<User> {
         const user = await this.repository.findOne({ email });
+
         return user;
     }
 
     async findById(id: string): Promise<User> {
         const user = await this.repository.findOne(id);
+
         return user;
     }
 
@@ -66,11 +72,12 @@ class UsersRepository implements IUsersRepository {
         email,
         documentId,
         id,
+        realocated
     }): Promise<IUserResponseDTO[]> {
         const usersQuery = this.repository
             .createQueryBuilder("u")
             .leftJoinAndSelect("u.company", "c");
-            
+
         if (id) {
             usersQuery.andWhere("u.id = :id", {
                 id: id,
@@ -105,6 +112,12 @@ class UsersRepository implements IUsersRepository {
             if (email) {
                 usersQuery.andWhere("u.email = :email", {
                     email: email,
+                });
+            }
+
+            if (realocated) {
+                usersQuery.andWhere("u.realocated = :realocated", {
+                    realocated: realocated,
                 });
             }
         }

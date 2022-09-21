@@ -1,4 +1,3 @@
-import { User } from "@modules/accounts/infra/typeorm/entities/User";
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { CompanySubscriptionPlan } from "./CompanySubscriptionPlan";

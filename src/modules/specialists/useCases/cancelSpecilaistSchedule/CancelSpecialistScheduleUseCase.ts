@@ -33,10 +33,12 @@ class CancelSpecialistScheduleUseCase {
 
         const specialistSchedule = specialistsSchedule[0];
 
-        this.scheduleGoogle.cancelScheduledEvent(
-            "primary",
-            specialistSchedule.scheduleEventId
-        );
+        if (specialistSchedule.scheduleEventId) {
+            this.scheduleGoogle.cancelScheduledEvent(
+                "primary",
+                specialistSchedule.scheduleEventId
+            );
+        }
 
         const userId = specialistSchedule.userId;
         const productId = specialistSchedule.productId;

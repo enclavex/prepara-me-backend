@@ -14,6 +14,9 @@ interface IUserResponseDTO {
     NPSSurvey?: number;
     surveyAnswered?: boolean;
     company?: Company;
+    realocated: Object;
+    feelingsMapJSON: string;
 }
 
 export { IUserResponseDTO };
+

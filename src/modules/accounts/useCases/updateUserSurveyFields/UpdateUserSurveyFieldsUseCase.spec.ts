@@ -1,4 +1,5 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UserRealocatedEnum } from "@modules/accounts/enums/UserRealocatedEnum";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { UserProductsAvailableRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserProductsAvailableRepositoryInMemory";
@@ -41,6 +42,7 @@ describe("update user survey", () => {
             documentId: "00000000000",
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         const result = await createUserUseCase.execute(user);
@@ -50,11 +52,13 @@ describe("update user survey", () => {
             laborRisk: 1.5,
             NPSSurvey: 5,
             surveyAnswered: true,
+            feelingsMapJSON: "[{teste: 123}]"
         });
 
         expect(result).toHaveProperty("id");
         expect(result.laborRisk).toBe(1.5);
         expect(result.NPSSurvey).toBe(5);
         expect(result.surveyAnswered).toBe(true);
+        expect(result.feelingsMapJSON).toBe("[{teste: 123}]");
     });
 });

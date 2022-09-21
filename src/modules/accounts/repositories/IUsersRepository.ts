@@ -11,6 +11,7 @@ interface IRequestFind {
     email?: string;
     documentId?: string;
     id?: string;
+    realocated?: string;
 }
 
 interface IUsersRepository {

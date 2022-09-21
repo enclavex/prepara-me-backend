@@ -1,4 +1,5 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UserRealocatedEnum } from "@modules/accounts/enums/UserRealocatedEnum";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { UserProductsAvailableRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserProductsAvailableRepositoryInMemory";
@@ -45,6 +46,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.USER,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED,
         };
 
         await createUserUseCase.execute(user1);
@@ -57,6 +59,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.USER,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED,
         };
 
         await createUserUseCase.execute(user2);
@@ -67,7 +70,8 @@ describe("List User", () => {
             name: "",
             status: "",
             type: "",
-            documentId: ""
+            documentId: "",
+            realocated: "",
         });
 
         expect(result).toHaveLength(2);
@@ -82,6 +86,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.USER,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         await createUserUseCase.execute(user1);
@@ -94,6 +99,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.USER,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         await createUserUseCase.execute(user2);
@@ -104,7 +110,8 @@ describe("List User", () => {
             name: "One",
             status: "",
             type: "",
-            documentId: ""
+            documentId: "",
+            realocated: ""
         });
 
         expect(result).toHaveLength(1);
@@ -119,6 +126,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.USER,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         await createUserUseCase.execute(user1);
@@ -131,6 +139,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.USER,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         await createUserUseCase.execute(user2);
@@ -141,7 +150,8 @@ describe("List User", () => {
             name: "",
             status: "",
             type: "",
-            documentId: ""
+            documentId: "",
+            realocated: ""
         });
 
         expect(result).toHaveLength(1);
@@ -156,9 +166,10 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.USER,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
-        await createUserUseCase.execute(user1); 
+        await createUserUseCase.execute(user1);
 
         const user2: ICreateUserDTO = {
             name: "User Two",
@@ -168,6 +179,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.USER,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         await createUserUseCase.execute(user2);
@@ -178,7 +190,8 @@ describe("List User", () => {
             name: "",
             status: UserStatusEnum.INACTIVE,
             type: "",
-            documentId: ""
+            documentId: "",
+            realocated: ""
         });
 
         expect(result).toHaveLength(1);
@@ -193,6 +206,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.ADMIN,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         await createUserUseCase.execute(user1);
@@ -205,6 +219,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.USER,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         await createUserUseCase.execute(user2);
@@ -215,7 +230,8 @@ describe("List User", () => {
             name: "",
             status: "",
             type: UserTypeEnum.USER,
-            documentId: ""
+            documentId: "",
+            realocated: ""
         });
 
         expect(result).toHaveLength(1);
@@ -230,6 +246,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.ADMIN,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         await createUserUseCase.execute(user1);
@@ -242,6 +259,7 @@ describe("List User", () => {
             password: "123",
             type: UserTypeEnum.USER,
             username: "User One",
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         const userCreated = await createUserUseCase.execute(user2);
@@ -252,7 +270,8 @@ describe("List User", () => {
             name: "",
             status: "",
             type: "",
-            documentId: ""
+            documentId: "",
+            realocated: ""
         });
 
         expect(result).toHaveLength(1);

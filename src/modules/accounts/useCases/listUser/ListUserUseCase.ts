@@ -16,6 +16,7 @@ class ListUserUseCase {
         email,
         documentId,
         id,
+        realocated
     }): Promise<IUserResponseDTO[]> {
         const users = await this.usersRepository.find({
             name,
@@ -24,6 +25,7 @@ class ListUserUseCase {
             email,
             documentId,
             id,
+            realocated
         });
         
         return users

@@ -1,4 +1,5 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UserRealocatedEnum } from "@modules/accounts/enums/UserRealocatedEnum";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { UserProductsAvailableRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserProductsAvailableRepositoryInMemory";
@@ -37,7 +38,8 @@ describe("Create User", () => {
             documentId: "00000000000",
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
-            companyId: '123'
+            companyId: '123',
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         const result = await createUserUseCase.execute(user);
@@ -56,7 +58,8 @@ describe("Create User", () => {
                 documentId: "",
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
-                companyId: '123'
+                companyId: '123',
+                realocated: UserRealocatedEnum.NOT_REALOCATED
             };
 
             await createUserUseCase.execute(user);
@@ -73,7 +76,8 @@ describe("Create User", () => {
                 documentId: "000000",
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
-                companyId: '123'
+                companyId: '123',
+                realocated: UserRealocatedEnum.NOT_REALOCATED
             };
 
             await createUserUseCase.execute(user);
@@ -90,7 +94,8 @@ describe("Create User", () => {
                 documentId: "000000",
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
-                companyId: '123'
+                companyId: '123',
+                realocated: UserRealocatedEnum.NOT_REALOCATED
             };
 
             await createUserUseCase.execute(user);
@@ -107,7 +112,8 @@ describe("Create User", () => {
                 documentId: "000000",
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
-                companyId: '123'
+                companyId: '123',
+                realocated: UserRealocatedEnum.NOT_REALOCATED
             };
 
             await createUserUseCase.execute(user);

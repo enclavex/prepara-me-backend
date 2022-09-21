@@ -1,6 +1,7 @@
 import { instanceToInstance } from "class-transformer";
 
 import { IUserResponseDTO } from "../dtos/IUserResponseDTO";
+import { UserRealocatedEnum } from "../enums/UserRealocatedEnum";
 import { UserStatusEnum } from "../enums/UserStatusEnum";
 import { UserTypeEnum } from "../enums/UserTypeEnum";
 import { User } from "../infra/typeorm/entities/User";
@@ -19,10 +20,18 @@ class UserMap {
         NPSSurvey,
         laborRisk,
         surveyAnswered,
-        company
+        company,
+        companyId,
+        realocated,
+        feelingsMapJSON,
     }: User): IUserResponseDTO {
         const statusMapped =
             status == UserStatusEnum.INACTIVE ? "Inativo" : "Ativo";
+
+        const realocatedMapped =
+            realocated == UserRealocatedEnum.NOT_REALOCATED
+                ? "Não Realocado"
+                : "Realocado";
 
         let typeMapped = "";
 
@@ -54,7 +63,10 @@ class UserMap {
             NPSSurvey,
             laborRisk,
             surveyAnswered,
-            company
+            company,
+            companyId,
+            realocated: { label: realocatedMapped, value: realocated },
+            feelingsMapJSON,
         });
 
         return user;

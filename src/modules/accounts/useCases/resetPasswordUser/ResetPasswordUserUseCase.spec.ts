@@ -1,4 +1,5 @@
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UserRealocatedEnum } from "@modules/accounts/enums/UserRealocatedEnum";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { UserProductsAvailableRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UserProductsAvailableRepositoryInMemory";
@@ -58,6 +59,7 @@ describe("Reset Password", () => {
             documentId: "00000000000",
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
+            realocated: UserRealocatedEnum.NOT_REALOCATED
         };
 
         const { email } = await createUserUseCase.execute(user);

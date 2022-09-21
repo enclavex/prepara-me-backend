@@ -7,6 +7,7 @@ import { productsRoutes } from "./products.routes";
 import { companiesRoutes } from "./companies.routes";
 import { subscriptionPlansRoutes } from "./subscriptionPlans.routes";
 import { usersRoutes } from "./users.routes";
+import { reportsRoutes } from "./reports.routes";
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.use("/companies", companiesRoutes);
 router.use("/subscriptionPlans", subscriptionPlansRoutes);
 router.use("/password", passwordRoutes);
 router.use("/users", usersRoutes);
+router.use("/reports", reportsRoutes);
 router.use(authenticateRoutes);
 
 export { router };

@@ -14,12 +14,14 @@ class UpdateUserSurveyFieldsUseCase {
         NPSSurvey,
         laborRisk,
         surveyAnswered,
+        feelingsMapJSON,
     }): Promise<User> {
         const user = await this.usersRepository.findById(user_id);
 
         user.NPSSurvey = NPSSurvey;
         user.laborRisk = laborRisk;
         user.surveyAnswered = surveyAnswered;
+        user.feelingsMapJSON = feelingsMapJSON;
 
         const newUser = await this.usersRepository.create(user);
 
