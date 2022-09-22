@@ -15,6 +15,9 @@ class UpdateUserSurveyFieldsUseCase {
         laborRisk,
         surveyAnswered,
         feelingsMapJSON,
+        brandRisk,
+        laborRiskJSON,
+        brandRiskJSON,
     }): Promise<User> {
         const user = await this.usersRepository.findById(user_id);
 
@@ -22,6 +25,9 @@ class UpdateUserSurveyFieldsUseCase {
         user.laborRisk = laborRisk;
         user.surveyAnswered = surveyAnswered;
         user.feelingsMapJSON = feelingsMapJSON;
+        user.brandRisk = brandRisk;
+        user.laborRiskJSON = laborRiskJSON;
+        user.brandRiskJSON = brandRiskJSON;
 
         const newUser = await this.usersRepository.create(user);
 

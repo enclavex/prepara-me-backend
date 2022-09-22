@@ -6,8 +6,15 @@ class UpdateUserSurveyFieldsController {
     async handle(request: Request, response: Response): Promise<Response> {
         const { id } = request.user;
 
-        const { NPSSurvey, laborRisk, surveyAnswered, feelingsMapJSON } =
-            request.body;
+        const {
+            NPSSurvey,
+            laborRisk,
+            surveyAnswered,
+            feelingsMapJSON,
+            brandRisk,
+            laborRiskJSON,
+            brandRiskJSON,
+        } = request.body;
 
         const updateUserSurveyFieldsUseCase = container.resolve(
             UpdateUserSurveyFieldsUseCase
@@ -19,6 +26,9 @@ class UpdateUserSurveyFieldsController {
             NPSSurvey,
             surveyAnswered,
             feelingsMapJSON,
+            brandRisk,
+            laborRiskJSON,
+            brandRiskJSON,
         });
 
         return response.status(204).send();

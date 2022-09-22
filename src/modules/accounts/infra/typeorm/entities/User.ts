@@ -3,6 +3,7 @@ import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { Company } from "@modules/company/infra/typeorm/entities/Company";
 import { SpecialistSchedule } from "@modules/specialists/infra/typeorm/entities/SpecialistSchedule";
+import { ColumnNumericTransformer } from "@utils/ColumnNumericTransformer";
 import { Expose } from "class-transformer";
 import {
     Entity,
@@ -86,10 +87,18 @@ class User {
         }
     }
 
-    @Column()
+    @Column("numeric", {
+        precision: 7,
+        scale: 2,
+        transformer: new ColumnNumericTransformer(),
+    })
     laborRisk: number;
 
-    @Column()
+    @Column("numeric", {
+        precision: 7,
+        scale: 2,
+        transformer: new ColumnNumericTransformer(),
+    })
     NPSSurvey: number;
 
     @Column()
@@ -105,6 +114,19 @@ class User {
     @Column()
     feelingsMapJSON: string;
 
+    @Column("numeric", {
+        precision: 7,
+        scale: 2,
+        transformer: new ColumnNumericTransformer(),
+    })
+    brandRisk: number;
+
+    @Column()
+    laborRiskJSON: string;
+
+    @Column()
+    brandRiskJSON: string;
+
     constructor(
         name: string,
         username: string,
@@ -119,7 +141,10 @@ class User {
         surveyAnswered: boolean,
         companyId: string,
         realocated: UserRealocatedEnum,
-        feelingsMapJSON: string
+        feelingsMapJSON: string,
+        brandRisk: number,
+        laborRiskJSON: string,
+        brandRiskJSON: string
     ) {
         if (id) {
             this.id = id;
@@ -145,6 +170,9 @@ class User {
         this.companyId = companyId;
         this.realocated = realocated;
         this.feelingsMapJSON = feelingsMapJSON;
+        this.brandRisk = brandRisk;
+        this.laborRiskJSON = laborRiskJSON;
+        this.brandRiskJSON = brandRiskJSON;
     }
 }
 

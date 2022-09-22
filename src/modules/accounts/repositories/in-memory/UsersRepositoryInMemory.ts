@@ -23,6 +23,9 @@ class UsersRepositoryInMemory implements IUsersRepository {
         companyId,
         realocated,
         feelingsMapJSON,
+        brandRisk,
+        laborRiskJSON,
+        brandRiskJSON,
     }: ICreateUserDTO): Promise<User> {
         const user = new User(
             name,
@@ -38,7 +41,10 @@ class UsersRepositoryInMemory implements IUsersRepository {
             surveyAnswered,
             companyId,
             realocated,
-            feelingsMapJSON
+            feelingsMapJSON,
+            brandRisk,
+            laborRiskJSON,
+            brandRiskJSON
         );
 
         this.users.push(user);
@@ -61,7 +67,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
         email,
         documentId,
         id,
-        realocated
+        realocated,
     }): Promise<IUserResponseDTO[]> {
         let users = this.users;
 

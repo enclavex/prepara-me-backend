@@ -14,11 +14,14 @@ interface ICreateUserDTO {
     avatar?: string;
     subscribeToken?: string;
     laborRisk?: number;
+    brandRisk?: number;
     NPSSurvey?: number;
     surveyAnswered?: boolean;
     companyId?: string;
     realocated: UserRealocatedEnum;
     feelingsMapJSON?: string;
+    laborRiskJSON?: string;
+    brandRiskJSON?: string;
 }
 
 export { ICreateUserDTO };

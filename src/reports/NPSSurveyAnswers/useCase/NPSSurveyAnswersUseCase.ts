@@ -11,6 +11,8 @@ class NPSSurveyAnswersUseCase {
 
         const result = await npsSurveyAnswers.report(companyId)
 
+        console.log(result)
+
         return result;
     }
 }

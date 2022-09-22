@@ -29,6 +29,9 @@ class UsersRepository implements IUsersRepository {
         companyId,
         realocated,
         feelingsMapJSON,
+        brandRisk,
+        laborRiskJSON,
+        brandRiskJSON,
     }: ICreateUserDTO): Promise<User> {
         const user = this.repository.create({
             id,
@@ -46,6 +49,9 @@ class UsersRepository implements IUsersRepository {
             companyId,
             realocated,
             feelingsMapJSON,
+            brandRisk,
+            laborRiskJSON,
+            brandRiskJSON,
         });
 
         await this.repository.save(user);
@@ -72,7 +78,7 @@ class UsersRepository implements IUsersRepository {
         email,
         documentId,
         id,
-        realocated
+        realocated,
     }): Promise<IUserResponseDTO[]> {
         const usersQuery = this.repository
             .createQueryBuilder("u")

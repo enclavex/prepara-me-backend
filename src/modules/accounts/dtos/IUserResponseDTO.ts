@@ -10,12 +10,15 @@ interface IUserResponseDTO {
     documentId: string;
     type: Object;
     avatarUrl(): string;
-    laborRisk?: number;
-    NPSSurvey?: number;
-    surveyAnswered?: boolean;
-    company?: Company;
+    laborRisk: number;
+    NPSSurvey: number;
+    surveyAnswered: boolean;
+    company: Company;
     realocated: Object;
     feelingsMapJSON: string;
+    brandRisk: number;
+    laborRiskJSON: string;
+    brandRiskJSON: string;
 }
 
 export { IUserResponseDTO };

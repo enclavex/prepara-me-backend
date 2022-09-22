@@ -24,6 +24,9 @@ class UserMap {
         companyId,
         realocated,
         feelingsMapJSON,
+        brandRisk,
+        laborRiskJSON,
+        brandRiskJSON,
     }: User): IUserResponseDTO {
         const statusMapped =
             status == UserStatusEnum.INACTIVE ? "Inativo" : "Ativo";
@@ -67,6 +70,9 @@ class UserMap {
             companyId,
             realocated: { label: realocatedMapped, value: realocated },
             feelingsMapJSON,
+            brandRisk,
+            laborRiskJSON,
+            brandRiskJSON,
         });
 
         return user;
