@@ -24,7 +24,7 @@ export class alterUserAddNewFieldsSurvey1663792350763 implements MigrationInterf
         await queryRunner.addColumn(
             "users",
             new TableColumn({
-                name: "brandRiskJSON",
+                name: "brandRisk",
                 type: "decimal",
                 isNullable: true,
             })
