@@ -21,7 +21,7 @@ describe("Remove Product Content", () => {
             );
     });
 
-    it("should be able to delete a company subscription plan", async () => {
+    it("should be able to delete a product Content", async () => {
         const productContentPlan1: ICreateProductContentDTO = {
             content: "teste",
             productId: "123"
