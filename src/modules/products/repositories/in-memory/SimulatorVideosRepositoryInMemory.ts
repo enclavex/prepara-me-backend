@@ -1,5 +1,7 @@
 import { ICreateSimulatorVideosDTO } from "@modules/products/dtos/ICreateSimulatorVideosDTO";
+import { IResponseSimulatorVideoDTO } from "@modules/products/dtos/IResponseSimulatorVideoDTO";
 import { SimulatorVideos } from "@modules/products/infra/typeorm/entities/SimulatorVideos";
+import { SimulatorVideoMap } from "@modules/products/mapper/SimulatorVideoMap";
 import { ISimulatorVideosRepository } from "../ISimulatorVideosRepository";
 
 class SimulatorVideosRepositoryInMemory implements ISimulatorVideosRepository {
@@ -33,7 +35,10 @@ class SimulatorVideosRepositoryInMemory implements ISimulatorVideosRepository {
         return simulatorVideos;
     }
 
-    async find({ id, simulatorVideosGroupId }): Promise<SimulatorVideos[]> {
+    async find({
+        id,
+        simulatorVideosGroupId,
+    }): Promise<IResponseSimulatorVideoDTO[]> {
         let simulatorVideos = this.simulatorVideos;
 
         if (id) {
@@ -51,7 +56,11 @@ class SimulatorVideosRepositoryInMemory implements ISimulatorVideosRepository {
             }
         }
 
-        return simulatorVideos;
+        const simulatorVideosMapped = simulatorVideos.map((simulatorVideo) => {
+            return SimulatorVideoMap.toDTO(simulatorVideo);
+        });
+
+        return simulatorVideosMapped;
     }
 
     async remove(id: string): Promise<void> {

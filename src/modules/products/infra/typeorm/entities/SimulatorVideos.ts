@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { SimulatorVideosGroup } from "./SimulatorVideosGroup";
 
-@Entity("simulatorVideos")
+@Entity("simulatorVideo")
 class SimulatorVideos {
     @PrimaryColumn()
     id: string;

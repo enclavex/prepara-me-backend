@@ -1,4 +1,6 @@
 import { ICreateSimulatorVideosGroupDTO } from "@modules/products/dtos/ICreateSimulatorVideosGroupDTO";
+import { IResponseSimulatorVideosGroupDTO } from "@modules/products/dtos/IResponseSimulatorVideosGroupDTO";
+import { SimulatorVideosGroupMap } from "@modules/products/mapper/SimulatorVideosGroupMap";
 import { ISimulatorVideosGroupsRepository } from "@modules/products/repositories/ISimulatorVideosGroupsRepository";
 import { getRepository, Repository } from "typeorm";
 import { SimulatorVideosGroup } from "../entities/SimulatorVideosGroup";
@@ -28,11 +30,13 @@ class SimulatorVideosGroupRepository
         return simulatorVideosGroup;
     }
 
-    async find({ active, id, name }): Promise<SimulatorVideosGroup[]> {
+    async find({
+        active,
+        id,
+        name,
+    }): Promise<IResponseSimulatorVideosGroupDTO[]> {
         const simulatorVideosGroupQuery =
             this.repository.createQueryBuilder("svg");
-
-        console.log(name);
 
         if (id) {
             simulatorVideosGroupQuery.andWhere("svg.id = :id", {
@@ -54,9 +58,15 @@ class SimulatorVideosGroupRepository
             }
         }
 
-        const simulatorVideoGroups = await simulatorVideosGroupQuery.getMany();
+        const simulatorVideosGroups = await simulatorVideosGroupQuery.getMany();
 
-        return simulatorVideoGroups;
+        const simulatorVideosGroupsMaped = simulatorVideosGroups.map(
+            (simulatorVideosGroup) => {
+                return SimulatorVideosGroupMap.toDTO(simulatorVideosGroup);
+            }
+        );
+
+        return simulatorVideosGroupsMaped;
     }
 
     async remove(id: string): Promise<void> {
