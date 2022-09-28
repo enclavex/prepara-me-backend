@@ -1,6 +1,7 @@
 import { instanceToInstance } from "class-transformer";
 
 import { IUserResponseDTO } from "../dtos/IUserResponseDTO";
+import { UserLaborRiskAlertEnum } from "../enums/UserLaborRiskAlertEnum";
 import { UserRealocatedEnum } from "../enums/UserRealocatedEnum";
 import { UserStatusEnum } from "../enums/UserStatusEnum";
 import { UserTypeEnum } from "../enums/UserTypeEnum";
@@ -27,9 +28,15 @@ class UserMap {
         brandRisk,
         laborRiskJSON,
         brandRiskJSON,
+        laborRiskAlert,
     }: User): IUserResponseDTO {
         const statusMapped =
             status == UserStatusEnum.INACTIVE ? "Inativo" : "Ativo";
+
+        const laborRiskAlertMapped =
+            laborRiskAlert == UserLaborRiskAlertEnum.NORMAL
+                ? "Normal"
+                : "Alerta";
 
         const realocatedMapped =
             realocated == UserRealocatedEnum.NOT_REALOCATED
@@ -73,6 +80,10 @@ class UserMap {
             brandRisk,
             laborRiskJSON,
             brandRiskJSON,
+            laborRiskAlert: {
+                label: laborRiskAlertMapped,
+                value: laborRiskAlert,
+            },
         });
 
         return user;

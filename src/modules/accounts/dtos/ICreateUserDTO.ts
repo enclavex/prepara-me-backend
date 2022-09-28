@@ -1,3 +1,4 @@
+import { UserLaborRiskAlertEnum } from "../enums/UserLaborRiskAlertEnum";
 import { UserRealocatedEnum } from "../enums/UserRealocatedEnum";
 import { UserStatusEnum } from "../enums/UserStatusEnum";
 import { UserTypeEnum } from "../enums/UserTypeEnum";
@@ -22,6 +23,7 @@ interface ICreateUserDTO {
     feelingsMapJSON?: string;
     laborRiskJSON?: string;
     brandRiskJSON?: string;
+    laborRiskAlert?: UserLaborRiskAlertEnum;
 }
 
 export { ICreateUserDTO };

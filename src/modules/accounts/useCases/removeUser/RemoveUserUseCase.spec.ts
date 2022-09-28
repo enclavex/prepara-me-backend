@@ -70,7 +70,8 @@ describe("Remove User", () => {
             email: "",
             type: "",
             documentId: "",
-            realocated: ""
+            realocated: "",
+            laborRiskAlert: ""
         });
 
         expect(result).toHaveLength(1);

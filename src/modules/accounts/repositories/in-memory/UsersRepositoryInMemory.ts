@@ -26,6 +26,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
         brandRisk,
         laborRiskJSON,
         brandRiskJSON,
+        laborRiskAlert
     }: ICreateUserDTO): Promise<User> {
         const user = new User(
             name,
@@ -44,7 +45,8 @@ class UsersRepositoryInMemory implements IUsersRepository {
             feelingsMapJSON,
             brandRisk,
             laborRiskJSON,
-            brandRiskJSON
+            brandRiskJSON,
+            laborRiskAlert
         );
 
         this.users.push(user);
@@ -68,6 +70,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
         documentId,
         id,
         realocated,
+        laborRiskAlert
     }): Promise<IUserResponseDTO[]> {
         let users = this.users;
 
@@ -103,6 +106,12 @@ class UsersRepositoryInMemory implements IUsersRepository {
             if (type) {
                 users = users.filter((user) => {
                     return user.type === type;
+                });
+            }
+
+            if (laborRiskAlert) {
+                users = users.filter((user) => {
+                    return user.laborRiskAlert === laborRiskAlert;
                 });
             }
 

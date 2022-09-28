@@ -12,6 +12,7 @@ interface IRequestFind {
     documentId?: string;
     id?: string;
     realocated?: string;
+    laborRiskAlert?: string;
 }
 
 interface IUsersRepository {

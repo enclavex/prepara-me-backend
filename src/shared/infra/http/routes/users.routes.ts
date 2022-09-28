@@ -10,6 +10,7 @@ import multer from "multer";
 import { ListUserProductsAvailableController } from "@modules/accounts/useCases/listUserProductsAvailable/ListUserProductsAvailableController";
 import { CreateSubscriptionNewsletterController } from "@modules/accounts/useCases/createSubscriptionNewsletter/CreateSubscriptionNewsletterController";
 import { UpdateUserSurveyFieldsController } from "@modules/accounts/useCases/updateUserSurveyFields/UpdateUserSurveyFieldsController";
+import { UpdateUserLaborRiskAlertController } from "@modules/accounts/useCases/updateUserLaborRiskAlert/UpdateUserLaborRiskAlertController";
 
 const usersRoutes = Router();
 
@@ -72,9 +73,16 @@ usersRoutes.get(
 
 const updateUserSurveyFieldsController = new UpdateUserSurveyFieldsController()
 usersRoutes.put(
-    "/",
+    "/updateSurveyFields",
     ensuredAuthenticated,
     updateUserSurveyFieldsController.handle
+);
+
+const updateUserLaborRiskAlertController = new UpdateUserLaborRiskAlertController()
+usersRoutes.put(
+    "/updateLaborRiskAlert",
+    ensuredAuthenticated,
+    updateUserLaborRiskAlertController.handle
 );
 
 export { usersRoutes };

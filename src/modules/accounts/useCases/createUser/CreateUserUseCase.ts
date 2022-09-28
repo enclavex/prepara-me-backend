@@ -40,7 +40,8 @@ class CreateUserUseCase {
         laborRisk,
         surveyAnswered,
         companyId,
-        realocated
+        realocated,
+        laborRiskAlert
     }: ICreateUserDTO): Promise<User> {
         var userFind;
 
@@ -97,7 +98,8 @@ class CreateUserUseCase {
             laborRisk,
             surveyAnswered,
             companyId,
-            realocated
+            realocated,
+            laborRiskAlert
         });
 
         if (subscribeToken && userCreated && userCreated.id && !userFind) {

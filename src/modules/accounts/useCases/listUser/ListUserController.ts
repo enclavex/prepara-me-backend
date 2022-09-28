@@ -6,7 +6,15 @@ class ListUserController {
     async handle(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
-        const { name, status, type, email, documentId, realocated } = request.query;
+        const {
+            name,
+            status,
+            type,
+            email,
+            documentId,
+            realocated,
+            laborRiskAlert,
+        } = request.query;
 
         let listUserUseCase = container.resolve(ListUserUseCase);
 
@@ -17,7 +25,8 @@ class ListUserController {
             email,
             documentId,
             id,
-            realocated
+            realocated,
+            laborRiskAlert,
         });
 
         return response.status(200).send(users);

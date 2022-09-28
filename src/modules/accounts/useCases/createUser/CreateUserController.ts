@@ -20,6 +20,7 @@ class CreateUserController {
             surveyAnswered,
             companyId,
             realocated,
+            laborRiskAlert
         } = request.body;
 
         const createUserUseCase = container.resolve(CreateUserUseCase);
@@ -39,6 +40,7 @@ class CreateUserController {
             surveyAnswered,
             companyId,
             realocated,
+            laborRiskAlert
         });
 
         return response.status(201).send();

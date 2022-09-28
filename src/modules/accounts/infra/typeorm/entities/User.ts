@@ -1,3 +1,4 @@
+import { UserLaborRiskAlertEnum } from "@modules/accounts/enums/UserLaborRiskAlertEnum";
 import { UserRealocatedEnum } from "@modules/accounts/enums/UserRealocatedEnum";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
@@ -48,6 +49,13 @@ class User {
         default: UserStatusEnum.ACTIVE,
     })
     status: UserStatusEnum;
+
+    @Column({
+        type: "enum",
+        enum: UserLaborRiskAlertEnum,
+        default: UserLaborRiskAlertEnum.NORMAL,
+    })
+    laborRiskAlert: UserLaborRiskAlertEnum;
 
     @Column()
     avatar: string;
@@ -144,7 +152,8 @@ class User {
         feelingsMapJSON: string,
         brandRisk: number,
         laborRiskJSON: string,
-        brandRiskJSON: string
+        brandRiskJSON: string,
+        laborRiskAlert: UserLaborRiskAlertEnum,
     ) {
         if (id) {
             this.id = id;
@@ -173,6 +182,7 @@ class User {
         this.brandRisk = brandRisk;
         this.laborRiskJSON = laborRiskJSON;
         this.brandRiskJSON = brandRiskJSON;
+        this.laborRiskAlert = laborRiskAlert;
     }
 }
 

@@ -19,6 +19,7 @@ interface IUserResponseDTO {
     brandRisk: number;
     laborRiskJSON: string;
     brandRiskJSON: string;
+    laborRiskAlert: Object;
 }
 
 export { IUserResponseDTO };

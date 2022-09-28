@@ -32,6 +32,7 @@ class UsersRepository implements IUsersRepository {
         brandRisk,
         laborRiskJSON,
         brandRiskJSON,
+        laborRiskAlert,
     }: ICreateUserDTO): Promise<User> {
         const user = this.repository.create({
             id,
@@ -52,6 +53,7 @@ class UsersRepository implements IUsersRepository {
             brandRisk,
             laborRiskJSON,
             brandRiskJSON,
+            laborRiskAlert
         });
 
         await this.repository.save(user);
@@ -79,6 +81,7 @@ class UsersRepository implements IUsersRepository {
         documentId,
         id,
         realocated,
+        laborRiskAlert
     }): Promise<IUserResponseDTO[]> {
         const usersQuery = this.repository
             .createQueryBuilder("u")
@@ -124,6 +127,12 @@ class UsersRepository implements IUsersRepository {
             if (realocated) {
                 usersQuery.andWhere("u.realocated = :realocated", {
                     realocated: realocated,
+                });
+            }
+
+            if (laborRiskAlert) {
+                usersQuery.andWhere("u.laborRiskAlert = :laborRiskAlert", {
+                    laborRiskAlert: laborRiskAlert,
                 });
             }
         }
