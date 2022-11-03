@@ -87,16 +87,14 @@ productsRoutes.post(
 
 const listSimulatorVideosController = new ListSimulatorVideosController();
 productsRoutes.get(
-    "/simulatorVideos/",
+    "/simulatorVideos",
     ensuredAuthenticated,
-    ensureAdmin,
     listSimulatorVideosController.handle
 );
 
 productsRoutes.get(
     "/simulatorVideos/:id",
     ensuredAuthenticated,
-    ensureAdmin,
     listSimulatorVideosController.handle
 );
 

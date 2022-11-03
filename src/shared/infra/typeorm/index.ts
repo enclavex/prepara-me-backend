@@ -8,7 +8,7 @@ export default async (): Promise<Connection> => {
             database:
                 process.env.NODE_ENV === "test"
                     ? "preparame_test"
-                    : defaultOptions.database,
+                    : defaultOptions.database, 
         })
     );
 };

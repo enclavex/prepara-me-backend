@@ -4,6 +4,7 @@ interface IUserResponseDTO {
     email: string;
     name: string;
     username: string;
+    created_at: Date;
     id: string;
     avatar: string;
     status: Object;
