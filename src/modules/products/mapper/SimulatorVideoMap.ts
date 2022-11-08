@@ -13,7 +13,8 @@ class SimulatorVideoMap {
         objective,
         question,
         simulatorVideosGroup,
-        tip
+        tip,
+        order
     }: SimulatorVideos): IResponseSimulatorVideoDTO {
         const simulatorVideosMapped = instanceToInstance({
             id,
@@ -25,6 +26,7 @@ class SimulatorVideoMap {
             question,
             tip,
             simulatorVideosGroup: simulatorVideosGroup ? process.env.NODE_ENV === "test" ? simulatorVideosGroup : SimulatorVideosGroupMap.toDTO(simulatorVideosGroup) : null,
+            order
         });
 
         return simulatorVideosMapped;

@@ -23,6 +23,7 @@ describe("List Simulator Videos Groups", () => {
     it("should be able to list Simulator Videos", async () => {
         const simulatorVideosGroup1: ICreateSimulatorVideosGroupDTO = {
             name: "Guilherme Cordeiro",
+            order: 1,
             active: SimulatorVideosGroupActiveEnum.ACTIVE,
         };
 
@@ -30,6 +31,7 @@ describe("List Simulator Videos Groups", () => {
 
         const simulatorVideosGroup2: ICreateSimulatorVideosGroupDTO = {
             name: "Guilherme Cordeiro",
+            order: 1,
             active: SimulatorVideosGroupActiveEnum.ACTIVE,
         };
 
@@ -47,6 +49,7 @@ describe("List Simulator Videos Groups", () => {
     it("should be able to list Simulator Videos filtered by id", async () => {
         const simulatorVideosGroup1: ICreateSimulatorVideosGroupDTO = {
             name: "Guilherme Cordeiro",
+            order: 1,
             active: SimulatorVideosGroupActiveEnum.ACTIVE,
         };
 
@@ -54,6 +57,7 @@ describe("List Simulator Videos Groups", () => {
 
         const simulatorVideosGroup2: ICreateSimulatorVideosGroupDTO = {
             name: "Guilherme Cordeiro",
+            order: 1,
             active: SimulatorVideosGroupActiveEnum.ACTIVE,
         };
 
@@ -73,6 +77,7 @@ describe("List Simulator Videos Groups", () => {
     it("should be able to list Simulator Videos filtered by active", async () => {
         const simulatorVideosGroup1: ICreateSimulatorVideosGroupDTO = {
             name: "Guilherme Cordeiro",
+            order: 1,
             active: SimulatorVideosGroupActiveEnum.ACTIVE,
         };
 
@@ -80,6 +85,7 @@ describe("List Simulator Videos Groups", () => {
 
         const simulatorVideosGroup2: ICreateSimulatorVideosGroupDTO = {
             name: "Guilherme Cordeiro",
+            order: 1,
             active: SimulatorVideosGroupActiveEnum.INACTIVE,
         };
 

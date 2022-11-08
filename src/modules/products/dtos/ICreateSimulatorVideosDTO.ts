@@ -7,6 +7,7 @@ interface ICreateSimulatorVideosDTO {
     objective: string;
     necessariesSkills: string;
     simulatorVideosGroupId: string;
+    order: number;
     id?: string;
 }
 

@@ -13,8 +13,9 @@ class SimulatorVideosGroupsRepositoryInMemory
         id,
         active,
         name,
+        order,
     }: ICreateSimulatorVideosGroupDTO): Promise<SimulatorVideosGroup> {
-        const simulatorVideosGroup = new SimulatorVideosGroup(name, active, id);
+        const simulatorVideosGroup = new SimulatorVideosGroup(name, active, id, order);
 
         this.simulatorVideosGroups.push(simulatorVideosGroup);
 
@@ -59,8 +60,6 @@ class SimulatorVideosGroupsRepositoryInMemory
         );
 
         return simulatorVideoGroupsMaped;
-
-        return simulatorVideosGroups;
     }
 
     async remove(id: string): Promise<void> {

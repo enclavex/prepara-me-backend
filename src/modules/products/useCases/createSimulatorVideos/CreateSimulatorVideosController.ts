@@ -14,6 +14,7 @@ class CreateSimulatorVideosController {
             avoid,
             necessariesSkills,
             objective,
+            order
         } = request.body;
 
         const createSimulatorVideosUseCase = container.resolve(
@@ -30,6 +31,7 @@ class CreateSimulatorVideosController {
             avoid,
             necessariesSkills,
             objective,
+            order
         });
 
         return response.status(201).send(simulatorVideos);

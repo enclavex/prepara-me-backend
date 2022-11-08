@@ -19,6 +19,7 @@ describe("Create Simulator Videos Group", () => {
     it("shold be able to create a new Simulator Videos", async () => {
         const simulatorVideosGroup: ICreateSimulatorVideosGroupDTO = {
             name: "Guilherme da Rosa Cordeiro",
+            order: 1,
             active: SimulatorVideosGroupActiveEnum.ACTIVE
         };
 
@@ -33,6 +34,7 @@ describe("Create Simulator Videos Group", () => {
         expect(async () => {
             const simulatorVideosGroup: ICreateSimulatorVideosGroupDTO = {
                 name: "",
+                order: 1,
                 active: SimulatorVideosGroupActiveEnum.ACTIVE
             };
     

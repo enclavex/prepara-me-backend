@@ -11,6 +11,9 @@ class SimulatorVideosGroup {
     @Column()
     name: string;
 
+    @Column()
+    order: number;
+
     @Column({
         type: "enum",
         enum: SimulatorVideosGroupActiveEnum,
@@ -20,10 +23,16 @@ class SimulatorVideosGroup {
 
     @OneToMany(
         () => SimulatorVideos,
-        (simulatorVideos) => simulatorVideos.simulatorVideosGroup)
+        (simulatorVideos) => simulatorVideos.simulatorVideosGroup
+    )
     public simulatorVideos!: SimulatorVideos[];
 
-    constructor(name: string, active: SimulatorVideosGroupActiveEnum, id: string) {
+    constructor(
+        name: string,
+        active: SimulatorVideosGroupActiveEnum,
+        id: string,
+        order: number
+    ) {
         if (id) {
             this.id = id;
         }
@@ -34,7 +43,9 @@ class SimulatorVideosGroup {
 
         this.name = name;
         this.active = active;
+        this.order = order;
     }
 }
 
 export { SimulatorVideosGroup };
+

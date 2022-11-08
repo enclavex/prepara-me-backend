@@ -6,6 +6,7 @@ class SimulatorVideosGroupMap {
     static toDTO({
         id,
         name,
+        order,
         active,
     }: SimulatorVideosGroup): IResponseSimulatorVideosGroupDTO {
         const activeMapped = active === "ACTIVE" ? "Ativo" : "Inativo";
@@ -14,6 +15,7 @@ class SimulatorVideosGroupMap {
             id,
             name,
             active: { label: activeMapped, value: active },
+            order
         });
 
         return simulatorVideosGroup;

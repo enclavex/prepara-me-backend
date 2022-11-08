@@ -17,11 +17,13 @@ class SimulatorVideosGroupRepository
     async create({
         active,
         name,
+        order,
         id,
     }: ICreateSimulatorVideosGroupDTO): Promise<SimulatorVideosGroup> {
         const simulatorVideosGroup = this.repository.create({
             name,
             active,
+            order,
             id,
         });
 
@@ -57,6 +59,8 @@ class SimulatorVideosGroupRepository
                 });
             }
         }
+
+        simulatorVideosGroupQuery.orderBy("svg.order", "ASC");
 
         const simulatorVideosGroups = await simulatorVideosGroupQuery.getMany();
 

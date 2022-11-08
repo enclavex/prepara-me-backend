@@ -31,6 +31,9 @@ class SimulatorVideos {
     @Column()
     simulatorVideosGroupId: string;
 
+    @Column()
+    order: number;
+
     @ManyToOne(
         () => SimulatorVideosGroup,
         (simulatorVideosGroup) => simulatorVideosGroup.simulatorVideos
@@ -46,7 +49,8 @@ class SimulatorVideos {
         objective: string,
         necessariesSkills: string,
         id: string,
-        simulatorVideosGroupId: string
+        simulatorVideosGroupId: string,
+        order: number
     ) {
         if (id) {
             this.id = id;
@@ -64,6 +68,7 @@ class SimulatorVideos {
         this.objective = objective;
         this.necessariesSkills = necessariesSkills;
         this.simulatorVideosGroupId = simulatorVideosGroupId;
+        this.order = order;
     }
 }
 

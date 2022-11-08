@@ -15,6 +15,7 @@ class CreateSimulatorVideosGroupUseCase {
         name,
         active,
         id,
+        order
     }: ICreateSimulatorVideosGroupDTO): Promise<SimulatorVideosGroup> {
         if (!name) {
             throw new AppError("Name can't be null");
@@ -24,6 +25,7 @@ class CreateSimulatorVideosGroupUseCase {
             name,
             active,
             id,
+            order
         });
 
         return simulatorVideo;

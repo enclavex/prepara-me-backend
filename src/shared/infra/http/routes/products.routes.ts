@@ -57,14 +57,12 @@ const listSimulatorVideosGroupController =
 productsRoutes.get(
     "/simulatorVideosGroup",
     ensuredAuthenticated,
-    ensureAdmin,
     listSimulatorVideosGroupController.handle
 );
 
 productsRoutes.get(
     "/simulatorVideosGroup/:id",
     ensuredAuthenticated,
-    ensureAdmin,
     listSimulatorVideosGroupController.handle
 );
 

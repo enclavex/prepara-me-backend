@@ -10,6 +10,7 @@ interface IResponseSimulatorVideoDTO {
     question: string;
     simulatorVideosGroup: IResponseSimulatorVideosGroupDTO;
     tip: string;
+    order: number;
 }
 
 export { IResponseSimulatorVideoDTO };

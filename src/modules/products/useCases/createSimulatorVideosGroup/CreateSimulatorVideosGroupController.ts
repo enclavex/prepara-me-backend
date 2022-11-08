@@ -4,17 +4,20 @@ import { CreateSimulatorVideosGroupUseCase } from "./CreateSimulatorVideosGroupU
 
 class CreateSimulatorVideosGroupController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { name, active, id } = request.body;
+        const { name, active, id, order } = request.body;
 
         const createSimulatorVideosGroupUseCase = container.resolve(
             CreateSimulatorVideosGroupUseCase
         );
 
-        const simulatorVideos = await createSimulatorVideosGroupUseCase.execute({
-            name,
-            active,
-            id,
-        });
+        const simulatorVideos = await createSimulatorVideosGroupUseCase.execute(
+            {
+                name,
+                active,
+                id,
+                order,
+            }
+        );
 
         return response.status(201).send(simulatorVideos);
     }

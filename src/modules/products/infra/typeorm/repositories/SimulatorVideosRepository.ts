@@ -22,6 +22,7 @@ class SimulatorVideosRepository implements ISimulatorVideosRepository {
         necessariesSkills,
         objective,
         simulatorVideosGroupId,
+        order
     }: ICreateSimulatorVideosDTO): Promise<SimulatorVideos> {
         const simulatorVideos = this.repository.create({
             question,
@@ -33,6 +34,7 @@ class SimulatorVideosRepository implements ISimulatorVideosRepository {
             objective,
             simulatorVideosGroupId,
             id,
+            order
         });
 
         await this.repository.save(simulatorVideos);
@@ -61,6 +63,8 @@ class SimulatorVideosRepository implements ISimulatorVideosRepository {
                 );
             }
         }
+
+        simulatorVideosQuery.orderBy("sv.order", "ASC");
 
         const simulatorVideos = await simulatorVideosQuery.getMany();
 

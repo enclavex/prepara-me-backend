@@ -25,6 +25,7 @@ describe("Create Simulator Videos ", () => {
             question: "O que é o que é?",
             simulatorVideosGroupId: "1",
             tip: "Teste",
+            order: 1
         };
 
         const result = await createSimulatorVideosUseCase.execute(
@@ -45,6 +46,7 @@ describe("Create Simulator Videos ", () => {
                 question: "",
                 simulatorVideosGroupId: "1",
                 tip: "Teste",
+                order: 1
             };
 
             await createSimulatorVideosUseCase.execute(simulatorVideos);

@@ -2,6 +2,7 @@ import { SimulatorVideosGroupActiveEnum } from "../enums/SimulatorVideosGroupAct
 
 interface ICreateSimulatorVideosGroupDTO {
     name: string;
+    order: number;
     active: SimulatorVideosGroupActiveEnum;
     id?: string;
 }

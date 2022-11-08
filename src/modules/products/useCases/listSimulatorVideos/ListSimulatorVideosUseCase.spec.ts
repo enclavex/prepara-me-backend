@@ -29,6 +29,7 @@ describe("List Simulator Videos ", () => {
             question: "O que é o que é?",
             simulatorVideosGroupId: "1",
             tip: "Teste",
+            order: 1,
         };
 
         await createSimulatorVideosUseCase.execute(simulatorVideos1);
@@ -42,6 +43,7 @@ describe("List Simulator Videos ", () => {
             question: "O que é o que é?",
             simulatorVideosGroupId: "1",
             tip: "Teste",
+            order: 1,
         };
 
         await createSimulatorVideosUseCase.execute(simulatorVideos2);
@@ -64,6 +66,7 @@ describe("List Simulator Videos ", () => {
             question: "O que é o que é?",
             simulatorVideosGroupId: "1",
             tip: "Teste",
+            order: 1,
         };
 
         await createSimulatorVideosUseCase.execute(simulatorVideos1);
@@ -77,6 +80,7 @@ describe("List Simulator Videos ", () => {
             question: "O que é o que é?",
             simulatorVideosGroupId: "1",
             tip: "Teste",
+            order: 1,
         };
 
         const simulatorVideosCreated =
@@ -100,6 +104,7 @@ describe("List Simulator Videos ", () => {
             question: "O que é o que é?",
             simulatorVideosGroupId: "1",
             tip: "Teste",
+            order: 1,
         };
 
         await createSimulatorVideosUseCase.execute(simulatorVideos1);
@@ -113,6 +118,7 @@ describe("List Simulator Videos ", () => {
             question: "O que é o que é?",
             simulatorVideosGroupId: "2",
             tip: "Teste",
+            order: 1,
         };
 
         await createSimulatorVideosUseCase.execute(simulatorVideos2);

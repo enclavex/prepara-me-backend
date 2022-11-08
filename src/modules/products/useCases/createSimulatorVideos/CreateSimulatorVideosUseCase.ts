@@ -21,6 +21,7 @@ class CreateSimulatorVideosUseCase {
         avoid,
         necessariesSkills,
         objective,
+        order
     }: ICreateSimulatorVideosDTO): Promise<SimulatorVideos> {
         if (!question) {
             throw new AppError("Question can't be null");
@@ -36,6 +37,7 @@ class CreateSimulatorVideosUseCase {
             avoid,
             necessariesSkills,
             objective,
+            order
         });
 
         return simulatorVideo;

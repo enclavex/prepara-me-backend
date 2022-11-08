@@ -17,6 +17,7 @@ class SimulatorVideosRepositoryInMemory implements ISimulatorVideosRepository {
         avoid,
         necessariesSkills,
         objective,
+        order
     }: ICreateSimulatorVideosDTO): Promise<SimulatorVideos> {
         const simulatorVideos = new SimulatorVideos(
             question,
@@ -27,7 +28,8 @@ class SimulatorVideosRepositoryInMemory implements ISimulatorVideosRepository {
             objective,
             necessariesSkills,
             id,
-            simulatorVideosGroupId
+            simulatorVideosGroupId,
+            order
         );
 
         this.simulatorVideos.push(simulatorVideos);
