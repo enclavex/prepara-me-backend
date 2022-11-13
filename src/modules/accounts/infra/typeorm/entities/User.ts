@@ -3,6 +3,7 @@ import { UserRealocatedEnum } from "@modules/accounts/enums/UserRealocatedEnum";
 import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
 import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { Company } from "@modules/company/infra/typeorm/entities/Company";
+import { Order } from "@modules/orders/infra/typeorm/entities/Order";
 import { SpecialistSchedule } from "@modules/specialists/infra/typeorm/entities/SpecialistSchedule";
 import { ColumnNumericTransformer } from "@utils/ColumnNumericTransformer";
 import { Expose } from "class-transformer";
@@ -65,9 +66,15 @@ class User {
 
     @OneToMany(
         () => SpecialistSchedule,
-        (specialistSchedule) => specialistSchedule.specialist
+        (specialistSchedule) => specialistSchedule.id
     )
     specialistSchedule: SpecialistSchedule[];
+    
+    @OneToMany(
+        () => Order,
+        (order) => order.id
+    )
+    order: Order[];
 
     @ManyToOne(() => Company, (company) => company.id)
     company: Company;

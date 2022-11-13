@@ -1,3 +1,4 @@
+import { OrderItem } from "@modules/orders/infra/typeorm/entities/OrderItem";
 import { ProductBestSellerEnum } from "@modules/products/enums/ProductBestSellerEnum";
 import { ProductStatusEnum } from "@modules/products/enums/ProductStatusEnum";
 import { ProductTypeEnum } from "@modules/products/enums/ProductTypesEnum";
@@ -48,6 +49,12 @@ class Product {
 
     @OneToMany(() => ProductContent, (productContent) => productContent.product)
     productContent: ProductContent[];
+
+    @OneToMany(
+        () => OrderItem,
+        (orderItem) => orderItem.product
+    )
+    orderItem: OrderItem[];
 
     @OneToMany(() => ProductSpecialist, productSpecialist => productSpecialist.product)
     public productSpecialist!: ProductSpecialist[];

@@ -8,6 +8,7 @@ import { companiesRoutes } from "./companies.routes";
 import { subscriptionPlansRoutes } from "./subscriptionPlans.routes";
 import { usersRoutes } from "./users.routes";
 import { reportsRoutes } from "./reports.routes";
+import { ordersRoutes } from "./orders.routes";
 
 const router = Router();
 
@@ -18,6 +19,7 @@ router.use("/subscriptionPlans", subscriptionPlansRoutes);
 router.use("/password", passwordRoutes);
 router.use("/users", usersRoutes);
 router.use("/reports", reportsRoutes);
+router.use("/orders", ordersRoutes);
 router.use(authenticateRoutes);
 
 export { router };

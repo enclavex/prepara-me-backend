@@ -1,0 +1,5 @@
+class ExternalUpdateOrderUseCase {
+
+}
+
+export {ExternalUpdateOrderUseCase}
