@@ -47,8 +47,6 @@ class CreateOrderPagarMeUseCase {
                 return err;
             });
 
-        console.log(orderCreated)
-
         return orderCreated;
     }
 }

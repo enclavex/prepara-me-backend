@@ -3,7 +3,7 @@ import { IOrdersRepository } from "@modules/orders/repositories/IOrdersRepositor
 import { getRepository, Repository } from "typeorm";
 import { Order } from "../entities/Order";
 
-class OrdersRepository implements IOrdersRepository{
+class OrdersRepository implements IOrdersRepository {
     private repository: Repository<Order>;
 
     constructor() {
@@ -15,38 +15,26 @@ class OrdersRepository implements IOrdersRepository{
         dateCreated,
         amount,
         id,
-        object,
-        status,
-        model,
-        modelId,
-        headers,
-        payload,
-        requestUrl,
-        retries,
-        nextRetry,
-        deliveries,
+        expiresAt,
+        companyId,
+        ordersPaid,
         dateUpdated,
-        signature,
         pagarMeOrderId,
+        status,
+        shortId
     }: ICreateOrderDTO): Promise<Order> {
         const order = this.repository.create({
             userId,
             dateCreated,
             amount,
             id,
-            object,
-            status,
-            model,
-            modelId,
-            headers,
-            payload,
-            requestUrl,
-            retries,
-            nextRetry,
-            deliveries,
+            expiresAt,
+            companyId,
+            ordersPaid,
             dateUpdated,
-            signature,
             pagarMeOrderId,
+            status,
+            shortId
         });
 
         await this.repository.save(order);
@@ -66,7 +54,7 @@ class OrdersRepository implements IOrdersRepository{
             });
         } else {
             if (userId) {
-                ordersQuery.andWhere("o.userId like :userId", {
+                ordersQuery.andWhere("o.userId = :userId", {
                     userId: userId,
                 });
             }

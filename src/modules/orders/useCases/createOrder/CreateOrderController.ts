@@ -10,19 +10,13 @@ class CreateOrderController {
             dateCreated,
             userId,
             dateUpdated,
-            deliveries,
-            headers,
             id,
-            model,
-            modelId,
-            nextRetry,
-            object,
+            companyId,
+            expiresAt,
+            ordersPaid,
             pagarMeOrderId,
-            payload,
-            requestUrl,
-            retries,
-            signature,
             status,
+            short_id: shortId
         } = request.body;
 
         const createOrderUseCase = container.resolve(CreateOrderUseCase);
@@ -32,19 +26,13 @@ class CreateOrderController {
             dateCreated,
             userId,
             dateUpdated,
-            deliveries,
-            headers,
             id,
-            model,
-            modelId,
-            nextRetry,
-            object,
+            companyId,
+            expiresAt,
+            ordersPaid,
             pagarMeOrderId,
-            payload,
-            requestUrl,
-            retries,
-            signature,
             status,
+            shortId
         });
 
         return response.status(201).json(order);

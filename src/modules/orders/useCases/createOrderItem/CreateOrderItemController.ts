@@ -22,3 +22,4 @@ class CreateOrderItemController {
     }
 }
 
+export { CreateOrderItemController };

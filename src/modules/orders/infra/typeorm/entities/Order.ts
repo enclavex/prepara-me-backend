@@ -1,9 +1,11 @@
 import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { OrderStatusEnum } from "@modules/orders/enums/OrderStatusEnum";
+import { timestamp } from "aws-sdk/clients/cloudfront";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { OrderItem } from "./OrderItem";
 
-@Entity("companies")
+@Entity("orders")
 class Order {
     @PrimaryColumn()
     id: string;
@@ -14,34 +16,7 @@ class Order {
     user: User;
 
     @Column()
-    object: string;
-
-    @Column()
-    status: string;
-
-    @Column()
-    model: string;
-
-    @Column()
-    modelId: string;
-
-    @Column()
-    headers: string;
-
-    @Column()
-    payload: string;
-
-    @Column()
-    requestUrl: string;
-
-    @Column()
-    retries: string;
-
-    @Column()
-    nextRetry: string;
-
-    @Column()
-    deliveries: string;
+    companyId: string;
 
     @Column()
     dateCreated: Date;
@@ -50,10 +25,16 @@ class Order {
     dateUpdated: Date;
 
     @Column()
-    signature: string;
+    expiresAt: Date;
+
+    @Column()
+    ordersPaid: number;
 
     @Column()
     pagarMeOrderId: string;
+
+    @Column()
+    shortId: string;
 
     @Column()
     amount: number;
@@ -64,24 +45,25 @@ class Order {
     )
     orderItem: OrderItem[];
 
+    @Column({
+        type: "enum",
+        enum: OrderStatusEnum,
+        default: OrderStatusEnum.CREATED,
+    })
+    status: OrderStatusEnum;
+
     constructor(
         userId: string,
+        companyId: string,
         dateCreated: Date,
+        dateUpdated: Date,
+        expiresAt: Date,
+        ordersPaid: number,
         amount: number,
+        status: OrderStatusEnum,
+        shortId: string,
         id?: string,
-        object?: string,
-        status?: string,
-        model?: string,
-        modelId?: string,
-        headers?: string,
-        payload?: string,
-        requestUrl?: string,
-        retries?: string,
-        nextRetry?: string,
-        deliveries?: string,
-        dateUpdated?: Date,
-        signature?: string,
-        pagarMeOrderId?: string
+        pagarMeOrderId?: string,
     ) {
         if (!this.id) {
             this.id = uuidV4();
@@ -92,21 +74,15 @@ class Order {
         }
 
         this.userId = userId;
-        this.object = object;
-        this.status = status;
-        this.model = model;
-        this.modelId = modelId;
-        this.headers = headers;
-        this.payload = payload;
-        this.requestUrl = requestUrl;
-        this.retries = retries;
-        this.nextRetry = nextRetry;
-        this.deliveries = deliveries;
-        this.dateCreated = dateCreated;
-        this.dateUpdated = dateUpdated;
-        this.signature = signature;
+        this.companyId = companyId
+        this.dateCreated = dateCreated
+        this.dateUpdated = dateUpdated
+        this.expiresAt = expiresAt
+        this.ordersPaid = ordersPaid
         this.pagarMeOrderId = pagarMeOrderId;
         this.amount = amount;
+        this.status = status;
+        this.shortId = shortId
     }
 }
 

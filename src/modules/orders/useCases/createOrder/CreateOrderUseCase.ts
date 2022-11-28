@@ -14,43 +14,29 @@ class CreateOrderUseCase {
         dateCreated,
         userId,
         dateUpdated,
-        deliveries,
-        headers,
         id,
-        model,
-        modelId,
-        nextRetry,
-        object,
+        companyId,
+        expiresAt,
+        ordersPaid,
         pagarMeOrderId,
-        payload,
-        requestUrl,
-        retries,
-        signature,
         status,
+        shortId
     }: ICreateOrderDTO) {
         const order = await this.ordersRepository.create({
             amount,
             dateCreated,
             userId,
             dateUpdated,
-            deliveries,
-            headers,
             id,
-            model,
-            modelId,
-            nextRetry,
-            object,
+            companyId,
+            expiresAt,
+            ordersPaid,
             pagarMeOrderId,
-            payload,
-            requestUrl,
-            retries,
-            signature,
             status,
+            shortId
         });
 
         return order;
-
-       
     }
 }
 

@@ -1,21 +1,17 @@
+import { OrderStatusEnum } from "../enums/OrderStatusEnum";
+
 interface ICreateOrderDTO {
     id?: string;
     userId: string;
-    object?: string;
-    status?: string;
-    model?: string;
-    modelId?: string;
-    headers?: string;
-    payload?: string;
-    requestUrl?: string;
-    retries?: string;
-    nextRetry?: string;
-    deliveries?: string;
+    companyId: string;
     dateCreated: Date;
-    dateUpdated?: Date;
-    signature?: string;
+    dateUpdated: Date;
+    expiresAt: Date;
+    ordersPaid: number;
     pagarMeOrderId?: string;
     amount: number;
+    status: OrderStatusEnum,
+    shortId: string;
 }
 
 export { ICreateOrderDTO };

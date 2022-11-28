@@ -1,4 +1,5 @@
 import "./providers";
+import "./repositories/orders";
 import "./repositories/users"
 import "./repositories/products"
 import "./repositories/specialists"

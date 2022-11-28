@@ -26,7 +26,6 @@ const createUserProductAvailableController =
 usersRoutes.post(
     "/products",
     ensuredAuthenticated,
-    ensureAdmin,
     createUserProductAvailableController.handle
 );
 

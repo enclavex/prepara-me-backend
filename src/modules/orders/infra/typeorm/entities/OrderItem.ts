@@ -3,7 +3,7 @@ import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { Order } from "./Order";
 
-@Entity("companies")
+@Entity("orderItem")
 class OrderItem {
     @PrimaryColumn()
     id: string;
