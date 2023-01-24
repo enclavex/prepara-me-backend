@@ -39,6 +39,8 @@ class CreateOrderPagarMeUseCase {
             url: `https://api.pagar.me/1/payment_links`,
         };
 
+        // "ak_live_AGvULM4QsyeZZLS649VEm3vpJqYmiU:x"
+
         const orderCreated = await axios(config)
             .then((created) => {
                 return created.data;

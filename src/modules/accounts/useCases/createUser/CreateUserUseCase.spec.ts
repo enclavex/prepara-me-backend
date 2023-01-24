@@ -39,7 +39,9 @@ describe("Create User", () => {
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
             companyId: '123',
-            realocated: UserRealocatedEnum.NOT_REALOCATED
+            realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         const result = await createUserUseCase.execute(user);
@@ -59,7 +61,9 @@ describe("Create User", () => {
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
                 companyId: '123',
-                realocated: UserRealocatedEnum.NOT_REALOCATED
+                realocated: UserRealocatedEnum.NOT_REALOCATED,
+                expiresDate: new Date(),
+                periodTest: new Date(),
             };
 
             await createUserUseCase.execute(user);
@@ -77,7 +81,9 @@ describe("Create User", () => {
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
                 companyId: '123',
-                realocated: UserRealocatedEnum.NOT_REALOCATED
+                realocated: UserRealocatedEnum.NOT_REALOCATED,
+                expiresDate: new Date(),
+                periodTest: new Date(),
             };
 
             await createUserUseCase.execute(user);
@@ -95,7 +101,9 @@ describe("Create User", () => {
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
                 companyId: '123',
-                realocated: UserRealocatedEnum.NOT_REALOCATED
+                realocated: UserRealocatedEnum.NOT_REALOCATED,
+                expiresDate: new Date(),
+                periodTest: new Date(),
             };
 
             await createUserUseCase.execute(user);
@@ -113,7 +121,9 @@ describe("Create User", () => {
                 status: UserStatusEnum.ACTIVE,
                 type: UserTypeEnum.USER,
                 companyId: '123',
-                realocated: UserRealocatedEnum.NOT_REALOCATED
+                realocated: UserRealocatedEnum.NOT_REALOCATED,
+                expiresDate: new Date(),
+                periodTest: new Date(),
             };
 
             await createUserUseCase.execute(user);

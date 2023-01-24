@@ -26,7 +26,9 @@ class UsersRepositoryInMemory implements IUsersRepository {
         brandRisk,
         laborRiskJSON,
         brandRiskJSON,
-        laborRiskAlert
+        laborRiskAlert,
+        expiresDate,
+        periodTest
     }: ICreateUserDTO): Promise<User> {
         const user = new User(
             name,
@@ -46,7 +48,9 @@ class UsersRepositoryInMemory implements IUsersRepository {
             brandRisk,
             laborRiskJSON,
             brandRiskJSON,
-            laborRiskAlert
+            laborRiskAlert,
+            expiresDate,
+            periodTest
         );
 
         this.users.push(user);

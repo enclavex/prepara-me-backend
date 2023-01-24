@@ -12,6 +12,7 @@ interface ICreateOrderDTO {
     amount: number;
     status: OrderStatusEnum,
     shortId: string;
+    urlPagarMe: string;
 }
 
 export { ICreateOrderDTO };

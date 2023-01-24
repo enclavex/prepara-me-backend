@@ -43,6 +43,8 @@ describe("update user survey", () => {
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         const result = await createUserUseCase.execute(user);

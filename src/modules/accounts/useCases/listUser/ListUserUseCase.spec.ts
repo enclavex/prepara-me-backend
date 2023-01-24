@@ -47,6 +47,8 @@ describe("List User", () => {
             type: UserTypeEnum.USER,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user1);
@@ -60,6 +62,8 @@ describe("List User", () => {
             type: UserTypeEnum.USER,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user2);
@@ -88,6 +92,8 @@ describe("List User", () => {
             type: UserTypeEnum.USER,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user1);
@@ -101,6 +107,8 @@ describe("List User", () => {
             type: UserTypeEnum.USER,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user2);
@@ -129,6 +137,8 @@ describe("List User", () => {
             type: UserTypeEnum.USER,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user1);
@@ -142,6 +152,8 @@ describe("List User", () => {
             type: UserTypeEnum.USER,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user2);
@@ -170,6 +182,8 @@ describe("List User", () => {
             type: UserTypeEnum.USER,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user1);
@@ -183,6 +197,8 @@ describe("List User", () => {
             type: UserTypeEnum.USER,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user2);
@@ -211,6 +227,8 @@ describe("List User", () => {
             type: UserTypeEnum.ADMIN,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user1);
@@ -224,6 +242,8 @@ describe("List User", () => {
             type: UserTypeEnum.USER,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user2);
@@ -252,6 +272,8 @@ describe("List User", () => {
             type: UserTypeEnum.ADMIN,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         await createUserUseCase.execute(user1);
@@ -265,6 +287,8 @@ describe("List User", () => {
             type: UserTypeEnum.USER,
             username: "User One",
             realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         const userCreated = await createUserUseCase.execute(user2);

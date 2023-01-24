@@ -142,6 +142,12 @@ class User {
     @Column()
     brandRiskJSON: string;
 
+    @Column()
+    expiresDate: Date;
+
+    @Column()
+    periodTest: Date;
+
     constructor(
         name: string,
         username: string,
@@ -161,6 +167,8 @@ class User {
         laborRiskJSON: string,
         brandRiskJSON: string,
         laborRiskAlert: UserLaborRiskAlertEnum,
+        expiresDate: Date,
+        periodTest: Date
     ) {
         if (id) {
             this.id = id;
@@ -190,6 +198,8 @@ class User {
         this.laborRiskJSON = laborRiskJSON;
         this.brandRiskJSON = brandRiskJSON;
         this.laborRiskAlert = laborRiskAlert;
+        this.expiresDate = expiresDate;
+        this.periodTest = periodTest;
     }
 }
 

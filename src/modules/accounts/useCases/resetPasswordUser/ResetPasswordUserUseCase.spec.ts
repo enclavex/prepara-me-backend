@@ -59,7 +59,9 @@ describe("Reset Password", () => {
             documentId: "00000000000",
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
-            realocated: UserRealocatedEnum.NOT_REALOCATED
+            realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         };
 
         const { email } = await createUserUseCase.execute(user);

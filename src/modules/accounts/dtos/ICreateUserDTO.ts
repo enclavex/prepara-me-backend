@@ -24,6 +24,8 @@ interface ICreateUserDTO {
     laborRiskJSON?: string;
     brandRiskJSON?: string;
     laborRiskAlert?: UserLaborRiskAlertEnum;
+    expiresDate: Date;
+    periodTest: Date;
 }
 
 export { ICreateUserDTO };

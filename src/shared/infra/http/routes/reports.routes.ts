@@ -6,4 +6,4 @@ const reportsRoutes = Router();
 const npsSurveyAnswersController = new NPSSurveyAnswersController();
 reportsRoutes.get("/npsSurveyAnswers", npsSurveyAnswersController.handle);
 
-export { reportsRoutes };
+export { reportsRoutes }; 

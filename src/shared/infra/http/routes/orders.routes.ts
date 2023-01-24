@@ -17,6 +17,7 @@ const createOrderItemController = new CreateOrderItemController();
 ordersRoutes.post("/item", createOrderItemController.handle);
 
 const createOrderController = new CreateOrderController();
+ordersRoutes.post("/:id", createOrderController.handle);
 ordersRoutes.post("/", createOrderController.handle);
 
 const listOrderController = new ListOrderController();

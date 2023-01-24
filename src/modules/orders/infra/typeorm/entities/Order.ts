@@ -37,6 +37,9 @@ class Order {
     shortId: string;
 
     @Column()
+    urlPagarMe: string;
+
+    @Column()
     amount: number;
 
     @OneToMany(
@@ -64,6 +67,7 @@ class Order {
         shortId: string,
         id?: string,
         pagarMeOrderId?: string,
+        urlPagarMe?: string,
     ) {
         if (!this.id) {
             this.id = uuidV4();
@@ -83,6 +87,7 @@ class Order {
         this.amount = amount;
         this.status = status;
         this.shortId = shortId
+        this.urlPagarMe = urlPagarMe
     }
 }
 

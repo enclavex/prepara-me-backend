@@ -41,7 +41,9 @@ describe("Send Forgot Mail", () => {
             documentId: "08113754989",
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
-            realocated: UserRealocatedEnum.NOT_REALOCATED
+            realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         });
 
         await sendForgotPasswordMailUseCase.execute(
@@ -65,7 +67,9 @@ describe("Send Forgot Mail", () => {
             documentId: "08113754989",
             status: UserStatusEnum.ACTIVE,
             type: UserTypeEnum.USER,
-            realocated: UserRealocatedEnum.NOT_REALOCATED
+            realocated: UserRealocatedEnum.NOT_REALOCATED,
+            expiresDate: new Date(),
+            periodTest: new Date(),
         });
 
         await sendForgotPasswordMailUseCase.execute(

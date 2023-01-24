@@ -21,7 +21,8 @@ class OrdersRepository implements IOrdersRepository {
         dateUpdated,
         pagarMeOrderId,
         status,
-        shortId
+        shortId,
+        urlPagarMe
     }: ICreateOrderDTO): Promise<Order> {
         const order = this.repository.create({
             userId,
@@ -34,7 +35,8 @@ class OrdersRepository implements IOrdersRepository {
             dateUpdated,
             pagarMeOrderId,
             status,
-            shortId
+            shortId,
+            urlPagarMe
         });
 
         await this.repository.save(order);

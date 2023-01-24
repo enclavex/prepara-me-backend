@@ -41,9 +41,19 @@ class CreateUserUseCase {
         surveyAnswered,
         companyId,
         realocated,
-        laborRiskAlert
+        laborRiskAlert,
+        expiresDate,
+        periodTest
     }: ICreateUserDTO): Promise<User> {
         var userFind;
+
+        const addDays = function(days) {
+            var date = new Date();
+
+            date.setDate(date.getDate() + days);
+            
+            return date;
+        }
 
         if (id) {
             userFind = await this.usersRepository.findById(id);
@@ -62,6 +72,9 @@ class CreateUserUseCase {
             }
 
             passwordHash = await hash(password, 8);
+
+            periodTest  = addDays(7)
+            expiresDate = null;
         } else {
             username = userFind.name;
             passwordHash = userFind.password;
@@ -99,7 +112,9 @@ class CreateUserUseCase {
             surveyAnswered,
             companyId,
             realocated,
-            laborRiskAlert
+            laborRiskAlert,
+            expiresDate,
+            periodTest
         });
 
         if (subscribeToken && userCreated && userCreated.id && !userFind) {

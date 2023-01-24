@@ -16,7 +16,8 @@ class CreateOrderController {
             ordersPaid,
             pagarMeOrderId,
             status,
-            short_id: shortId
+            short_id: shortId,
+            url: urlPagarMe
         } = request.body;
 
         const createOrderUseCase = container.resolve(CreateOrderUseCase);
@@ -32,7 +33,8 @@ class CreateOrderController {
             ordersPaid,
             pagarMeOrderId,
             status,
-            shortId
+            shortId,
+            urlPagarMe
         });
 
         return response.status(201).json(order);

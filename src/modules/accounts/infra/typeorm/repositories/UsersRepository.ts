@@ -33,6 +33,8 @@ class UsersRepository implements IUsersRepository {
         laborRiskJSON,
         brandRiskJSON,
         laborRiskAlert,
+        expiresDate,
+        periodTest,
     }: ICreateUserDTO): Promise<User> {
         const user = this.repository.create({
             id,
@@ -53,7 +55,9 @@ class UsersRepository implements IUsersRepository {
             brandRisk,
             laborRiskJSON,
             brandRiskJSON,
-            laborRiskAlert
+            laborRiskAlert,
+            expiresDate,
+            periodTest,
         });
 
         await this.repository.save(user);

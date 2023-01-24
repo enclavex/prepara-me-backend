@@ -20,7 +20,8 @@ class CreateOrderUseCase {
         ordersPaid,
         pagarMeOrderId,
         status,
-        shortId
+        shortId,
+        urlPagarMe
     }: ICreateOrderDTO) {
         const order = await this.ordersRepository.create({
             amount,
@@ -33,7 +34,8 @@ class CreateOrderUseCase {
             ordersPaid,
             pagarMeOrderId,
             status,
-            shortId
+            shortId,
+            urlPagarMe
         });
 
         return order;

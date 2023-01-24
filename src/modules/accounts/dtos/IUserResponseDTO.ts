@@ -21,6 +21,8 @@ interface IUserResponseDTO {
     laborRiskJSON: string;
     brandRiskJSON: string;
     laborRiskAlert: Object;
+    expiresDate: Date;
+    periodTest: Date;
 }
 
 export { IUserResponseDTO };
