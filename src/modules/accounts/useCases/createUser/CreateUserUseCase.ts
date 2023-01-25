@@ -151,6 +151,29 @@ class CreateUserUseCase {
                     if (subscriptionPlan && subscriptionPlan[0]) {
                         subscriptionPlan[0].subscriptionPlanProduct.forEach(
                             async (subscriptionPlanProduct) => {
+                                if (subscriptionPlanProduct.product.id == '5fca32d9-2abd-42a1-9043-2920ef156530') {
+                                    expiresDate = addDays(90);
+
+                                    await this.usersRepository.create({
+                                        name,
+                                        username,
+                                        email,
+                                        password: passwordHash,
+                                        documentId,
+                                        type,
+                                        status,
+                                        id,
+                                        NPSSurvey,
+                                        laborRisk,
+                                        surveyAnswered,
+                                        companyId,
+                                        realocated,
+                                        laborRiskAlert,
+                                        expiresDate,
+                                        periodTest
+                                    });
+                                }
+
                                 await this.userProductsAvailableRepository.create(
                                     {
                                         availableQuantity:

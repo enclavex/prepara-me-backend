@@ -31,7 +31,7 @@ class CreateOrderPagarMeUseCase {
             method: "POST",
             headers: {
                 Authorization: `Basic ${Buffer.from(
-                    "ak_test_JS1kghKTrKbM2iiaNvGM0xmJMIIMFc:x"
+                    "ak_live_AGvULM4QsyeZZLS649VEm3vpJqYmiU:x"
                 ).toString("base64")}`,
                 "Content-Type": "application/json",
             },
@@ -39,7 +39,8 @@ class CreateOrderPagarMeUseCase {
             url: `https://api.pagar.me/1/payment_links`,
         };
 
-        // "ak_live_AGvULM4QsyeZZLS649VEm3vpJqYmiU:x"
+        // "ak_live_AGvULM4QsyeZZLS649VEm3vpJqYmiU:x" Production
+        //ak_test_JS1kghKTrKbM2iiaNvGM0xmJMIIMFc:x Test
 
         const orderCreated = await axios(config)
             .then((created) => {
