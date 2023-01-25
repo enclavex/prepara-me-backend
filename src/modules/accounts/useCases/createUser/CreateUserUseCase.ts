@@ -172,17 +172,18 @@ class CreateUserUseCase {
                                         expiresDate,
                                         periodTest
                                     });
+                                } else {
+                                    await this.userProductsAvailableRepository.create(
+                                        {
+                                            availableQuantity:
+                                                subscriptionPlanProduct.availableQuantity,
+                                            productId:
+                                                subscriptionPlanProduct.product.id,
+                                            userId: userCreated.id,
+                                        }
+                                    );
                                 }
 
-                                await this.userProductsAvailableRepository.create(
-                                    {
-                                        availableQuantity:
-                                            subscriptionPlanProduct.availableQuantity,
-                                        productId:
-                                            subscriptionPlanProduct.product.id,
-                                        userId: userCreated.id,
-                                    }
-                                );
                             }
                         );
                     }
