@@ -9,10 +9,11 @@ class ListOrderUseCase {
         private ordersRepository: IOrdersRepository
     ) {}
 
-    async execute({ id, userId }): Promise<Order[]> {
+    async execute({ id, userId, status }): Promise<Order[]> {
         const orders = await this.ordersRepository.find({
             id,
             userId,
+            status
         });
 
         return orders;

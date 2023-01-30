@@ -44,7 +44,7 @@ class OrdersRepository implements IOrdersRepository {
         return order;
     }
 
-    async find({ userId, id }): Promise<Order[]> {
+    async find({ userId, id, status }): Promise<Order[]> {
         const ordersQuery = this.repository
             .createQueryBuilder("o")
             .leftJoinAndSelect("o.orderItem", "orderItem")
@@ -58,6 +58,12 @@ class OrdersRepository implements IOrdersRepository {
             if (userId) {
                 ordersQuery.andWhere("o.userId = :userId", {
                     userId: userId,
+                });
+            }
+
+            if (status) {
+                ordersQuery.andWhere("o.status = :status", {
+                    status: status,
                 });
             }
         }

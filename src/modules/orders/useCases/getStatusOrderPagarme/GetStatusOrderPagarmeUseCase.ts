@@ -6,7 +6,7 @@ class GetStatusOrderPagarme {
             method: "GET",
             headers: {
                 Authorization: `Basic ${Buffer.from(
-                    "ak_test_JS1kghKTrKbM2iiaNvGM0xmJMIIMFc:x"
+                    "ak_live_AGvULM4QsyeZZLS649VEm3vpJqYmiU:x"
                 ).toString("base64")}`,
                 "Content-Type": "application/json",
             },

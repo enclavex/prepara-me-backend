@@ -32,6 +32,7 @@ describe("Remove Simulator Video Group", () => {
         const simulatorVideosGroupPlan1: ICreateSimulatorVideosGroupDTO = {
             active: SimulatorVideosGroupActiveEnum.ACTIVE,
             name: "teste",
+            order: 0
         };
 
         await createSimulatorVideoGroupUseCase.execute(
@@ -41,6 +42,7 @@ describe("Remove Simulator Video Group", () => {
         const simulatorVideosGroupPlan2: ICreateSimulatorVideosGroupDTO = {
             active: SimulatorVideosGroupActiveEnum.ACTIVE,
             name: "teste",
+            order: 1
         };
 
         const simulatorVideosGroupPlanCreated =

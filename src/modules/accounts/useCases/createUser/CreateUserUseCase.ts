@@ -43,21 +43,20 @@ class CreateUserUseCase {
         realocated,
         laborRiskAlert,
         expiresDate,
-        periodTest
+        periodTest,
     }: ICreateUserDTO): Promise<User> {
         var userFind;
 
-        const addDays = function(days) {
+        const addDays = function (days) {
             var date = new Date();
 
             date.setDate(date.getDate() + days);
-            
+
             return date;
-        }
+        };
 
         if (id) {
             userFind = await this.usersRepository.findById(id);
-
 
             if (userFind && userFind.id !== id) {
                 throw new AppError("E-mail used by another user!");
@@ -73,7 +72,7 @@ class CreateUserUseCase {
 
             passwordHash = await hash(password, 8);
 
-            periodTest  = addDays(7)
+            periodTest = addDays(7);
             expiresDate = null;
         } else {
             username = userFind.name;
@@ -114,7 +113,7 @@ class CreateUserUseCase {
             realocated,
             laborRiskAlert,
             expiresDate,
-            periodTest
+            periodTest,
         });
 
         if (subscribeToken && userCreated && userCreated.id && !userFind) {
@@ -151,7 +150,12 @@ class CreateUserUseCase {
                     if (subscriptionPlan && subscriptionPlan[0]) {
                         subscriptionPlan[0].subscriptionPlanProduct.forEach(
                             async (subscriptionPlanProduct) => {
-                                if (subscriptionPlanProduct.product.id == '5fca32d9-2abd-42a1-9043-2920ef156530') {
+                                if (
+                                    subscriptionPlanProduct.product.id ==
+                                        "5fca32d9-2abd-42a1-9043-2920ef156530" ||
+                                    subscriptionPlanProduct.product.id ==
+                                        "b2dda7e3-a6f6-4771-b59a-eeb8b7b5769a"
+                                ) {
                                     expiresDate = addDays(90);
 
                                     await this.usersRepository.create({
@@ -170,7 +174,7 @@ class CreateUserUseCase {
                                         realocated,
                                         laborRiskAlert,
                                         expiresDate,
-                                        periodTest
+                                        periodTest,
                                     });
                                 } else {
                                     await this.userProductsAvailableRepository.create(
@@ -178,12 +182,12 @@ class CreateUserUseCase {
                                             availableQuantity:
                                                 subscriptionPlanProduct.availableQuantity,
                                             productId:
-                                                subscriptionPlanProduct.product.id,
+                                                subscriptionPlanProduct.product
+                                                    .id,
                                             userId: userCreated.id,
                                         }
                                     );
                                 }
-
                             }
                         );
                     }

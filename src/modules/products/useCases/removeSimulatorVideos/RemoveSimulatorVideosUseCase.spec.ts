@@ -35,6 +35,7 @@ describe("Remove Simulator Video ", () => {
             question: "O que é o que é?",
             simulatorVideosGroupId: "2",
             tip: "Teste",
+            order: 1
         };
 
         await createSimulatorVideoUseCase.execute(simulatorVideosPlan1);
@@ -48,6 +49,7 @@ describe("Remove Simulator Video ", () => {
             question: "O que é o que é?",
             simulatorVideosGroupId: "2",
             tip: "Teste",
+            order: 2
         };
 
         const simulatorVideosPlanCreated =

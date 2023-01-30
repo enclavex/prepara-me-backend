@@ -11,13 +11,16 @@ import "@shared/container";
 import swaggerFile from "../../../swagger.json";
 import errorReturn from "./middlewares/errorReturn";
 
-
 import { router } from "./routes";
 
+//import jobs controls
+import "../../../jobs";
+
 createConnection();
+
 const app = express();
 
-app.use(cors())
+app.use(cors());
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -25,7 +28,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Methods", "*");
 
     app.use(cors());
-    
+
     next();
 });
 
@@ -35,9 +38,11 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`));
 
-
 app.use(router);
+
 app.use(errorReturn);
+
+//jobs();
 
 export { app };
 

@@ -19,6 +19,23 @@ class CreateUserProductAvailableController {
 
         return response.status(201).send(userProductAvailable);
     }
+
+    async handleInternal(data): Promise<any> {
+        const { userId, productId, availableQuantity } = data;
+
+        const createUserProductAvailableUseCase = container.resolve(
+            CreateUserProductAvailableUseCase
+        );
+
+        const userProductAvailable =
+            await createUserProductAvailableUseCase.execute({
+                userId,
+                productId,
+                availableQuantity,
+            });
+
+        return userProductAvailable;
+    }
 }
 
 export { CreateUserProductAvailableController };

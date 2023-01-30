@@ -31,6 +31,34 @@ class ListUserController {
 
         return response.status(200).send(users);
     }
+
+    async handleInternal(data): Promise<any> {
+        const {
+            id,
+            name,
+            status,
+            type,
+            email,
+            documentId,
+            realocated,
+            laborRiskAlert,
+        } = data
+
+        let listUserUseCase = container.resolve(ListUserUseCase);
+
+        const users = await listUserUseCase.execute({
+            name,
+            type,
+            status,
+            email,
+            documentId,
+            id,
+            realocated,
+            laborRiskAlert,
+        });
+
+        return users;
+    }
 }
 
 export { ListUserController };
