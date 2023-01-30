@@ -75,7 +75,6 @@ class CreateUserUseCase {
             periodTest = addDays(7);
             expiresDate = null;
         } else {
-            username = userFind.name;
             passwordHash = userFind.password;
         }
 
