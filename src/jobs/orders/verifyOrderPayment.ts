@@ -43,7 +43,7 @@ async function execute() {
 
                 if (orderPagarMe == undefined || orderPagarMe.length == 0) {
                     // order.status = "EXPIRED";
-                } else {
+                } else if (orderPagarMe.length > 0) {
                     switch (orderPagarMe[0].status) {
                         case "paid":
                             order.status = "PAID";
