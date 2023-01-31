@@ -69,7 +69,7 @@ async function execute() {
 }
 
 function verifyOrderPayment() {
-    nodeCron.schedule("* * * * * * ", async () => {
+    nodeCron.schedule("1 * * * * * ", async () => {
         try {
             execute();
         } catch (err) {

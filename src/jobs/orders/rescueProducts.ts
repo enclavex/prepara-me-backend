@@ -60,7 +60,7 @@ async function execute() {
 }
 
 function rescueProducts() {
-    nodeCron.schedule("* * * * * * ", async () => {
+    nodeCron.schedule("1 * * * * * ", async () => {
         try {
             execute();
         } catch (err) {
