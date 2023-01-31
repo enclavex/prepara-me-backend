@@ -165,7 +165,7 @@ class CreateUserUseCase {
                                         documentId,
                                         type,
                                         status,
-                                        id,
+                                        id: userCreated.id,
                                         NPSSurvey,
                                         laborRisk,
                                         surveyAnswered,
@@ -183,7 +183,7 @@ class CreateUserUseCase {
                                             productId:
                                                 subscriptionPlanProduct.product
                                                     .id,
-                                            userId: userCreated.id,
+                                            userId: userCreated.id, 
                                         }
                                     );
                                 }
