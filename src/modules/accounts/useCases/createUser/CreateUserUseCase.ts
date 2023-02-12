@@ -57,31 +57,39 @@ class CreateUserUseCase {
 
         if (id) {
             userFind = await this.usersRepository.findById(id);
-
+            
+            
             if (userFind && userFind.id !== id) {
                 throw new AppError("E-mail used by another user!");
             }
         }
-
+        
         let passwordHash = "";
-
+        
         if (!userFind) {
             if (!password) {
                 throw new AppError("Password can't be null!");
             }
-
+            
             passwordHash = await hash(password, 8);
-
+            
             periodTest = addDays(7);
             expiresDate = null;
         } else {
             passwordHash = userFind.password;
         }
-
-        if (!userFind) {
+        
+        let newSubscribeToken = false;
+        
+                if (!userFind) {
             if (!Object.values(UserTypeEnum).includes(type)) {
                 throw new AppError("Type entered wrong");
             }
+
+            newSubscribeToken = true;
+        } else {
+            newSubscribeToken =
+                (!userFind.subscribeToken && subscribeToken) || (subscribeToken != userFind.subscribeToken) ? true : false;
         }
 
         if (!documentId) {
@@ -113,15 +121,16 @@ class CreateUserUseCase {
             laborRiskAlert,
             expiresDate,
             periodTest,
+            subscribeToken,
         });
 
-        if (subscribeToken && userCreated && userCreated.id && !userFind) {
+        if ((subscribeToken && newSubscribeToken) && userCreated && userCreated.id && !userFind) {
             const companySubscriptionPlans =
                 await this.companySubscriptionPlansRepository.find({
                     subscribeToken,
                 });
 
-            if (companySubscriptionPlans && companySubscriptionPlans[0].id) {
+            if (companySubscriptionPlans && companySubscriptionPlans.length > 0 && companySubscriptionPlans[0].id) {
                 let companyEmployee =
                     await this.companyEmployeesRepository.find({
                         documentId,
@@ -174,6 +183,7 @@ class CreateUserUseCase {
                                         laborRiskAlert,
                                         expiresDate,
                                         periodTest,
+                                        subscribeToken,
                                     });
                                 } else {
                                     await this.userProductsAvailableRepository.create(
@@ -183,7 +193,7 @@ class CreateUserUseCase {
                                             productId:
                                                 subscriptionPlanProduct.product
                                                     .id,
-                                            userId: userCreated.id, 
+                                            userId: userCreated.id,
                                         }
                                     );
                                 }

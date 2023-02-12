@@ -23,6 +23,7 @@ interface IUserResponseDTO {
     laborRiskAlert: Object;
     expiresDate: Date;
     periodTest: Date;
+    subscribeToken: string;
 }
 
 export { IUserResponseDTO };

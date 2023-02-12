@@ -37,6 +37,9 @@ class User {
     @Column()
     documentId: string;
 
+    @Column()
+    subscribeToken: string;
+
     @Column({
         type: "enum",
         enum: UserTypeEnum,
@@ -168,7 +171,8 @@ class User {
         brandRiskJSON: string,
         laborRiskAlert: UserLaborRiskAlertEnum,
         expiresDate: Date,
-        periodTest: Date
+        periodTest: Date,
+        subscribeToken: string,
     ) {
         if (id) {
             this.id = id;
@@ -200,6 +204,7 @@ class User {
         this.laborRiskAlert = laborRiskAlert;
         this.expiresDate = expiresDate;
         this.periodTest = periodTest;
+        this.subscribeToken = subscribeToken;
     }
 }
 

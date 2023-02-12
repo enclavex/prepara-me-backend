@@ -31,7 +31,8 @@ class UserMap {
         brandRiskJSON,
         laborRiskAlert,
         expiresDate,
-        periodTest
+        periodTest,
+        subscribeToken
     }: User): IUserResponseDTO {
         const statusMapped =
             status == UserStatusEnum.INACTIVE ? "Inativo" : "Ativo";
@@ -90,6 +91,7 @@ class UserMap {
             },
             expiresDate,
             periodTest,
+            subscribeToken
         });
 
         return user;

@@ -35,6 +35,7 @@ class UsersRepository implements IUsersRepository {
         laborRiskAlert,
         expiresDate,
         periodTest,
+        subscribeToken
     }: ICreateUserDTO): Promise<User> {
         const user = this.repository.create({
             id,
@@ -58,6 +59,7 @@ class UsersRepository implements IUsersRepository {
             laborRiskAlert,
             expiresDate,
             periodTest,
+            subscribeToken
         });
 
         await this.repository.save(user);
