@@ -34,12 +34,16 @@ async function getOrdersCreated() {
 async function execute() {
     const orders = await getOrdersCreated();
 
+    console.log('ORDERS CREATEDS', orders)
+
     orders.forEach(async (order) => {
         switch (order.status) {
             case "CREATED":
                 const orderPagarMe = await requestPagarMePaymentStatus(
                     order.pagarMeOrderId
                 );
+
+                console.log('Order PagarMe', orderPagarMe)
 
                 if (orderPagarMe == undefined || orderPagarMe.length == 0) {
                     // order.status = "EXPIRED";
@@ -69,7 +73,7 @@ async function execute() {
 }
 
 function verifyOrderPayment() {
-    nodeCron.schedule("1 * * * * * ", async () => {
+    nodeCron.schedule("* * * * * * ", async () => {
         try {
             execute();
         } catch (err) {

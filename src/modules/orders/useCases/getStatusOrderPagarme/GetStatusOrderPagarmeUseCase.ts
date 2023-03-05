@@ -25,5 +25,8 @@ class GetStatusOrderPagarme {
     }
 }
 
+//ak_test_JS1kghKTrKbM2iiaNvGM0xmJMIIMFc:x
+//
+
 export { GetStatusOrderPagarme };
 
