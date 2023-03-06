@@ -57,39 +57,25 @@ class CreateUserUseCase {
 
         if (id) {
             userFind = await this.usersRepository.findById(id);
-            
-            
+
             if (userFind && userFind.id !== id) {
                 throw new AppError("E-mail used by another user!");
             }
         }
-        
+
         let passwordHash = "";
-        
+
         if (!userFind) {
             if (!password) {
                 throw new AppError("Password can't be null!");
             }
-            
+
             passwordHash = await hash(password, 8);
-            
+
             periodTest = addDays(7);
             expiresDate = null;
         } else {
             passwordHash = userFind.password;
-        }
-        
-        let newSubscribeToken = false;
-        
-                if (!userFind) {
-            if (!Object.values(UserTypeEnum).includes(type)) {
-                throw new AppError("Type entered wrong");
-            }
-
-            newSubscribeToken = true;
-        } else {
-            newSubscribeToken =
-                (!userFind.subscribeToken && subscribeToken) || (subscribeToken != userFind.subscribeToken) ? true : false;
         }
 
         if (!documentId) {
@@ -124,81 +110,110 @@ class CreateUserUseCase {
             subscribeToken,
         });
 
-        if ((subscribeToken && newSubscribeToken) && userCreated && userCreated.id && !userFind) {
-            const companySubscriptionPlans =
-                await this.companySubscriptionPlansRepository.find({
-                    subscribeToken,
+        if (userCreated && userCreated.id && !userFind) {
+            let companyEmployee = await this.companyEmployeesRepository.find({
+                documentId,
+                notUserId: "true",
+            });
+
+            if (!(companyEmployee.length > 0)) {
+                companyEmployee = await this.companyEmployeesRepository.find({
+                    email,
+                    notUserId: "true",
                 });
+            }
 
-            if (companySubscriptionPlans && companySubscriptionPlans.length > 0 && companySubscriptionPlans[0].id) {
-                let companyEmployee =
-                    await this.companyEmployeesRepository.find({
-                        documentId,
-                        notUserId: "true",
-                    });
+            if (companyEmployee.length > 0) {
+                const employeeToken = companyEmployee[0].subscribeToken;
 
-                if (!(companyEmployee.length > 0)) {
-                    companyEmployee =
-                        await this.companyEmployeesRepository.find({
-                            email,
-                            notUserId: "true",
-                        });
-                }
-
-                if (companyEmployee.length > 0) {
-                    companyEmployee[0].userId = userCreated.id;
-
-                    this.companyEmployeesRepository.create(companyEmployee[0]);
-
-                    const subscriptionPlan =
-                        await this.subscriptionPlansRepository.find({
-                            id: companySubscriptionPlans[0].subscriptionPlanId,
+                if (employeeToken) {
+                    const companySubscriptionPlans =
+                        await this.companySubscriptionPlansRepository.find({
+                            subscribeToken: employeeToken,
                         });
 
-                    if (subscriptionPlan && subscriptionPlan[0]) {
-                        subscriptionPlan[0].subscriptionPlanProduct.forEach(
-                            async (subscriptionPlanProduct) => {
-                                if (
-                                    subscriptionPlanProduct.product.id ==
-                                        "5fca32d9-2abd-42a1-9043-2920ef156530" ||
-                                    subscriptionPlanProduct.product.id ==
-                                        "b2dda7e3-a6f6-4771-b59a-eeb8b7b5769a"
-                                ) {
-                                    expiresDate = addDays(90);
+                    if (
+                        companySubscriptionPlans &&
+                        companySubscriptionPlans.length > 0 &&
+                        companySubscriptionPlans[0].id
+                    ) {
+                        companyEmployee[0].userId = userCreated.id;
 
-                                    await this.usersRepository.create({
-                                        name,
-                                        username,
-                                        email,
-                                        password: passwordHash,
-                                        documentId,
-                                        type,
-                                        status,
-                                        id: userCreated.id,
-                                        NPSSurvey,
-                                        laborRisk,
-                                        surveyAnswered,
-                                        companyId,
-                                        realocated,
-                                        laborRiskAlert,
-                                        expiresDate,
-                                        periodTest,
-                                        subscribeToken,
-                                    });
-                                } else {
-                                    await this.userProductsAvailableRepository.create(
-                                        {
-                                            availableQuantity:
-                                                subscriptionPlanProduct.availableQuantity,
-                                            productId:
-                                                subscriptionPlanProduct.product
-                                                    .id,
-                                            userId: userCreated.id,
-                                        }
-                                    );
-                                }
-                            }
+                        this.companyEmployeesRepository.create(
+                            companyEmployee[0]
                         );
+
+                        const subscriptionPlan =
+                            await this.subscriptionPlansRepository.find({
+                                id: companySubscriptionPlans[0]
+                                    .subscriptionPlanId,
+                            });
+
+                        await this.usersRepository.create({
+                            name,
+                            username,
+                            email,
+                            password: passwordHash,
+                            documentId,
+                            type,
+                            status,
+                            id: userCreated.id,
+                            NPSSurvey,
+                            laborRisk,
+                            surveyAnswered,
+                            companyId: companyEmployee[0].companyId,
+                            realocated,
+                            laborRiskAlert,
+                            expiresDate,
+                            periodTest,
+                            subscribeToken: employeeToken,
+                        });
+
+                        if (subscriptionPlan && subscriptionPlan[0]) {
+                            subscriptionPlan[0].subscriptionPlanProduct.forEach(
+                                async (subscriptionPlanProduct) => {
+                                    if (
+                                        subscriptionPlanProduct.product.id ==
+                                            "5fca32d9-2abd-42a1-9043-2920ef156530" ||
+                                        subscriptionPlanProduct.product.id ==
+                                            "b2dda7e3-a6f6-4771-b59a-eeb8b7b5769a"
+                                    ) {
+                                        expiresDate = addDays(90);
+
+                                        await this.usersRepository.create({
+                                            name,
+                                            username,
+                                            email,
+                                            password: passwordHash,
+                                            documentId,
+                                            type,
+                                            status,
+                                            id: userCreated.id,
+                                            NPSSurvey,
+                                            laborRisk,
+                                            surveyAnswered,
+                                            companyId,
+                                            realocated,
+                                            laborRiskAlert,
+                                            expiresDate,
+                                            periodTest,
+                                            subscribeToken,
+                                        });
+                                    } else {
+                                        await this.userProductsAvailableRepository.create(
+                                            {
+                                                availableQuantity:
+                                                    subscriptionPlanProduct.availableQuantity,
+                                                productId:
+                                                    subscriptionPlanProduct
+                                                        .product.id,
+                                                userId: userCreated.id,
+                                            }
+                                        );
+                                    }
+                                }
+                            );
+                        }
                     }
                 }
             }
