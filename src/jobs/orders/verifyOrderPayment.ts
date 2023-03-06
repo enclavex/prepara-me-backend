@@ -53,6 +53,8 @@ async function execute() {
                             order.status = "PAID";
 
                             break;
+                        case "created":
+                            break;
                         default:
                             if (new Date(order.expiresAt) < new Date()) {
                                 order.status = "EXPIRED";
