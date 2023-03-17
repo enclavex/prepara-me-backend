@@ -1,4 +1,4 @@
-import "dotenv/config";
+import * as dotenv from 'dotenv';
 import upload from "@config/upload";
 import cors from "cors";
 import express from "express";
@@ -7,6 +7,10 @@ import swaggerUi from "swagger-ui-express";
 import createConnection from "@shared/infra/typeorm";
 
 import "@shared/container";
+
+dotenv.config();
+
+console.log(process.env)
 
 import swaggerFile from "../../../swagger.json";
 import errorReturn from "./middlewares/errorReturn";
