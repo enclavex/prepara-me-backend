@@ -4,19 +4,19 @@ import { ICompaniesRepository } from "@modules/company/repositories/ICompaniesRe
 import { CompaniesRepository } from "@modules/company/infra/typeorm/repositories/CompaniesRepository";
 import { ICompanyEmployeesRepository } from "@modules/company/repositories/ICompanyEmployeesRepository";
 import { CompanyEmployeesRepository } from "@modules/company/infra/typeorm/repositories/CompanyEmployeesRepository";
-import { container } from "tsyringe";
+import { container, delay } from 'tsyringe';
 
 container.registerSingleton<ICompaniesRepository>(
     "CompaniesRepository",
-    CompaniesRepository
+    delay(() => CompaniesRepository)
 );
 
 container.registerSingleton<ICompanyEmployeesRepository>(
     "CompanyEmployeesRepository",
-    CompanyEmployeesRepository
+    delay(() => CompanyEmployeesRepository)
 );
 
 container.registerSingleton<ICompanySubscriptionPlansRepository>(
     "CompanySubscriptionPlansRepository",
-    CompanySubscriptionPlansRepository
+    delay(() => CompanySubscriptionPlansRepository)
 );

@@ -1,9 +1,9 @@
-import { container } from "tsyringe";
+import { container, delay } from 'tsyringe';
 import { ScheduleGoogle } from "./implementations/ScheduleGoogle";
 
 import { IScheduleProvider } from "./IScheduleProvider";
 
 container.registerSingleton<IScheduleProvider>(
     "ScheduleGoogle",
-    ScheduleGoogle
+    delay(() => ScheduleGoogle)
 );

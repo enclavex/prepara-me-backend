@@ -2,14 +2,14 @@ import { SubscriptionPlansRepository } from "@modules/products/infra/typeorm/rep
 import { ISubscriptionPlansRepository } from "@modules/products/repositories/ISubscriptionPlansRepository";
 import { ISubscriptionPlanProductsRepository } from "@modules/products/repositories/ISubscriptionPlanProductsRepository";
 import { SubscriptionPlanProductsRepository } from "@modules/products/infra/typeorm/repositories/SubscriptionPlanProductsRepository";
-import { container } from "tsyringe";
+import { container, delay } from 'tsyringe';
 
 container.registerSingleton<ISubscriptionPlansRepository>(
     "SubscriptionPlansRepository",
-    SubscriptionPlansRepository
+    delay(() => SubscriptionPlansRepository)
 );
 
 container.registerSingleton<ISubscriptionPlanProductsRepository>(
     "SubscriptionPlanProductsRepository",
-    SubscriptionPlanProductsRepository
+    delay(() => SubscriptionPlanProductsRepository)
 );
