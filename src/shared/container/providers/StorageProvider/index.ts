@@ -9,11 +9,9 @@ const diskStorage = {
     s3: S3StorageProvider,
 };
 
-console.log(process.env.disk)
-
 container.registerSingleton<IStorageProvider>(
     "StorageProvider",
-    diskStorage[process.env.disk]
+    S3StorageProvider
 );
 
 console.log('deve aparecer')
