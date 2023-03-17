@@ -3,20 +3,20 @@ import { SpecialistsRepository } from "@modules/specialists/infra/typeorm/reposi
 import { ProductsSpecialistsRepository } from "@modules/specialists/infra/typeorm/repositories/ProductsSpecialistsRepository";
 import { IProductsSpecialistsRepository } from "@modules/specialists/repositories/IProductsSpecialistsRepository";
 import { ISpecialistSchedulesRepository } from "@modules/specialists/repositories/ISpecialistSchedulesRepository";
-import { container, delay } from 'tsyringe';
+import { container } from "tsyringe";
 import { SpecialistSchedulesRepository } from "@modules/specialists/infra/typeorm/repositories/SpecialistSchedulesRepository";
 
 container.registerSingleton<ISpecialistsRepository>(
     "SpecialistsRepository",
-    delay(() => SpecialistsRepository)
+    SpecialistsRepository
 );
 
 container.registerSingleton<ISpecialistSchedulesRepository>(
     "SpecialistSchedulesRepository",
-    delay(() => SpecialistSchedulesRepository)
+    SpecialistSchedulesRepository
 );
 
 container.registerSingleton<IProductsSpecialistsRepository>(
     "ProductsSpecialistsRepository",
-    delay(() => ProductsSpecialistsRepository)
+    ProductsSpecialistsRepository
 );

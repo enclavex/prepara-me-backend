@@ -1,4 +1,4 @@
-import { container, delay } from 'tsyringe';
+import { container } from "tsyringe";
 import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
 import { UserTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UserTokensRepository";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
@@ -10,20 +10,20 @@ import { ISubscriptionNewslettersRepository } from "@modules/accounts/repositori
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
-    delay(() => UsersRepository)
+    UsersRepository
 );
 
 container.registerSingleton<IUserTokensRepository>(
     "UserTokensRepository",
-    delay(() => UserTokensRepository)
+    UserTokensRepository
 );
 
 container.registerSingleton<IUserProductsAvailableRepository>(
     "UserProductsAvailableRepository",
-    delay(() => UserProductsAvailableRepository)
+    UserProductsAvailableRepository
 );
 
 container.registerSingleton<ISubscriptionNewslettersRepository>(
     "SubscriptionNewslettersRepository",
-    delay(() => SubscriptionNewslettersRepository)
+    SubscriptionNewslettersRepository
 )

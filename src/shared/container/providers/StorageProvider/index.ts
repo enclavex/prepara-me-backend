@@ -1,4 +1,4 @@
-import { container, delay } from 'tsyringe';
+import { container } from "tsyringe";
 
 import { LocalStorageProvider } from "./implementations/LocalStorageProvider";
 import { S3StorageProvider } from "./implementations/S3StorageProvider";
@@ -9,7 +9,11 @@ const diskStorage = {
     s3: S3StorageProvider,
 };
 
+console.log(process.env.disk)
+
 container.registerSingleton<IStorageProvider>(
     "StorageProvider",
-    delay(() => diskStorage[process.env.disk])
+    diskStorage[process.env.disk]
 );
+
+console.log('deve aparecer')

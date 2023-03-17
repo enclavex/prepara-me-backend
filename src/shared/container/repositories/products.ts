@@ -1,4 +1,4 @@
-import { container, delay } from 'tsyringe';
+import { container } from "tsyringe";
 import { ProductContentsRepository } from "@modules/products/infra/typeorm/repositories/ProductContentsRepository";
 import { ProductsRepository } from "@modules/products/infra/typeorm/repositories/ProductsRepository";
 import { IProductContentsRepository } from "@modules/products/repositories/IProductContentsRepository";
@@ -12,25 +12,25 @@ import { SimulatorVideosRepository } from "@modules/products/infra/typeorm/repos
 
 container.registerSingleton<IProductsRepository>(
     "ProductsRepository",
-    delay(() => ProductsRepository)
+    ProductsRepository
 );
 
 container.registerSingleton<IProductContentsRepository>(
     "ProductContentsRepository",
-    delay(() => ProductContentsRepository)
+    ProductContentsRepository
 );
 
 container.registerSingleton<IRequestScheduleRepository>(
     "RequestScheduleRepository",
-    delay(() => RequestScheduleRepository)
+    RequestScheduleRepository
 );
 
 container.registerSingleton<ISimulatorVideosGroupsRepository>(
     "SimulatorVideosGroupsRepository",
-    delay(() => SimulatorVideosGroupRepository)
+    SimulatorVideosGroupRepository
 );
 
 container.registerSingleton<ISimulatorVideosRepository>(
     "SimulatorVideosRepository",
-    delay(() => SimulatorVideosRepository)
+    SimulatorVideosRepository
 );
