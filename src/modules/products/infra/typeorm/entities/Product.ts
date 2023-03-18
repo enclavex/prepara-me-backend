@@ -10,6 +10,7 @@ import { v4 as uuidV4 } from "uuid";
 import { ProductContent } from "./ProductContent";
 import { SubscriptionPlanProduct } from "./SubscriptionPlanProduct";
 
+console.log("products on")
 @Entity("products")
 class Product {
     @PrimaryColumn()

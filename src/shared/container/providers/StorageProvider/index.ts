@@ -13,5 +13,3 @@ container.registerSingleton<IStorageProvider>(
     "StorageProvider",
     S3StorageProvider
 );
-
-console.log('deve aparecer')
