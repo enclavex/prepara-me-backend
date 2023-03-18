@@ -6,9 +6,6 @@ import swaggerUi from "swagger-ui-express";
 
 import createConnection from "@shared/infra/typeorm";
 
-console.log(dotenv.config().parsed)
-console.log(process.env)
-
 import "@shared/container";
 
 import swaggerFile from "../../../swagger.json";
