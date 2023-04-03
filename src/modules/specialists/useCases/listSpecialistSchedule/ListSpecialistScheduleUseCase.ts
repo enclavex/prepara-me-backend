@@ -24,13 +24,11 @@ class ListSpecialistScheduleUseCase {
         if (dateBegin) {
             dateBegin = this.dateProvider.getDate(dateBegin);
             dateBegin.setHours(0, 0, 0);
-            dateBegin = this.dateProvider.getDateTimeZone(dateBegin);
         }
 
         if (dateEnd) {
             dateEnd = this.dateProvider.getDate(dateEnd);
             dateEnd.setHours(23, 59, 59);
-            dateEnd = this.dateProvider.getDateTimeZone(dateEnd);
         }
 
         const specialistSchedules =
