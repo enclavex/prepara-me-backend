@@ -22,6 +22,7 @@ class SpecialistSchedulesRepository implements ISpecialistSchedulesRepository {
         hangoutLink,
         scheduleEventId,
         id,
+        rating
     }: ICreateSpecialistScheduleDTO): Promise<SpecialistSchedule> {
         const specialistSchedule = this.repository.create({
             dateSchedule,
@@ -33,6 +34,7 @@ class SpecialistSchedulesRepository implements ISpecialistSchedulesRepository {
             hangoutLink,
             scheduleEventId,
             id,
+            rating
         });
 
         await this.repository.save(specialistSchedule);

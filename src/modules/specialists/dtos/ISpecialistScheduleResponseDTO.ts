@@ -15,6 +15,7 @@ interface ISpecialistScheduleResponseDTO {
     status: Object;
     user: IUserResponseDTO;
     userId: string;
+    rating: number;
 }
 
 export { ISpecialistScheduleResponseDTO };

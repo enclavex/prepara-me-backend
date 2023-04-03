@@ -7,10 +7,11 @@ interface ICreateSpecialistScheduleDTO {
     userId?: string;
     productId?: string;
     comments?: string;
-    hangoutLink?:string;
-    scheduleEventId?:string;
+    hangoutLink?: string;
+    scheduleEventId?: string;
     id?: string;
     createEvent?: boolean;
+    rating?: number;
 }
 
-export { ICreateSpecialistScheduleDTO }
+export { ICreateSpecialistScheduleDTO };

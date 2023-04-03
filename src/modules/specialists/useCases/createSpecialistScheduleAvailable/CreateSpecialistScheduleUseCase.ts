@@ -34,7 +34,8 @@ class CreateSpecialistScheduleUseCase {
         hangoutLink,
         scheduleEventId,
         id,
-        createEvent
+        createEvent,
+        rating
     }: ICreateSpecialistScheduleDTO): Promise<SpecialistSchedule> {
         if (productId && userId && createEvent) {
             const userProducts =
@@ -145,6 +146,7 @@ class CreateSpecialistScheduleUseCase {
                 hangoutLink,
                 scheduleEventId,
                 id,
+                rating
             });
 
         return specialistSchedule;

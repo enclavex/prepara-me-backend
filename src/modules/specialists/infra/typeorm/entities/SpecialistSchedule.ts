@@ -44,6 +44,9 @@ class SpecialistSchedule {
     @Column()
     scheduleEventId: string;
 
+    @Column()
+    rating: number;
+
     constructor(
         dateSchedule: Date,
         specialistId: string,
@@ -53,7 +56,8 @@ class SpecialistSchedule {
         comments: string,
         hangoutLink: string,
         scheduleEventId: string,
-        id: string
+        id: string,
+        rating: number
     ) {
         if (id) {
             this.id = id;
@@ -71,6 +75,7 @@ class SpecialistSchedule {
         this.comments = comments;
         this.hangoutLink = hangoutLink;
         this.scheduleEventId = scheduleEventId;
+        this.rating = rating;
     }
 }
 

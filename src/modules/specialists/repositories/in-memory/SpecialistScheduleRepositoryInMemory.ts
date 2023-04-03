@@ -18,6 +18,7 @@ class SpecialistScheduleRepositoryInMemory
         hangoutLink,
         scheduleEventId,
         id,
+        rating
     }: ICreateSpecialistScheduleDTO): Promise<SpecialistSchedule> {
         const specialistSchedule = new SpecialistSchedule(
             dateSchedule,
@@ -28,7 +29,8 @@ class SpecialistScheduleRepositoryInMemory
             comments,
             hangoutLink,
             scheduleEventId,
-            id
+            id,
+            rating
         );
 
         this.specialistSchedules.push(specialistSchedule);

@@ -17,6 +17,7 @@ class SpecialistScheduleMap {
         product,
         scheduleEventId,
         specialist,
+        rating
     }: SpecialistSchedule): ISpecialistScheduleResponseDTO {
         const statusMapped =
             status === SpecialistScheduleStatusEnum.AVAILABLE
@@ -40,6 +41,7 @@ class SpecialistScheduleMap {
             userId: user ? user.id : null,
             specialist: specialist ? SpecialistMap.toDTO(specialist) : null,
             specialistId: specialist ? specialist.id : null,
+            rating
         });
 
         return specialistSchedule;

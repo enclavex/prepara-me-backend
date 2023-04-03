@@ -13,7 +13,8 @@ class CreateSpecialistScheduleController {
             comments,
             hangoutLink,
             scheduleEventId,
-            createEvent
+            createEvent,
+            rating
         } = request.body;
 
         const { id } = request.params;
@@ -33,7 +34,8 @@ class CreateSpecialistScheduleController {
                 hangoutLink,
                 scheduleEventId,
                 id,
-                createEvent
+                createEvent,
+                rating
             });
 
         return response.status(201).json(specialistSchedule);
