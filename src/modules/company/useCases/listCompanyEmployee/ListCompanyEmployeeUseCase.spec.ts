@@ -16,7 +16,7 @@ describe("List Company Employees", () => {
         );
         createCompanyEmployeeUseCase = new CreateCompanyEmployeeUseCase(
             companyEmployeesRepositoryInMemory
-        );
+        ); 
     });
 
     it("should be able to list company employees", async () => {
@@ -25,6 +25,7 @@ describe("List Company Employees", () => {
             name: "teste",
             subscribeToken: "teste",
             documentId: "123",
+            email: ""
         };
 
         await createCompanyEmployeeUseCase.execute(companyEmployee1);
@@ -34,6 +35,7 @@ describe("List Company Employees", () => {
             name: "teste",
             subscribeToken: "teste",
             documentId: "123",
+            email: ""
         };
 
         await createCompanyEmployeeUseCase.execute(companyEmployee2);
@@ -58,6 +60,7 @@ describe("List Company Employees", () => {
             name: "teste",
             subscribeToken: "teste",
             documentId: "123",
+            email: ""
         };
 
         await createCompanyEmployeeUseCase.execute(companyEmployee1);
@@ -67,6 +70,7 @@ describe("List Company Employees", () => {
             name: "teste 2",
             subscribeToken: "teste",
             documentId: "123",
+            email: ""
         };
 
         await createCompanyEmployeeUseCase.execute(companyEmployee2);
@@ -91,6 +95,7 @@ describe("List Company Employees", () => {
             name: "teste",
             subscribeToken: "teste",
             documentId: "123",
+            email: ""
         };
 
         await createCompanyEmployeeUseCase.execute(companyEmployee1);
@@ -100,6 +105,7 @@ describe("List Company Employees", () => {
             name: "teste 2",
             subscribeToken: "teste",
             documentId: "321",
+            email: ""
         };
 
         await createCompanyEmployeeUseCase.execute(companyEmployee2);

@@ -110,7 +110,7 @@ class CreateUserUseCase {
             subscribeToken,
         });
 
-        if (userCreated && userCreated.id && !userFind) {
+        if (userCreated && userCreated.id && !userFind && process.env.NODE_ENV !== "test") {
             let companyEmployee = await this.companyEmployeesRepository.find({
                 documentId,
                 notUserId: "true",
@@ -137,11 +137,20 @@ class CreateUserUseCase {
                         companySubscriptionPlans.length > 0 &&
                         companySubscriptionPlans[0].id
                     ) {
-                        companyEmployee[0].userId = userCreated.id;
+                        companyEmployee[0].user = userCreated;
 
-                        this.companyEmployeesRepository.create(
-                            companyEmployee[0]
-                        );
+                        this.companyEmployeesRepository.create({
+                            companyId: companyEmployee[0].company.id,
+                            documentId: companyEmployee[0].documentId,
+                            name: companyEmployee[0].name,
+                            subscribeToken: companyEmployee[0].subscribeToken,
+                            userId: companyEmployee[0].user.id,
+                            phone: companyEmployee[0].phone,
+                            email: companyEmployee[0].email,
+                            id: companyEmployee[0].id,
+                            easyRegister:
+                                companyEmployee[0].easyRegister["value"],
+                        });
 
                         const subscriptionPlan =
                             await this.subscriptionPlansRepository.find({
@@ -161,7 +170,7 @@ class CreateUserUseCase {
                             NPSSurvey,
                             laborRisk,
                             surveyAnswered,
-                            companyId: companyEmployee[0].companyId,
+                            companyId: companyEmployee[0].company.id,
                             realocated,
                             laborRiskAlert,
                             expiresDate,

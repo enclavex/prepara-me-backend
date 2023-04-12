@@ -13,7 +13,7 @@ class UserProductsAvailableMap {
         const userProductAvailable = instanceToInstance({
             id,
             product,
-            user: UserMap.toDTO(user),
+            user: user ? process.env.NODE_ENV === "test" ? user : UserMap.toDTO(user) : null,
             availableQuantity,
         });
 

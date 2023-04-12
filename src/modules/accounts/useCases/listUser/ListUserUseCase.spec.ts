@@ -146,7 +146,7 @@ describe("List User", () => {
         const user2: ICreateUserDTO = {
             name: "User Two",
             status: UserStatusEnum.ACTIVE,
-            documentId: "08113754989",
+            documentId: "08113754989", 
             email: "user2@user.com",
             password: "123",
             type: UserTypeEnum.USER,
@@ -307,4 +307,4 @@ describe("List User", () => {
         expect(result).toHaveLength(1);
     });
 });
-
+ 

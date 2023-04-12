@@ -64,7 +64,7 @@ describe("Create User", () => {
                 realocated: UserRealocatedEnum.NOT_REALOCATED,
                 expiresDate: new Date(),
                 periodTest: new Date(),
-            };
+            }; 
 
             await createUserUseCase.execute(user);
         }).rejects.toBeInstanceOf(AppError);

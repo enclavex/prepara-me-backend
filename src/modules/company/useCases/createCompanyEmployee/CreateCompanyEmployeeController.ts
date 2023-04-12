@@ -4,7 +4,7 @@ import { CreateCompanyEmployeeUseCase } from "./CreateCompanyEmployeeUseCase";
 
 class CreateCompanyEmployeeController {
     async handle(request: Request, response: Response): Promise<Response> {
-        const { name, documentId, subscribeToken, userId, phone, email, id } =
+        const { name, documentId, subscribeToken, userId, phone, email, id, easyRegister } =
             request.body;
 
         const { id: companyId } = request.params;
@@ -22,6 +22,7 @@ class CreateCompanyEmployeeController {
             phone,
             email,
             id,
+            easyRegister
         });
 
         return response.status(201).send(companyEmployee);

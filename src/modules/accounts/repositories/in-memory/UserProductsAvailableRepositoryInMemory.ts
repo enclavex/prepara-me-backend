@@ -1,6 +1,7 @@
 import { ICreateUserProductAvailableDTO } from "@modules/accounts/dtos/ICreateUserProductAvailableDTO";
 import { IUserProductAvailableResponseDTO } from "@modules/accounts/dtos/IUserProductAvailableResponseDTO";
 import { UserProductAvailable } from "@modules/accounts/infra/typeorm/entities/UserProductAvailable";
+import { UserProductsAvailableMap } from "@modules/accounts/mapper/UserProductsAvailable";
 import { IUserProductsAvailableRepository } from "../IUserProductsAvailableRepository";
 
 class UserProductsAvailableRepositoryInMemory
@@ -65,7 +66,11 @@ class UserProductsAvailableRepositoryInMemory
             }
         }
 
-        return userProductsAvailable;
+        const userProductsAvailableMapped = userProductsAvailable.map((userProductAvailable) => {
+            return UserProductsAvailableMap.toDTO(userProductAvailable);
+        });
+
+        return userProductsAvailableMapped;
     }
 }
 

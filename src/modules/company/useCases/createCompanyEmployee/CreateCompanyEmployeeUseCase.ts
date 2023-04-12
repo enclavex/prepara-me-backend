@@ -20,6 +20,7 @@ class CreateCompanyEmployeeUseCase {
         phone,
         email,
         id,
+        easyRegister,
     }: ICreateCompanyEmployeeDTO): Promise<CompanyEmployee> {
         if (!name) {
             throw new AppError("Name can't be null");
@@ -33,8 +34,8 @@ class CreateCompanyEmployeeUseCase {
             throw new AppError("Document Id can't be null");
         }
 
-        if (!subscribeToken) {
-            throw new AppError("subscribeToken can't be null");
+        if (!easyRegister) {
+            throw new AppError("easyRegister can't be null");
         }
 
         const companyEmployee = await this.companyEmployeesRepository.create({
@@ -46,6 +47,7 @@ class CreateCompanyEmployeeUseCase {
             phone,
             email,
             id,
+            easyRegister
         });
 
         return companyEmployee;

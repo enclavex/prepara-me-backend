@@ -7,6 +7,7 @@ interface ICreateCompanyEmployeeDTO {
     userId?: string;
     subscribeToken: string;
     id?: string;
+    easyRegister?: string
 }
 
 export { ICreateCompanyEmployeeDTO };

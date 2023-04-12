@@ -1,5 +1,7 @@
+import { ICompanyEmployeeResponseDTO } from "@modules/company/dtos/ICompanyEmployeeResponseDTO";
 import { ICreateCompanyEmployeeDTO } from "@modules/company/dtos/ICreateCompanyEmployeeDTO";
 import { CompanyEmployee } from "@modules/company/infra/typeorm/entities/CompanyEmployee";
+import { CompanyEmployeeMap } from "@modules/company/mapper/CompanyEmployeeMap";
 import { ICompanyEmployeesRepository } from "../ICompanyEmployeesRepository";
 
 class CompanyEmployeesRepositoryInMemory
@@ -16,6 +18,7 @@ class CompanyEmployeesRepositoryInMemory
         phone,
         email,
         id,
+        easyRegister
     }: ICreateCompanyEmployeeDTO): Promise<CompanyEmployee> {
         const companyEmployee = new CompanyEmployee(
             name,
@@ -25,7 +28,8 @@ class CompanyEmployeesRepositoryInMemory
             phone,
             email,
             userId,
-            id
+            id,
+            easyRegister
         );
 
         this.companyEmployees.push(companyEmployee);
@@ -42,7 +46,7 @@ class CompanyEmployeesRepositoryInMemory
         phone,
         email,
         id,
-    }): Promise<CompanyEmployee[]> {
+    }): Promise<ICompanyEmployeeResponseDTO[]> {
         let companyEmployees = this.companyEmployees;
 
         if (id) {
@@ -107,7 +111,13 @@ class CompanyEmployeesRepositoryInMemory
             }
         }
 
-        return companyEmployees;
+        const companyEmployeesMapped = companyEmployees.map(
+            (companyEmployee) => {
+                return CompanyEmployeeMap.toDTO(companyEmployee);
+            }
+        );
+
+        return companyEmployeesMapped;
     }
 
     async remove(id: string): Promise<string> {

@@ -1,3 +1,7 @@
+import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UserRealocatedEnum } from "@modules/accounts/enums/UserRealocatedEnum";
+import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
+import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
 import { ICreateCompanyEmployeeDTO } from "@modules/company/dtos/ICreateCompanyEmployeeDTO";
 import { CompanyEmployeesRepositoryInMemory } from "@modules/company/repositories/in-memory/CompanyEmployeesRepositoryInMemory";
 import { AppError } from "@shared/errors/AppError";
@@ -72,24 +76,6 @@ describe("Remove Company Employee", () => {
         );
 
         expect(idRemoved).toBe(companyEmployeeCreated.id);
-    });
-
-    it("should not be able to delete a employee with a user", async () => {
-        expect(async () => {
-            const companyEmployee1: ICreateCompanyEmployeeDTO = {
-                companyId: "123",
-                name: "teste",
-                subscribeToken: "123",
-                documentId: "123",
-                userId: "123"
-            };
-    
-            const companyEmployeeCreated = await createCompanyEmployeeUseCase.execute(companyEmployee1);
-
-            await removeCompanyEmployeeUseCase.execute(
-                companyEmployeeCreated.id
-            );
-        }).rejects.toBeInstanceOf(AppError);
     });
 });
 

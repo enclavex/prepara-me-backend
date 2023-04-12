@@ -1,4 +1,6 @@
+import { ICompanyEmployeeResponseDTO } from "@modules/company/dtos/ICompanyEmployeeResponseDTO";
 import { ICreateCompanyEmployeeDTO } from "@modules/company/dtos/ICreateCompanyEmployeeDTO";
+import { CompanyEmployeeMap } from "@modules/company/mapper/CompanyEmployeeMap";
 import { ICompanyEmployeesRepository } from "@modules/company/repositories/ICompanyEmployeesRepository";
 import { getRepository, Repository } from "typeorm";
 import { CompanyEmployee } from "../entities/CompanyEmployee";
@@ -19,6 +21,7 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
         phone,
         email,
         id,
+        easyRegister,
     }: ICreateCompanyEmployeeDTO): Promise<CompanyEmployee> {
         const companyEmployee = this.repository.create({
             companyId,
@@ -29,6 +32,7 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
             phone,
             email,
             id,
+            easyRegister,
         });
 
         await this.repository.save(companyEmployee);
@@ -45,7 +49,7 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
         email,
         companyId,
         id,
-    }): Promise<CompanyEmployee[]> {
+    }): Promise<ICompanyEmployeeResponseDTO[]> {
         const companyEmployeesQuery = this.repository
             .createQueryBuilder("ce")
             .leftJoinAndSelect("ce.user", "u")
@@ -83,7 +87,7 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
             }
 
             if (notUserId) {
-                if (notUserId === 'true') {
+                if (notUserId === "true") {
                     companyEmployeesQuery.andWhere("ce.userId is null");
                 } else {
                     companyEmployeesQuery.andWhere("not ce.userId is null");
@@ -105,7 +109,13 @@ class CompanyEmployeesRepository implements ICompanyEmployeesRepository {
 
         const companyEmployees = await companyEmployeesQuery.getMany();
 
-        return companyEmployees;
+        const companyEmployeesMapped = companyEmployees.map(
+            (companyEmployee) => {
+                return CompanyEmployeeMap.toDTO(companyEmployee);
+            }
+        );
+
+        return companyEmployeesMapped;
     }
 
     async remove(id: string): Promise<string> {

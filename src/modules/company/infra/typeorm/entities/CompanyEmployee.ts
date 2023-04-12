@@ -32,16 +32,20 @@ class CompanyEmployee {
 
     @Column()
     companyId: string;
+
     @ManyToOne(() => Company)
     @JoinColumn({ name: "companyId" })
     company: Company;
 
     @Column()
     userId: string;
-
+    
     @OneToOne(() => User)
     @JoinColumn()
     user: User;
+    
+    @Column()
+    easyRegister: string;
 
     constructor(
         name: string,
@@ -51,7 +55,8 @@ class CompanyEmployee {
         phone: string,
         email: string,
         userId: string,
-        id: string
+        id: string,
+        easyRegister: string
     ) {
         if (id) {
             this.id = id;
@@ -65,13 +70,10 @@ class CompanyEmployee {
         this.subscribeToken = subscribeToken;
         this.companyId = companyId;
         this.documentId = documentId;
-
-        // if (userId) {
-            this.userId = userId;
-        // }
-
+        this.userId = userId;
         this.phone = phone;
         this.email = email;
+        this.easyRegister = easyRegister;
     }
 }
 
