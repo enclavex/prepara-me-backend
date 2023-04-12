@@ -22,6 +22,7 @@ interface IUserResponseDTO {
     brandRiskJSON: string;
     laborRiskAlert: Object;
     expiresDate: Date;
+    expiryDateFormated: string;
     periodTest: Date;
     subscribeToken: string;
 }

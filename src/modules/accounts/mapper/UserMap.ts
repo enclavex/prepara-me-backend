@@ -1,3 +1,4 @@
+import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { instanceToInstance } from "class-transformer";
 
 import { IUserResponseDTO } from "../dtos/IUserResponseDTO";
@@ -32,7 +33,7 @@ class UserMap {
         laborRiskAlert,
         expiresDate,
         periodTest,
-        subscribeToken
+        subscribeToken,
     }: User): IUserResponseDTO {
         const statusMapped =
             status == UserStatusEnum.INACTIVE ? "Inativo" : "Ativo";
@@ -64,6 +65,11 @@ class UserMap {
                 break;
         }
 
+        const expiryDateFormated = new DayjsDateProvider().formatDateTime(
+            expiresDate,
+            "DD/MM/YYYY"
+        );
+
         const user = instanceToInstance({
             email,
             name,
@@ -90,8 +96,9 @@ class UserMap {
                 value: laborRiskAlert,
             },
             expiresDate,
+            expiryDateFormated,
             periodTest,
-            subscribeToken
+            subscribeToken,
         });
 
         return user;
