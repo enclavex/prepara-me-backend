@@ -35,7 +35,7 @@ class UsersRepository implements IUsersRepository {
         laborRiskAlert,
         expiresDate,
         periodTest,
-        subscribeToken
+        subscribeToken,
     }: ICreateUserDTO): Promise<User> {
         const user = this.repository.create({
             id,
@@ -59,7 +59,7 @@ class UsersRepository implements IUsersRepository {
             laborRiskAlert,
             expiresDate,
             periodTest,
-            subscribeToken
+            subscribeToken,
         });
 
         await this.repository.save(user);
@@ -69,6 +69,12 @@ class UsersRepository implements IUsersRepository {
 
     async findByEmail(email: string): Promise<User> {
         const user = await this.repository.findOne({ email });
+
+        return user;
+    }
+
+    async findByDocument(documentId: string): Promise<User> {
+        const user = await this.repository.findOne({ documentId });
 
         return user;
     }
@@ -87,7 +93,7 @@ class UsersRepository implements IUsersRepository {
         documentId,
         id,
         realocated,
-        laborRiskAlert
+        laborRiskAlert,
     }): Promise<IUserResponseDTO[]> {
         const usersQuery = this.repository
             .createQueryBuilder("u")

@@ -11,7 +11,7 @@ import { IDateProvider } from "@shared/container/providers/DateProvider/IDatePro
 import { AppError } from "@shared/errors/AppError";
 
 interface IRequest {
-    email: string;
+    login: string;
     password: string;
 }
 
@@ -32,11 +32,15 @@ class AuthenticateUserUseCase {
         private dayjsDateProvider: IDateProvider
     ) {}
 
-    async execute({ email, password }: IRequest): Promise<ITokenResponse> {
-        const user = await this.userRepository.findByEmail(email);
+    async execute({ login, password }: IRequest): Promise<ITokenResponse> {
+        let user = await this.userRepository.findByEmail(login);
 
         if (!user) {
-            throw new AppError("Email or Password incorrect.");
+            user = await this.userRepository.findByDocument(login);
+
+            if (!user) {
+                throw new AppError("Email or Password incorrect.");
+            }
         }
 
         const passwordMatch = await compare(password, user.password);
@@ -45,7 +49,7 @@ class AuthenticateUserUseCase {
             throw new AppError("Email or Password incorrect.");
         }
 
-        const refresh_token = sign({ email }, auth.secret_refresh_token, {
+        const refresh_token = sign({ login }, auth.secret_refresh_token, {
             subject: user.id,
             expiresIn: auth.expires_in_refresh_token,
         });
@@ -74,3 +78,4 @@ class AuthenticateUserUseCase {
 }
 
 export { AuthenticateUserUseCase };
+

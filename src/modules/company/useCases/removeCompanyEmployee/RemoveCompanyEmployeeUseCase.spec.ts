@@ -1,14 +1,12 @@
-import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
-import { UserRealocatedEnum } from "@modules/accounts/enums/UserRealocatedEnum";
-import { UserStatusEnum } from "@modules/accounts/enums/UserStatusEnum";
-import { UserTypeEnum } from "@modules/accounts/enums/UserTypeEnum";
+import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 import { ICreateCompanyEmployeeDTO } from "@modules/company/dtos/ICreateCompanyEmployeeDTO";
+import { CompanyEmployeeEasyRegisterEnum } from "@modules/company/enums/CompanyEmployeeEasyRegisterEnum";
 import { CompanyEmployeesRepositoryInMemory } from "@modules/company/repositories/in-memory/CompanyEmployeesRepositoryInMemory";
-import { AppError } from "@shared/errors/AppError";
 import { CreateCompanyEmployeeUseCase } from "../createCompanyEmployee/CreateCompanyEmployeeUseCase";
 import { RemoveCompanyEmployeeUseCase } from "./RemoveCompanyEmployeeUseCase";
 
 let createCompanyEmployeeUseCase: CreateCompanyEmployeeUseCase;
+let usersRepositoryInMemory: UsersRepositoryInMemory;
 let companyEmployeesRepositoryInMemory: CompanyEmployeesRepositoryInMemory;
 let removeCompanyEmployeeUseCase: RemoveCompanyEmployeeUseCase;
 
@@ -16,8 +14,11 @@ describe("Remove Company Employee", () => {
     beforeEach(() => {
         companyEmployeesRepositoryInMemory =
             new CompanyEmployeesRepositoryInMemory();
+            usersRepositoryInMemory =
+            new UsersRepositoryInMemory();
         createCompanyEmployeeUseCase = new CreateCompanyEmployeeUseCase(
-            companyEmployeesRepositoryInMemory
+            companyEmployeesRepositoryInMemory,
+            usersRepositoryInMemory
         );
         removeCompanyEmployeeUseCase = new RemoveCompanyEmployeeUseCase(
             companyEmployeesRepositoryInMemory
@@ -30,6 +31,7 @@ describe("Remove Company Employee", () => {
             name: "teste",
             subscribeToken: "123",
             documentId: "123",
+            easyRegister: CompanyEmployeeEasyRegisterEnum.NO
         };
 
         await createCompanyEmployeeUseCase.execute(companyEmployee1);
@@ -39,6 +41,7 @@ describe("Remove Company Employee", () => {
             name: "teste",
             subscribeToken: "123",
             documentId: "123",
+            easyRegister: CompanyEmployeeEasyRegisterEnum.NO
         };
 
         const companyEmployeeCreated =
@@ -57,6 +60,7 @@ describe("Remove Company Employee", () => {
             name: "teste",
             subscribeToken: "123",
             documentId: "123",
+            easyRegister: CompanyEmployeeEasyRegisterEnum.NO
         };
 
         await createCompanyEmployeeUseCase.execute(companyEmployee1);
@@ -66,6 +70,7 @@ describe("Remove Company Employee", () => {
             name: "teste",
             subscribeToken: "123",
             documentId: "123",
+            easyRegister: CompanyEmployeeEasyRegisterEnum.NO
         };
 
         const companyEmployeeCreated =

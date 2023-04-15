@@ -67,7 +67,7 @@ describe("Refresh Token", () => {
         const { email } = await createUserUseCase.execute(user);
 
         const { refresh_token } = await authenticateUserUseCase.execute({
-            email,
+            login: email,
             password: "1234",
         });
 

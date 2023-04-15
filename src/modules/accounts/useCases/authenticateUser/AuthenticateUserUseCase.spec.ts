@@ -61,7 +61,7 @@ describe("Authenticate User", () => {
 
         await createUserUseCase.execute(user);
         const result = await authenticateUserUseCase.execute({
-            email: user.email,
+            login: user.email,
             password: user.password,
         });
 
@@ -71,7 +71,7 @@ describe("Authenticate User", () => {
     it("should not be able to authenticate a non existent user", () => {
         expect(async () => {
             await authenticateUserUseCase.execute({
-                email: "user@test.com",
+                login: "user@test.com",
                 password: "1234",
             });
         }).rejects.toBeInstanceOf(AppError);
@@ -94,7 +94,7 @@ describe("Authenticate User", () => {
 
             await createUserUseCase.execute(user);
             await authenticateUserUseCase.execute({
-                email: user.email,
+                login: user.email,
                 password: "incorrectPass",
             });
         }).rejects.toBeInstanceOf(AppError);

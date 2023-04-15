@@ -18,23 +18,49 @@ class CompanyEmployeesRepositoryInMemory
         phone,
         email,
         id,
-        easyRegister
+        easyRegister,
     }: ICreateCompanyEmployeeDTO): Promise<CompanyEmployee> {
-        const companyEmployee = new CompanyEmployee(
-            name,
-            subscribeToken,
-            companyId,
-            documentId,
-            phone,
-            email,
-            userId,
-            id,
-            easyRegister
-        );
+        if (id) {
+            let companyEmployees = this.companyEmployees;
 
-        this.companyEmployees.push(companyEmployee);
+            let companyEmployeeIndex = companyEmployees.findIndex(
+                (companyEmployee) => {
+                    return companyEmployee.id === id;
+                }
+            )[0];
 
-        return companyEmployee;
+            const companyEmployee = new CompanyEmployee(
+                name,
+                subscribeToken,
+                companyId,
+                documentId,
+                phone,
+                email,
+                userId,
+                id,
+                easyRegister
+            );
+
+            this.companyEmployees[companyEmployeeIndex] = companyEmployee;
+
+            return companyEmployee;
+        } else {
+            const companyEmployee = new CompanyEmployee(
+                name,
+                subscribeToken,
+                companyId,
+                documentId,
+                phone,
+                email,
+                userId,
+                id,
+                easyRegister
+            );
+
+            this.companyEmployees.push(companyEmployee);
+
+            return companyEmployee;
+        }
     }
 
     async find({

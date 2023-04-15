@@ -18,6 +18,7 @@ interface IRequestFind {
 interface IUsersRepository {
     create(data: ICreateUserDTO): Promise<User>;
     findByEmail(email: string): Promise<User>;
+    findByDocument(email: string): Promise<User>;
     findById(id: string): Promise<User>;
     find(data: IRequestFind): Promise<IUserResponseDTO[]>;
     remove(id: string): Promise<String>;

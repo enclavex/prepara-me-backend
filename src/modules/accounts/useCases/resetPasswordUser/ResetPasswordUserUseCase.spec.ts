@@ -67,7 +67,7 @@ describe("Reset Password", () => {
         const { email } = await createUserUseCase.execute(user);
 
         const tokensAnt = await authenticateUserUseCase.execute({
-            email,
+            login: email,
             password: "1234",
         });
 
@@ -77,7 +77,7 @@ describe("Reset Password", () => {
         });
 
         const tokensNew = await authenticateUserUseCase.execute({
-            email,
+            login: email,
             password: "123",
         });
 
