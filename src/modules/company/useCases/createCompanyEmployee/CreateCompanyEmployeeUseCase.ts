@@ -59,13 +59,38 @@ class CreateCompanyEmployeeUseCase {
                 easyRegister,
             });
 
-        if (!id && !userId) {
+        console.log("Cadastrando funcionário", {
+            id,
+            userId,
+            easyRegister,
+        });
+
+        if (!id && !userId && easyRegister) {
             const passwordHash = await hash(
                 companyEmployeeCreated.documentId,
                 8
             );
 
-            const newEmail  = `${companyEmployeeCreated.id}@prepara.me`
+            const newEmail = `${companyEmployeeCreated.id}@prepara.me`;
+
+            console.log("Dados do usuário cadastrado a partir do funcionário", {
+                name: companyEmployeeCreated.name,
+                username: companyEmployeeCreated.name,
+                email: newEmail,
+                password: passwordHash,
+                documentId: companyEmployeeCreated.documentId,
+                type: UserTypeEnum.USER,
+                status: UserStatusEnum.ACTIVE,
+                NPSSurvey: 0,
+                laborRisk: 0,
+                surveyAnswered: false,
+                companyId,
+                realocated: UserRealocatedEnum.NOT_REALOCATED,
+                laborRiskAlert: UserLaborRiskAlertEnum.NORMAL,
+                expiresDate: new Date(),
+                periodTest: new Date(),
+                subscribeToken: companyEmployeeCreated.subscribeToken,
+            });
 
             const userCreated = await this.usersRepository.create({
                 name: companyEmployeeCreated.name,
