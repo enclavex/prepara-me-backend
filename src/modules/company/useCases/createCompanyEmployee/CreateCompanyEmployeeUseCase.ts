@@ -59,19 +59,19 @@ class CreateCompanyEmployeeUseCase {
                 easyRegister,
             });
 
-        console.log("Cadastrando funcionário", {
-            id,
-            userId,
-            easyRegister,
-        });
-
         if (!id && !userId && easyRegister) {
             const passwordHash = await hash(
                 companyEmployeeCreated.documentId,
                 8
             );
 
-            const newEmail = `${companyEmployeeCreated.id}@prepara.me`;
+            var newEmail = "";
+
+            if (!email) {
+                newEmail = `${companyEmployeeCreated.id}@prepara.me`;
+            } else {
+                newEmail = email;
+            }
 
             console.log("Dados do usuário cadastrado a partir do funcionário", {
                 name: companyEmployeeCreated.name,

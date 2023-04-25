@@ -1,13 +1,13 @@
-FROM node
+# syntax=docker/dockerfile:1
 
+FROM node:18-alpine
+ENV NODE_ENV=production
 
-WORKDIR /usr/app
+WORKDIR /app
 
-COPY package.json ./
+COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install
-
-COPY . .
 
 EXPOSE 3334
 
