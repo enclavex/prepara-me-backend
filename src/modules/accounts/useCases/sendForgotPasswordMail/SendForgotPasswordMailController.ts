@@ -15,6 +15,6 @@ class SendForgotPasswordMailController {
 
         return response.status(200).send();
     }
-}
+} 
 
 export { SendForgotPasswordMailController };
